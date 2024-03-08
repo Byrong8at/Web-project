@@ -5,11 +5,8 @@ CREATE TABLE Utilisateur(
    Login VARCHAR(50),
    Mot_de_passe VARCHAR(50),
    Centre VARCHAR(50),
-   Promotion VARCHAR(50),
    Statut INT,
-   Peut_etre_modifier LOGICAL,
    CV VARCHAR(50),
-   lettre_motivation VARCHAR(50),
    PRIMARY KEY(ID_user)
 );
 
@@ -34,7 +31,6 @@ CREATE TABLE Offre(
    entreprise VARCHAR(50),
    types_de_promotions_concernées VARCHAR(50),
    durée_du_stage INT,
-   Date_début DATE,
    Rémunération DECIMAL(15,2),
    date_de_l_offre DATE,
    nombre_de_places_offertes_aux_étudiants INT,
@@ -57,6 +53,22 @@ CREATE TABLE Candidature(
    ID_Candi INT,
    Etat_Postule LOGICAL NOT NULL,
    PRIMARY KEY(ID_Candi)
+);
+
+CREATE TABLE Promotion(
+   Id_Promo INT,
+   Nom_promo VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id_Promo),
+   UNIQUE(Nom_promo)
+);
+
+CREATE TABLE Admin(
+   Id_Admin INT,
+   Nom VARCHAR(50) NOT NULL,
+   Prenom VARCHAR(50) NOT NULL,
+   Email VARCHAR(50) NOT NULL,
+   Mot_de_passe VARCHAR(50) NOT NULL,
+   PRIMARY KEY(Id_Admin)
 );
 
 CREATE TABLE Intéragir(
@@ -83,4 +95,12 @@ CREATE TABLE recevoir(
    PRIMARY KEY(ID_offre, ID_Candi),
    FOREIGN KEY(ID_offre) REFERENCES Offre(ID_offre),
    FOREIGN KEY(ID_Candi) REFERENCES Candidature(ID_Candi)
+);
+
+CREATE TABLE Integrer(
+   ID_user INT,
+   Id_Promo INT,
+   PRIMARY KEY(ID_user, Id_Promo),
+   FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user),
+   FOREIGN KEY(Id_Promo) REFERENCES Promotion(Id_Promo)
 );
