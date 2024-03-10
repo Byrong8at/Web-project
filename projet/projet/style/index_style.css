@@ -1,0 +1,56 @@
+body {
+        margin: 0;
+    }
+header {
+            background-color: #164988;
+            color: white;
+            display: flex;
+                justify-content: space-between;
+                align-items: center;
+            
+        }
+.logo_bar{
+        width: 8rem;
+        height: auto;
+  }  
+    
+.place_input{
+        padding-right: 40rem;    
+}
+.search_bar {
+        align-items: center;
+        height: 3rem;
+        width: 20rem;   
+        font-size: 1.1rem;
+        border-radius: 8rem;
+        padding-left: 1rem;
+}
+
+.profile {
+        display: none;
+        width: 4rem;
+        height: auto;
+
+    }
+.drop{
+        width: 4rem;
+}
+#dropbtn{
+        display: block;
+        background-color: transparent;
+        border: none;
+}
+#croix{
+        display: none;
+        width: 4rem;
+}
+.dropdown-content {
+        display: none;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        top: 100%; 
+        margin-top: 0.5rem;
+}
