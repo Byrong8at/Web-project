@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceuil</title>
+    <link rel="stylesheet" href="C:\Users\lefhu\dist\index_style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="C:\Users\lefhu\tailwind.config.js" rel="stylesheet">
+</head>
+<body>   
+    <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
+            <img src="logo.png" alt="logo du site" class="w-24 h-auto mr-0" >
+            <div class="flex items-center space-x-4 flex-grow"> 
+                <input type="text" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search">
+            </div>
+            <p class="hidden sm:inline ml-4">Nos offres </p> 
+            &nbsp;&nbsp;&nbsp;&nbsp;<img src="user.svg" alt="profile picture" class="w-10 h-auto">&nbsp;&nbsp;  
+    </header>
+    <main >
+        <div class="relative max-w-screen mx-auto">
+            <img src="datacenter.jpg" alt="image promo" class="w-full h-80 lg:h-auto lg:max-h-96 bg-opacity-50">
+            <div class="absolute bottom-10 left-10 text-white text-xl  bg-opacity-50 p-2">L'informatique pas de panique.</div>
+        </div>
+        <p class="text-3xl mx-10 my-2 font-bold">Trouve ton offre?</p>
+        <p class="text-2xl mx-9  font-bold ">Simple utilise CTE</p>
+        <section class="flex flex-col md:flex-row mx-7 md:mx-10 my-2 w-10/12 lg:grid lg:grid-cols-2 gap-4 mx-auto lg:mx-10">            <div class="w-full md:max-w-auto lg:w-100 bg-blue-700 rounded-md mb-4 lg:mb-0">
+                <img src="reu.jpeg" alt="reunion image" class="w-full items-center h-auto lg:w-90 lg:h-auto rounded-md">
+            </div>
+            <div class="items-center md:mx-10 lg:mx-30  lg:my-15 text-center md:text-left md:mx-auto lg:mx-auto lg:text-left">
+                <p class="text-xl font-bold">Gerer vos Rendez-vous</p>
+                <h5 class="w-79 h-40 text-center lg:text-left md:w-60 md:h-28">Simple, utiliser notre outil de gestion regroupant un calendrier et un module permettant de voir vos disponibilité directement</h5>
+                <button href="" class="bg-blue-700 text-white h-10 w-40 rounded-md">Voir vos disponibilité</button>
+            </div>            
+        </section>
+        <section class="flex flex-col-reverse md:ml-28 lg:ml-40 w-10/12 md:flex-row mx-7 my-20  lg:grid lg:grid-cols-2 gap-4 mx-auto lg:mx-0">            <div class="items-center md:mx-10 lg:mx-30 my-10 lg:my-15 text-center md:text-left md:mx-auto lg:mx-auto lg:text-left">
+                <p class="text-lg lg:text-xl font-bold ">Des offres faites pour vous</p>
+                <p class="w-79 h-40 text-center lg:text-left md:w-60 md:h-40">Nos offres sont detaillés avec des informations tel que la disponibilites, l’accesibilitées et encore, plein d’autres informations. Cliquez en dessous pour découvrir ses offres !  </p>
+                <button href="offre.html" class="bg-blue-700 mx-10 lg:mx-0 text-white h-10 w-40 rounded-md">Découvrir les offres</button>
+            </div>  
+            <div class="w-full md:max-w-auto lg:w-100 bg-blue-700 rounded-md mb-4 lg:mb-0">
+                <img src="recherche.jpg" alt="reunion image" class="w-full justify-center h-auto lg:w-90 lg:h-auto rounded-md">
+            </div>
+        </section>
+        <section class="mx-10" title="Conseil préparation">
+            <section>
+                <p class="text-xl font-bold">Préparez vous!</p>
+                <p class="text-lg">Soyez prêt à être répondre aux offres !</p>
+            </section>
+            <section class="my-10 grid grid-cols-3 gap-0">
+                <p class="bg-custom-blue text-xl mx-10 w-60 h-60 text-center grid md:flex justify-center items-center text-white rounded-md">Mettez vos CV sur notre site</p>
+                <p class="bg-blue-700 text-xl mx-10 w-60 h-60 text-center grid md:flex justify-center items-center text-white rounded-md">Nos offres en ce moment</p>
+                <p class="bg-blue-700 text-xl mx-10 w-60 h-60 text-center grid md:flex justify-center items-center text-white rounded-md">Plateforme numéro 1 du marché</p>
+            </section>
+        </section>
+        
+    </main>
+    <footer class="bg-blue-900 text-white flex flex-col sm:flex-row justify-between items-center px-10 py-8 mt-6">
+        <section class="mt-4 sm:mt-0">
+            <p>Nous contacter par mail:</p>
+            <p><span class="move"><a href="mailto:hugo.lefebvre1@viacesi.fr">hugo.lefebvre1@viacesi.fr</a></span></p>
+            <p>Nous contacter par téléphone:</p>
+            <p><span class="move"><a href="tel:0637132323">06 37 13 23 23</a></span></p>
+        </section>
+
+        <section class="mt-4 sm:mt-0">
+            <p><a href="cgu.html">Nos Conditions D'utilisation</a></p>
+            <p><a href="mention.html">Nos mentions légale d'utilisation</a></p>
+        </section>
+    </footer>
+</body>
+<script src="srcipt/index_script.js"></script>
+</html>
