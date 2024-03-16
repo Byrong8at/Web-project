@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
-        margin: 0;
-    }
-
-    npx tailwindcss -i ./style/index_style.css -o ./output/index_style.css
