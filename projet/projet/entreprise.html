@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceuil</title>
+    <link href="style/entreprise.css" rel="stylesheet">
+</head>
+<body>   
+    <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
+            <img src="src/logo.png" alt="logo du site" class="w-24 h-auto mr-0" >
+            <div class="flex items-center space-x-4 flex-grow"> 
+                <input type="text" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search">
+            </div>
+            <p class="hidden sm:inline ml-4">Nos offres </p> 
+            <!-- faire que si on clique dessus un menu déroulant s'affiche en dessous -->
+            &nbsp;&nbsp;&nbsp;&nbsp;<img src="src/user.svg" alt="profile picture" class="w-10 h-auto">&nbsp;&nbsp;  
+    </header>
+    <main>
+        <header>
+            <section class="relative max-w-screen mx-auto">
+                <img src="src/capgemini.jpg" alt="image promo" class=" w-full h-100 lg:h-auto lg:max-h-96 bg-opacity-50">
+                <p class="absolute bottom-20 left-20 text-white text-3xl  bg-opacity-50 p-2">Nom entreprise</p>
+            </section>
+        </header>
+        <main class="mx-10 my-10">
+            <section title="presentation ">
+                <section title="informations bref">
+                    <p class="text-xl font-bold">Qui sont-t'ils?</p>
+                    <span class="md:flex justify-between items-center">
+                        <p class="text-lg"> Fondée en...</p>
+                        <p class="text-lg mx-auto">Nombre de colaborateur: </p>
+                    </span>
+                </section>
+                <section class="my-2" title="description entreprise" >
+                    <p class="text-xl font-bold">Presentation de l'entreprise : </p>
+                    <p>Capgemini est un leader mondial dans les services de conseil, de technologie et de transformation numérique, avec plus de 300 000 collaborateurs dans plus de 50 pays. Notre mission est d'accompagner nos clients dans leur transformation numérique en leur offrant des solutions innovantes et sur mesure. Nous proposons des services de conseil en stratégie et transformation, des services technologiques et des solutions numériques. Chez Capgemini, nous croyons en l'intégrité, l'innovation, la collaboration et la responsabilité sociale. Bienvenue chez Capgemini, où l'avenir est entre vos mains.</p>
+                </section>
+            </section> 
+            <section title="offre en cours " class="text-white">
+                <p class="text-xl font-bold text-black">Les offres en cours :</p>
+                <section class="flex overflow-x-auto w-full max-w-screen-3xl ">
+                    
+                        <section title="offre de stage" class="text-left bg-blue-700 px-4 w-64 h-80 lg:mx-10 ">
+                            <p>Nom du stage</p>
+                            <p>Date</p>
+                            <p>Type de Contrat</p>
+                            <p>Accessibilité</p>
+                            <p>Mission:</p>
+                        </section>
+                
+                        <section title="offre de stage" class="text-left bg-blue-700 px-4 w-64 h-80 lg:mx-10 text-white">
+                            <p>Nom du stage</p>
+                            <p>Date</p>
+                            <p>Type de Contrat</p>
+                            <p>Accessibilité</p>
+                            <p>Mission:</p>
+                        </section>
+                
+                        <!-- Ajoutez plus de sections au besoin -->
+
+                </section>
+                <a href="offre.html" class="flex justify-center items-center rounded-md text-lg bg-blue-700 my-2 px-4 py-2 text-white">Voir plus</a>
+            </section>
+        </main>
+    </main>
+    <footer class="bg-blue-900 text-white flex flex-col sm:flex-row justify-between items-center px-10 py-8 mt-6">
+        <section class="mt-4 sm:mt-0">
+            <p>Nous contacter par mail:</p>
+            <p><span class="move"><a href="mailto:hugo.lefebvre1@viacesi.fr">hugo.lefebvre1@viacesi.fr</a></span></p>
+            <p>Nous contacter par téléphone:</p>
+            <p><span class="move"><a href="tel:0637132323">06 37 13 23 23</a></span></p>
+        </section>
+
+        <section class="mt-4 sm:mt-0">
+            <p><a href="cgu.html">Nos Conditions D'utilisation</a></p>
+            <p><a href="mention.html">Nos mentions légale d'utilisation</a></p>
+        </section>
+        
+    </footer>
+</body>
+</html>

@@ -2,3 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ npx tailwindcss -i ./style/tail_element.css -o ./style/entreprise.css --watch
