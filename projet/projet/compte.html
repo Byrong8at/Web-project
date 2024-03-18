@@ -19,11 +19,41 @@
             &nbsp;&nbsp;&nbsp;&nbsp;<img src="src/user.svg" alt="profile picture" class="w-10 h-auto">&nbsp;&nbsp;  
     </header>
     <main>
-        <section class="bg-custom-green flex flex-col justify-center item-left text-white w-60 py-10 pl-4" title="Espace gestion compte">
-            <p class="text-lg">Nom et prenom</p>
-            <p class="text-2xl">Gestion</p>
-
+        <section class="flex flex-row">
+        <section id="menu" class="hidden bg-custom-green lg:flex flex-col justify-center item-center text-white w-80 h-full  py-10 px-4" title="Espace gestion compte">
+            <img src="src/croix.png" id="croix" class=" lg:hidden w-10 h-10 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <img src="src/user.png">
+            <p class="text-lg text text-center mb-4">Nom et prenom</p>
+            <section title="Suivi" class=" text-left">
+                <p class="mx-4 text-2xl underline">Suivi</p>
+                <ul class="mx-10 text-left">
+                    <li class=" text-lg">Cv et lettre de motivation</li>
+                    <li class=" text-lg">Mes candidatures</li>
+                    <li class=" text-lg">Calendrier</li>
+                    <li class=" text-lg">Favori</li>
+                    <li class=" text-lg">Modèles</li>
+                </ul>
+            </section>
+            <section title="Partage" class=" text-left">
+                <p class="mx-4 text-2xl underline">Partage</p>
+                <ul class="mx-10 text-left">    
+                    <li class=" text-lg">Evenement</li>
+                    <li class=" text-lg">Offres</li>
+                </ul>
+            </section>
+            <section title="creation" class="hidden text-left">
+                <p class="mx-4 text-2xl underline">Partage</p>
+                <ul class="mx-10 text-left">    
+                    <li class=" text-lg">Evenement</li>
+                    <li class=" text-lg">Offres</li>
+                </ul>
+            </section>
         </section>
+        <img src="src/burger.png" id="hamburger" class="lg:hidden w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        
+
+            
+    </section>
     </main>
     <footer class="bg-blue-900 text-white flex flex-col sm:flex-row justify-between items-center px-10 py-8 mt-6">
         <section class="mt-4 sm:mt-0">
@@ -39,5 +69,6 @@
         </section>
         
     </footer>
+    <script src="script/compte.js"></script>
 </body>
 </html>
