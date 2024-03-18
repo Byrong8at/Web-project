@@ -8,6 +8,7 @@ document.getElementById("hamburger").addEventListener("click", function() {
         menu.classList.add("hidden");
     } else {
         menu.classList.remove("hidden");
+        show();
     }
 });
 
@@ -19,7 +20,12 @@ document.getElementById("croix").addEventListener("click", function() {
 
     if (!menu.classList.contains("hidden")) {
         menu.classList.add("hidden");
+        show();
     } else {
         menu.classList.remove("hidden");
     }
 });
+
+function show() {
+    
+}
