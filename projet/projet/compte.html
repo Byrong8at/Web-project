@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="acceuil page cte">
+    <meta name="theme-color" content="#567BB2">
+    <title>Acceuil</title>
+    <link href="style/compte.css" rel="stylesheet">
+</head>
+<body>   
+    <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
+            <img src="src/logo.png" alt="logo du site" class="w-24 h-auto mr-0" >
+            <div class="flex items-center space-x-4 flex-grow"> 
+                <input type="text" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search">
+            </div>
+            <p class="hidden sm:inline ml-4">Nos offres </p> 
+            <!-- faire que si on clique dessus un menu déroulant s'affiche en dessous -->
+            &nbsp;&nbsp;&nbsp;&nbsp;<img src="src/user.svg" alt="profile picture" class="w-10 h-auto">&nbsp;&nbsp;  
+    </header>
+    <main>
+        <section class="flex flex-row">
+        <section id="menu" class="hidden bg-custom-green lg:flex flex-col justify-center item-center text-white w-80 h-full  py-10 px-4" title="Espace gestion compte">
+            <img src="src/croix.png" id="croix" class=" lg:hidden w-10 h-10 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <img src="src/user.png">
+            <p class="text-lg text text-center mb-4">Nom et prenom</p>
+            <section title="Suivi" class=" text-left">
+                <p class="mx-4 text-2xl underline">Suivi</p>
+                <ul class="mx-10 text-left">
+                    <li class=" text-lg">Cv et lettre de motivation</li>
+                    <li class=" text-lg">Mes candidatures</li>
+                    <li class=" text-lg">Calendrier</li>
+                    <li class=" text-lg">Favori</li>
+                    <li class=" text-lg">Modèles</li>
+                </ul>
+            </section>
+            <section title="Partage" class=" text-left">
+                <p class="mx-4 text-2xl underline">Partage</p>
+                <ul class="mx-10 text-left">    
+                    <li class=" text-lg">Evenement</li>
+                    <li class=" text-lg">Offres</li>
+                </ul>
+            </section>
+            <section title="creation" class="hidden text-left">
+                <p class="mx-4 text-2xl underline">Partage</p>
+                <ul class="mx-10 text-left">    
+                    <li class=" text-lg">Evenement</li>
+                    <li class=" text-lg">Offres</li>
+                </ul>
+            </section>
+        </section>
+        <img src="src/burger.png" id="hamburger" class="lg:hidden w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        
+
+            
+    </section>
+    </main>
+    <footer class="bg-blue-900 text-white flex flex-col sm:flex-row justify-between items-center px-10 py-8 mt-6">
+        <section class="mt-4 sm:mt-0">
+            <p>Nous contacter par mail:</p>
+            <p><span class="move"><a href="mailto:hugo.lefebvre1@viacesi.fr">hugo.lefebvre1@viacesi.fr</a></span></p>
+            <p>Nous contacter par téléphone:</p>
+            <p><span class="move"><a href="tel:0637132323">06 37 13 23 23</a></span></p>
+        </section>
+
+        <section class="mt-4 sm:mt-0">
+            <p><a href="cgu.html">Nos Conditions D'utilisation</a></p>
+            <p><a href="mention.html">Nos mentions légale d'utilisation</a></p>
+        </section>
+        
+    </footer>
+    <script src="script/compte.js"></script>
+</body>
+</html>
