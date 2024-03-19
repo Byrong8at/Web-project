@@ -39,7 +39,7 @@ INSERT INTO Integrer (ID_user, Id_Promo) VALUES
 (7, 2),
 (5, 3);
 
-INSERT INTO Admin (Nom, Prenom, Email, login, Mot_de_passe) VALUES
+INSERT INTO  admin (Nom, Prenom, Email, login, Mot_de_passe) VALUES
 ('La chevre', 'Hugues', 'admin@example.com', 'admin', 'Donald_minie');
 
 INSERT INTO Wishlist (ID_offre, ID_user) VALUES
@@ -50,4 +50,15 @@ INSERT INTO Wishlist (ID_offre, ID_user) VALUES
 (3, 2),
 (3, 3);
 
+
+INSERT INTO Candidature (Etat_Postule, ID_offre, ID_user) VALUES
+(true, 1, 1),
+(true, 1, 2),
+(true, 1, 3),
+(true, 2, 2),
+(true, 2, 3),
+(true, 2, 4),
+(true, 3, 3),
+(true, 3, 4),
+(true, 3, 5);
 

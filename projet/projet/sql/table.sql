@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS Offre(
 );
 
 CREATE TABLE IF NOT EXISTS Wishlist(
-   ID_wish INT,
+   ID_wish INT AUTO_INCREMENT,
    ID_offre INT,
    ID_user INT,
    PRIMARY KEY(ID_wish),
@@ -50,13 +50,16 @@ CREATE TABLE IF NOT EXISTS Wishlist(
    FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user)
 );
 
-CREATE TABLE IF NOT EXISTS Candidature(
+CREATE TABLE Candidature(
    ID_Candi INT AUTO_INCREMENT,
    Etat_Postule boolean NOT NULL,
    ID_offre INT NOT NULL,
+   ID_user INT,
    PRIMARY KEY(ID_Candi),
-   FOREIGN KEY(ID_offre) REFERENCES Offre(ID_offre)
+   FOREIGN KEY(ID_offre) REFERENCES Offre(ID_offre),
+   FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user)
 );
+
 
 CREATE TABLE IF NOT EXISTS Promotion(
    Id_Promo INT AUTO_INCREMENT,
@@ -65,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Promotion(
    UNIQUE(Nom_promo)
 );
 
-CREATE TABLE IF NOT EXISTS Admin(
+CREATE TABLE IF NOT EXISTS admin(
    Id_Admin INT AUTO_INCREMENT,
    Nom VARCHAR(50) NOT NULL,
    Prenom VARCHAR(50) NOT NULL,
@@ -73,16 +76,6 @@ CREATE TABLE IF NOT EXISTS Admin(
    login VARCHAR(50),
    Mot_de_passe VARCHAR(50) NOT NULL,
    PRIMARY KEY(Id_Admin)
-);
-
-CREATE TABLE IF NOT EXISTS Intéragir(
-   ID_user INT,
-   ID_offre INT,
-   ID_entreprise INT,
-   PRIMARY KEY(ID_user, ID_offre, ID_entreprise),
-   FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user),
-   FOREIGN KEY(ID_offre) REFERENCES Offre(ID_offre),
-   FOREIGN KEY(ID_entreprise) REFERENCES Entreprise(ID_entreprise)
 );
 
 CREATE TABLE IF NOT EXISTS effectuer(
