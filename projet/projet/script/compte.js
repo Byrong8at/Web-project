@@ -38,23 +38,34 @@ let elements = [
     CV,candidature,calendrier,favori,modele,events,offre
 ];
 
-function resetElements(currentElement) {
-    elements.forEach(element => {
+let Cv_see=document.getElementById('cv_affichage');
+let candi_see=document.getElementById('candidatures_affichage');
+let cal_see=document.getElementById('calendrier_affichage');
+let fav_see=document.getElementById('Favori_affichage');
+let mod_see=document.getElementById('modele_affichage');
+let event_see=document.getElementById('event_affichage');
+let offre_see=document.getElementById('offre_affichage');
+
+let looker =[
+    Cv_see,candi_see,cal_see,fav_see,mod_see,event_see,offre_see
+];
+
+function show(currentElement, seem) {
+    elements.forEach((element, index) => {
         element.className = element === currentElement ? "bg-blue-700 bg-opacity-50 rounded-md px-10" : "";
+        if (element === currentElement) {
+            seem[index].classList.remove("hidden"); // Ajouter la classe
+        } else {
+            seem[index].classList.add("hidden"); // Supprimer la classe
+        }
     });
 }
 
-//fonction pour afficher au millieu
-function show(currentElement) {
-    elements.forEach(element => {
-        element.className = element !== currentElement ? "hidden" : "";
-    });
-}
 
 
 elements.forEach(element => {
     element.addEventListener('click', () => {
-        resetElements(element);
+        show(element,looker)
     });
 });
 
