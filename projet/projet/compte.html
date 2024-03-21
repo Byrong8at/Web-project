@@ -38,7 +38,7 @@
                 <p class="mx-4 text-2xl underline">Partage</p>
                 <ul class="mx-10 text-left">    
                     <li class=" text-lg" id="Evenement">Evenement</li>
-                    <li class=" text-lg" id="offre">Offres</li>
+                    
                 </ul>
             </section>
         </section>
@@ -51,26 +51,51 @@
         </section>
         
         <section id="candidatures_affichage" class="hidden">
-            <h1 class="text-2xl">2</h1>
+            <section class="text-white text-lg bg-blue-900 px-10 py-4  rounded-md ml-4 mt-4 mb-4 flex flex-col justify-center item-center mx-auto">
+                <!--Rajouter image-->
+                <p> candidature à l'entreprise: {$nom}</p>
+                <p>Date</p>
+                <p>Objet d'etude:</p>
+            </section>
         </section>
         
         <section id="calendrier_affichage" class="hidden">
-            <h1 class="text-2xl">3</h1>
+            <div class="flex flex-row justify-between item-center mx-auto px-4 py-8">
+                <div class="text-center mb-4">
+                  <h1 class="text-2xl font-bold">Calendrier</h1>
+                  <div id="currentMonth" class="text-xl font-semibold"></div>
+                </div>
+                <div class="grid grid-cols-7 gap-2">
+                  <div class="text-center bg-gray-200 p-2 rounded-md font-semibold">Dim</div>
+                  <div class="text-center bg-gray-200 p-2 rounded-md font-semibold">Lun</div>
+                  <div class="text-center bg-gray-200 p-2 rounded-md font-semibold">Mar</div>
+                  <div class="text-center bg-gray-200 p-2 rounded-md font-semibold">Mer</div>
+                  <div class="text-center bg-gray-200 p-2 rounded-md font-semibold">Jeu</div>
+                  <div class="text-center bg-gray-200 p-2 rounded-md font-semibold">Ven</div>
+                  <div class="text-center bg-gray-200 p-2 rounded-md font-semibold">Sam</div>
+                </div>
+                <div id="calendar" class="grid grid-cols-7 gap-2 mt-4"></div>
+              </div>
         </section>
         
-        <section id="Favori_affichage" class="hidden">
-            <h1 class="text-2xl">4</h1>
+        <section id="Favori_affichage" class="hidden mx-10 flex flex-col justify-center item-center">
+            <p class="text-2xl text-blue-900 ">Offre favorite:</p>
+            <section class="text-white text-lg bg-blue-900 px-10 py-4  rounded-md ml-4 mt-4 mb-4  mx-auto w-full">
+                <!--Rajouter image-->
+                <p>  {$nom}</p>
+                <p>Date</p>
+                <p>Diplome</p>
+                <p>Contenu:</p>
+            </section>
         </section>
         
-        <section id="modele_affichage" class="hidden">
-            <h1 class="text-2xl">5</h1>
+        <section id="modele_affichage" class="hidden mx-10 my-10 border-2 ">
+            <img src="src/modele.png">
         </section>
         <section id="event_affichage" class="hidden">
-            <h1 class="text-2xl">6</h1>
+            <p class="flex justify-center items-center mx-10 text-xl">Rencontrez nous au prochain event:</p>
         </section>
-        <section id="offre_affichage" class="hidden">
-            <h1 class="text-2xl">7</h1>
-        </section>
+        
     </section>
     </section>
     </main>
