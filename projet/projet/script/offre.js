@@ -1,66 +1,47 @@
-let width;
-let height;
-let trierfiltrer = document.getElementById("filtretri");
-let trierfiltrermobile = document.getElementById("filtretrimobile");
-let offre = document.getElementById("offre");
-let contentoffre = document.getElementsByClassName("content-offre");
-let limit;
+let niveau = document.getElementById("niveau");
+let localisation = document.getElementById("localisation");
+let domaine = document.getElementById("domaine");
+let contrat = document.getElementById("contrat");
+let accessibilite = document.getElementById("accessibilite");
+let date = document.getElementById("date");
+let trier = document.getElementById("trier");
+let filtrermobile = document.getElementById("filtrermobile");
+let triermobile = document.getElementById("triermobile");
 
-function reductext(){
-    limit = 200;
-    for (let i = 0; i < contentoffre.length; i++) {
-        let text = contentoffre[i].textContent;
-        if (text.length > limit) {
-          contentoffre[i].textContent = text.substring(0, limit) + "...";
-        }
-    }
-}
+function init(){}
 
-function save(){
-    for (let i = 0; i < contentoffre.length; i++) {
-        let text = contentoffre[i].textContent;
-        contentoffre[i].setAttribute('data-original', text);
-    }
-}
-
-function restoretext() {
-    for (let i = 0; i < contentoffre.length; i++) {
-      contentoffre[i].textContent = contentoffre[i].getAttribute('data-original');
-    }
-  }
-
-
-function resize(){
-    width = window.innerWidth;
-    height = window.innerHeight;
-    if(width <= 700){
-        reductext();
-    }else{
-        restoretext();
-    }
-    if(width < 992){
-        trierfiltrer.style.display = "none";
-        trierfiltrermobile.style.display = "block";
-        offre.classList.remove("w-3/4");
-    }
-    else {
-        trierfiltrermobile.style.display = "none";
-        trierfiltrer.style.display = "block";
-        offre.classList.add("w-3/4");
-        restoretext();
-
-    }
-}
-
-
-
-window.addEventListener('resize', function(){
-    resize();
+niveau.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
 });
 
-function init(){
-    save();
-    resize();
-}
+localisation.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});
 
-init();
+domaine.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});
+
+contrat.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});
+
+accessibilite.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});
+
+date.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});
+
+trier.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});
+
+filtrermobile.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});
+
+triermobile.addEventListener("click", function() {
+    // code à exécuter lorsque le bouton est cliqué
+});

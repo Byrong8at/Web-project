@@ -30,26 +30,40 @@
                 </div>
             </section>
             <section class="w-full h-auto relative mt-8 mb-4">
-                <h1 class="text-center text-7 xl font-bold md:text-5xl sm:text-3xl">EMPLOI DISPONIBLE</h1>
+              <h1 class="text-center text-4xl font-bold md:text-4xl sm:text-4xl xl:text-7xl">EMPLOI DISPONIBLE</h1>
             </section>
-            <section id="filtretrimobile" class="md:hidden flex flex-row justify-center" alt="Section Filtre et Tri version mobile">
-              <button id="filtrermobile" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Filtrer</button>
-              <button id="triermobile" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Trier</button>
+            <section id="filtretrimobile" class="md:hidden flex flex-row justify-center mb-4" alt="Section Filtre et Tri version mobile">
+              <button id="filtrermobile" class="bg-blue-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full mx-2">Filtrer</button>
+              <button id="triermobile" class="bg-blue-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full mx-2">Trier</button>
             </section>
             <section id="main" class="flex">
-                <section id="filtretri" class="hidden md:flex flex-col justify-between w-1/4 p-6 border-t border-r border-gray-400 px-20" alt="Section Filtre et Tri">
+                <section id="filtretri" class="item-center hidden md:flex flex-col w-1/4 border-t border-r border-gray-400 px-4" alt="Section Filtre et Tri">
                   <h2 class="text-center text-3xl font-bold my-2 mt-4">Filtrer</h2>
-                  <button id="niveau" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Niveau demandé</button>
-                  <button id="localisation" class="flex-col bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Localisation</button>
-                  <button id="domaine" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Domaine</button>
-                  <button id="contrat" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Type de contrat</button>
-                  <button id="accessibilite" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Accessibilité</button>
-                  <button id="date" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Date</button>
+                  <button id="niveau" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affniveau()">Niveau demandé</button>
+                  <div class="text-center">
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option1">
+                      Bac+2
+                    </label>
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option2">
+                      Bac+3
+                    </label>
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option3">
+                      Bac+4
+                    </label>
+                  </div>
+                  <button id="localisation" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="afflocalisation()">Localisation</button>
+                  <button id="domaine" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affdomaine()">Domaine</button>
+                  <button id="contrat" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affcontrat()">Type de contrat</button>
+                  <button id="accessibilite" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affaccessibilite()">Accessibilité</button>
+                  <button id="date" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affdate()">Date</button>
                   <h2 class="text-center text-3xl font-bold my-2">Trier</h2>
-                  <button id="trier" class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full my-3">Trier par</button>
+                  <button id="trier" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="afftrier()">Trier par</button>
                 </section>
                 
-                <section id="offre" class="w-3/4 p-6 border-t border-gray-400" alt="Section offre">
+                <section id="offre" class="w-full md:w-3/4 p-6 border-t border-gray-400" alt="Section offre">
                     <article class="flex flex-row border border-gray-400 mb-6">
                         <img src="src/cesi.png" class="w-16 h-16">
                         <div class="flex flex-col flex-grow justify-between ml-1">
@@ -58,7 +72,7 @@
                             <h2>IBM</h2>
                             <h2>Lille</h2>
                           </div>
-                          <p class="self-end content-offre">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
+                          <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
                         </div>
                       </article>
                   <article class="flex flex-row border border-gray-400 mb-6">
@@ -107,17 +121,17 @@
 
         </main>
         <footer class="bg-blue-900 text-white flex flex-col sm:flex-row justify-between items-center px-10 py-8 mt-6">
-            <section class="mt-4 sm:mt-0">
-                <p>Nous contacter par mail:</p>
-                <p><span class="move"><a href="mailto:hugo.lefebvre1@viacesi.fr">hugo.lefebvre1@viacesi.fr</a></span></p>
-                <p>Nous contacter par téléphone:</p>
-                <p><span class="move"><a href="tel:0637132323">06 37 13 23 23</a></span></p>
-            </section>
+          <section class="mt-4 sm:mt-0">
+              <p>Nous contacter par mail:</p>
+              <p><span class="move"><a href="mailto:hugo.lefebvre1@viacesi.fr">hugo.lefebvre1@viacesi.fr</a></span></p>
+              <p>Nous contacter par téléphone:</p>
+              <p><span class="move"><a href="tel:0637132323">06 37 13 23 23</a></span></p>
+          </section>
 
-            <section class="mt-4 sm:mt-0">
-                <p><a href="cgu.html">Nos Conditions D'utilisation</a></p>
-                <p><a href="mention.html">Nos mentions légale d'utilisation</a></p>
-            </section>
+          <section class="mt-4 sm:mt-0">
+              <p><a href="cgu.html">Nos Conditions D'utilisation</a></p>
+              <p><a href="mention.html">Nos mentions légale d'utilisation</a></p>
+          </section>
 
            
         </footer>
