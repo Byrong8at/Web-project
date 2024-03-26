@@ -2,6 +2,8 @@
 require_once(dirname(__FILE__) .'/bdd.php');
 session_start();
 
+$error_message = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $identifiant = $_POST['identifiant'];
     $mot_de_passe = $_POST['mot_de_passe'];
@@ -16,7 +18,7 @@ function login($identifiant, $mot_de_passe, $conn) {
     if ($user) {
         header('Location: acceuil.html');
     } else {
-        echo "Votre identifiant ou mot de passe ne correspond pas";
+        $error_message = "Votre identifiant ou mot de passe ne correspond pas";
     }
 }
 ?>
@@ -42,16 +44,20 @@ function login($identifiant, $mot_de_passe, $conn) {
             <title>Connexion</title>
             <h3>connexion</h3>
 
-            <p></p>
+            <?php
+            if ($error_message !== "") {
+                echo '<p style="color: red;">' . $error_message . '</p>';
+            }
+            ?>
 
             <h4 class="info_connexion">Identifiant</h4>
             <input type="text" name="identifiant" class="info_button">
             <h4 class="info_connexion">Mot de passe</h4>
             <input type="password" name="mot_de_passe" class="info_button">
             <br>
-            <button class="cesi"><img src="src/cesi.png" alt="logo de cesi" id="logo_button"> Connection avec L'ent Cesi</button>
-            <br>
             <button type="submit" class="cesi"> Se connecter</button>
+            <br>
+            <button class="cesi"><img src="src/cesi.png" alt="logo de cesi" id="logo_button"> Connection avec L'ent Cesi</button>
             <p></p>
             <i>problème de connexion</i>
         </form>
