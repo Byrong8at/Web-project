@@ -7,16 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let trier = document.getElementById("trier");
     let filtrermobile = document.getElementById("filtrermobile");
     let triermobile = document.getElementById("triermobile");
-    let L = [niveau, localisation, domaine, contrat, date, trier, filtrermobile, triermobile];
+    let L = [filtrermobile, triermobile, trier, niveau, localisation, domaine, contrat];
 
-    for (let i = 0; i < L.length; i++) { // Il faut initialiser i à 0 et utiliser < au lieu de <=
+    for (let i = 0; i < L.length; i++) {
         if (L[i]) {
             L[i].addEventListener("click", function() {
                 console.log("ok");
-                document.getElementsByClassName("allfiltri")[i].hidden = true; // Il faut spécifier un index pour getElementsByClassName
-            }, false);
+                if (document.getElementsByClassName("allfiltri")[i].hidden == true){
+                    document.getElementsByClassName("allfiltri")[i].hidden = false;
+                }else{
+                    document.getElementsByClassName("allfiltri")[i].hidden = true;
+                    
+                }
+                
+            });
         } else {
-            console.log("Erreur"); // Il faut spécifier quel élément n'a pas été trouvé
+            console.log("Erreur");
         }
     }
 });
