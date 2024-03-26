@@ -38,9 +38,18 @@
             </section>
             <section id="main" class="flex">
                 <section id="filtretri" class="item-center hidden md:flex flex-col w-1/4 border-t border-r border-gray-400 px-4" alt="Section Filtre et Tri">
+                  <h2 class="text-center text-3xl font-bold my-2">Trier</h2>
+                  <button id="trier" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="afftrier()">Trier par</button>
+                  <label>Date :</label>
+                  <select name="">
+                    <option>Aujourd'hui</option>
+                    <option>Ces 3 dernier jours</option>
+                    <option>Cette semaine</option>
+                    <option>Ce mois-ci</option>
+                  </select>
                   <h2 class="text-center text-3xl font-bold my-2 mt-4">Filtrer</h2>
                   <button id="niveau" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affniveau()">Niveau demandé</button>
-                  <div class="text-center">
+                  <div class="text-center endfiltre niveau">
                     <label>
                       <input type="checkbox" name="myCheckbox" value="option1">
                       Bac+2
@@ -53,14 +62,56 @@
                       <input type="checkbox" name="myCheckbox" value="option3">
                       Bac+4
                     </label>
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option3">
+                      Bac+5
+                    </label>
                   </div>
                   <button id="localisation" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="afflocalisation()">Localisation</button>
+                  <div class="text-center endfiltre niveau">
+                    <label>Ville : <input type="text" class="border-solid"></label>
+                  </div>
                   <button id="domaine" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affdomaine()">Domaine</button>
+                  <div class="text-center endfiltre niveau">
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option1">
+                      Généraliste
+                    </label>
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option2">
+                      Informatique
+                    </label>
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option3">
+                      BTP
+                    </label>
+                    <label>
+                      <input type="checkbox" name="myCheckbox" value="option3">
+                      Système embarqué
+                    </label>
+                  </div>
                   <button id="contrat" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affcontrat()">Type de contrat</button>
-                  <button id="accessibilite" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affaccessibilite()">Accessibilité</button>
-                  <button id="date" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="affdate()">Date</button>
-                  <h2 class="text-center text-3xl font-bold my-2">Trier</h2>
-                  <button id="trier" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2" onclick="afftrier()">Trier par</button>
+                  <select name="">
+                    <option>Stage</option>
+                    <option>Alternance</option>
+                  </select>
+                  <label>
+                    <input type="checkbox" name="myCheckbox" value="option3">
+                    Rémunération
+                  </label>
+                  <label>
+                    <input type="checkbox" name="myCheckbox" value="option3">
+                    Télétravail
+                  </label>
+                  <select name="">
+                    <option>1 mois</option>
+                    <option>2 mois</option>
+                    <option>3 mois</option>
+                    <option>4 mois</option>
+                    <option>5 mois</option>
+                    <option>6+ mois</option>
+                  </select>
+                  
                 </section>
                 
                 <section id="offre" class="w-full md:w-3/4 p-6 border-t border-gray-400" alt="Section offre">
