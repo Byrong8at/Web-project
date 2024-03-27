@@ -7,7 +7,7 @@ $error_message = "";
 if (isset($_POST['envoi'])) {
     if (!empty($_POST['identifiant']) AND !empty($_POST['mot_de_passe'])) {
         $identifiant = $_POST['identifiant'];
-        $mot_de_passe = $_POST['mot_de_passe'];
+        $mot_de_passe =$_POST['mot_de_passe'];
 
         try {
             if (login($identifiant, $mot_de_passe, $conn)) {
