@@ -36,9 +36,10 @@
               <button id="filtrermobile" class="w-full bg-blue-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white rounded px-8 py-2 font-size: 1.5vmin mt-4 rounded-full mx-2">Filtrer</button>
               <button id="triermobile" class="w-full bg-blue-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white rounded px-8 py-2 font-size: 1.5vmin mt-4 rounded-full mx-2">Trier</button>
             </section>
-            <div class="hidden flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4">
+            <div class="hidden md:hidden flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
               <label>Date</label>
               <select class="selectdate border border-gray-400 rounded p-2">
+                <option></option>
                 <option>Aujourd'hui</option>
                 <option>Ces 3 dernier jours</option>
                 <option>Cette semaine</option>
@@ -46,53 +47,57 @@
               </select>
               <label>Nom d'offres</label>
               <select class="selectoffre border border-gray-400 rounded p-2">
+                <option></option>
+                <option></option>
                 <option>Croissant</option>
-                <option>décroissant</option>
+                <option>Décroissant</option>
               </select>
               <label>Nom d'entreprise</label>
-              <select class="selectentreprise border border-gray-400 rounded p-2">
+              <select class="selectentreprise border border-gray-400 rounded p-2 mb-2">
+                <option></option>
+                <option></option>
                 <option>Croissant</option>
-                <option>décroissant</option>
+                <option>Décroissant</option>
               </select>
               </div>
-              <div class="hidden flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4">
-                <button>Niveau</button>
-                <label>
-                  <input class="bac0" type="checkbox" name="myCheckbox" value="option1">
-                  Pas d'expérience
-                </label>
-                <label>
-                  <input class="bac1" type="checkbox" name="myCheckbox" value="option1">
-                  Bac
-                </label>
-                <label>
-                  <input class="bac2" type="checkbox" name="myCheckbox" value="option1">
-                  Bac+2
-                </label>
-                <label>
-                  <input class="bac3" type="checkbox" name="myCheckbox" value="option2">
-                  Bac+3
-                </label>
-                <label>
-                  <input class="bac4" type="checkbox" name="myCheckbox" value="option3">
-                  Bac+4
-                </label>
-                <label>
-                  <input class="bac5" type="checkbox" name="myCheckbox" value="option3">
-                  Bac+5
-                </label>
-                <button>Localisation</button>
-                <label>Ville</label>
+              <div class="hidden md:hidden text-xl flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
+                <label class="mb-2 font-bold">Niveau</label>
+                <div class="flex flex-col"></div>
+                <div class="flex items-center mb-2">
+                  <input class="bac0 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
+                  <label>Pas d'expérience</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="bac1 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
+                  <label>Bac</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="bac2 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
+                  <label>Bac+2</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="bac3 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option2">
+                  <label>Bac+3</label>
+                </div>
+                <div class="flex items-center mb-2">  
+                  <input class="bac4 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option3">
+                  <label>Bac+4</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="bac5 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option3">
+                  <label>Bac+5</label>
+                </div>
+                <label class="pt-2 font-bold">Ville</label>
                 <input type="text" class="inputville border border-gray-400 rounded p-2">
-                <button>Contrat</button>
-                <label>Contrat</label>
+                <label class="pt-2 font-bold ">Contrat</label>
                     <select class="selectcontrat border border-gray-400 rounded p-2">
+                      <option></option>
                       <option>Stage</option>
                       <option>Alternance</option>
                     </select>
-                <button>Durée contrat</button>
-                    <label>Durée Contrat</label>
+                    <label class="pt-2 font-bold">Durée Contrat</label>
                     <select class="selectdureecontrat border border-gray-400 rounded p-2">
+                      <option></option>
                       <option>1 mois</option>
                       <option>2 mois</option>
                       <option>3 mois</option>
@@ -101,31 +106,31 @@
                       <option>6+ mois</option>
                     </select>
                 
-                <label>
-                <input class="remuneration" type="checkbox" name="myCheckbox" value="">
-                  Rémunération
-                </label>
-                <label>
-                <input class="teletravail" type="checkbox" name="myCheckbox" value="">
-                  Télétravail
-                </label>
-                <button>Domaine</button>
-                <label>
-                <input class="generaliste" type="checkbox" name="myCheckbox">
-                  Généraliste
-                </label>
-                <label>
-                <input class="informatique" type="checkbox" name="myCheckbox">
-                  Informatique
-                </label>
-                <label>
-                <input class="btp" type="checkbox" name="myCheckbox">
-                  BTP
-                </label>
-                <label>
-                <input class="s3e" type="checkbox" name="myCheckbox">
-                  Système embarqué
-                </label>
+                <div class="flex items-center mb-2 mt-4">
+                  <input class="remuneration w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="">
+                  <label>Rémunération</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="teletravail w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="">
+                  <label>Télétravail</label>
+                </div>
+                <label class="py-2 font-bold">Domaine</label>
+                <div class="flex items-center mb-2">
+                  <input class="generaliste w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <label>Généraliste</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="informatique w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <label>Informatique</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="btp w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <label>BTP</label>
+                </div>
+                <div class="flex items-center mb-2">
+                  <input class="s3e w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <label>Système embarqué</label>
+                </div>
               </div>
             
             
@@ -136,86 +141,89 @@
                   <button id="trier" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Trier par</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>Date</label>
-                    <select class="border border-gray-400 rounded p-2">
+                    <select class="selectdate border border-gray-400 rounded p-2">
+                      <option></option>
                       <option>Aujourd'hui</option>
                       <option>Ces 3 dernier jours</option>
                       <option>Cette semaine</option>
                       <option>Ce mois-ci</option>
                     </select>
                     <label>Nom d'offres</label>
-                    <select class="border border-gray-400 rounded p-2">
+                    <select class="selectoffre border border-gray-400 rounded p-2">
                       <option></option>
                       <option>Croissant</option>
-                      <option>décroissant</option>
+                      <option>Décroissant</option>
                     </select>
                     <label>Nom d'entreprise</label>
-                    <select class="border border-gray-400 rounded p-2">
+                    <select class="selectentreprise border border-gray-400 rounded p-2">
                       <option></option>
                       <option>Croissant</option>
-                      <option>décroissant</option>
+                      <option>Décroissant</option>
                     </select>
                   </div>
                   <h2 class="text-center text-3xl font-bold my-2 mt-4">Filtrer</h2>
                   <button id="niveau" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Niveau</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="option1">
+                      <input class="bac0" type="checkbox" name="myCheckbox" value="option1">
                       Pas d'expérience
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="option1">
+                      <input class="bac1" type="checkbox" name="myCheckbox" value="option1">
                       Bac
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="option1">
+                      <input class="bac2" type="checkbox" name="myCheckbox" value="option1">
                       Bac+2
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="option2">
+                      <input class="bac3" type="checkbox" name="myCheckbox" value="option2">
                       Bac+3
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="option3">
+                      <input class="bac4" type="checkbox" name="myCheckbox" value="option3">
                       Bac+4
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="option3">
+                      <input class="bac5" type="checkbox" name="myCheckbox" value="option3">
                       Bac+5
                     </label>
                   </div>
                   <button id="localisation" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Localisation</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>Ville</label>
-                    <input type="text" class="border border-gray-400 rounded p-2">
+                    <input class="inputville border border-gray-400 rounded p-2" type="text" class="border border-gray-400 rounded p-2">
                   </div>
                   <button id="domaine" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Domaine</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>
-                      <input type="checkbox" name="myCheckbox">
+                      <input class="generaliste" type="checkbox" name="myCheckbox">
                       Généraliste
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox">
+                      <input class="informatique" type="checkbox" name="myCheckbox">
                       Informatique
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox">
+                      <input class="btp" type="checkbox" name="myCheckbox">
                       BTP
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox">
+                      <input class="s3e" type="checkbox" name="myCheckbox">
                       Système embarqué
                     </label>
                   </div>
                   <button id="contrat" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Contrat</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>Contrat</label>
-                    <select class="border border-gray-400 rounded p-2">
+                    <select class="selectcontrat border border-gray-400 rounded p-2">
+                      <option></option>
                       <option>Stage</option>
                       <option>Alternance</option>
                     </select>
                     <label>Durée Contrat</label>
-                    <select class="border border-gray-400 rounded p-2">
+                    <select class="selectdureecontrat border border-gray-400 rounded p-2">
+                      <option></option>
                       <option>1 mois</option>
                       <option>2 mois</option>
                       <option>3 mois</option>
@@ -224,33 +232,25 @@
                       <option>6+ mois</option>
                     </select>
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="">
+                      <input class="remuneration" type="checkbox" name="myCheckbox" value="">
                       Rémunération
                     </label>
                     <label>
-                      <input type="checkbox" name="myCheckbox" value="">
+                      <input class="teletravail" type="checkbox" name="myCheckbox" value="">
                       Télétravail
                     </label>
                   </div>
-                  <div class="grid justify-items-stretch">
+                  <div class="grid justify-items-stretch my-10">
                     <button id="valider" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Valider</button>
                     <button id="réinitialiser" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Réinitialiser</button>
                   </div>
                 </section>
                 
                 <section id="offre" class="w-full md:w-3/4 p-6 border-t border-gray-400" alt="Section offre">
-                    <article class="flex flex-row border border-gray-400 mb-6">
-                        <img src="src/cesi.png" class="w-16 h-16">
-                        <div class="flex flex-col flex-grow justify-between ml-1">
-                          <div>
-                            <a href="www.google.fr" class="text-xl text-blue-500 font-bold">Stage développeur informatique</a>
-                            <h2>IBM</h2>
-                            <h2>Lille</h2>
-                          </div>
-                          <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
-                        </div>
-                      </article>
-                  <article class="flex flex-row border border-gray-400 mb-6">
+                  <article class="flex flex-row border border-gray-400 mb-6 relative">
+                    <button class="absolute top-0 right-0 mr-2 my-2">
+                      <img src="src/coeurrempli.png" class="w-10 h-10 coeur favori">
+                    </button>
                     <img src="src/cesi.png" class="w-16 h-16">
                     <div class="flex flex-col flex-grow justify-between ml-1">
                       <div>
@@ -258,10 +258,13 @@
                         <h2>IBM</h2>
                         <h2>Lille</h2>
                       </div>
-                      <p class="self-end content-offre">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
+                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
                     </div>
                   </article>
-                  <article class="flex flex-row border border-gray-400 mb-6">
+                  <article class="flex flex-row border border-gray-400 mb-6 relative">
+                    <button class="absolute top-0 right-0 mr-2 my-2">
+                      <img src="src/coeur.png" class="w-10 h-10 coeur">
+                    </button>
                     <img src="src/cesi.png" class="w-16 h-16">
                     <div class="flex flex-col flex-grow justify-between ml-1">
                       <div>
@@ -269,10 +272,13 @@
                         <h2>IBM</h2>
                         <h2>Lille</h2>
                       </div>
-                      <p class="self-end content-offre">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
+                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
                     </div>
                   </article>
-                  <article class="flex flex-row border border-gray-400 mb-6">
+                  <article class="flex flex-row border border-gray-400 mb-6 relative">
+                    <button class="absolute top-0 right-0 mr-2 my-2">
+                      <img src="src/coeur.png" class="w-10 h-10 coeur">
+                    </button>
                     <img src="src/cesi.png" class="w-16 h-16">
                     <div class="flex flex-col flex-grow justify-between ml-1">
                       <div>
@@ -280,7 +286,21 @@
                         <h2>IBM</h2>
                         <h2>Lille</h2>
                       </div>
-                      <p class="self-end content-offre">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
+                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
+                    </div>
+                  </article>
+                  <article class="flex flex-row border border-gray-400 mb-6 relative">
+                    <button class="absolute top-0 right-0 mr-2 my-2">
+                      <img src="src/coeur.png" class="w-10 h-10 coeur">
+                    </button>
+                    <img src="src/cesi.png" class="w-16 h-16">
+                    <div class="flex flex-col flex-grow justify-between ml-1">
+                      <div>
+                        <a href="www.google.fr" class="text-xl text-blue-500 font-bold">Stage développeur informatique</a>
+                        <h2>IBM</h2>
+                        <h2>Lille</h2>
+                      </div>
+                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
                     </div>
                   </article>
                 </section>
