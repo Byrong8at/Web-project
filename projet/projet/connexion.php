@@ -4,21 +4,36 @@ session_start();
 
 $error_message = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $identifiant = $_POST['identifiant'];
-    $mot_de_passe = $_POST['mot_de_passe'];
-    login($identifiant, $mot_de_passe, $conn);
-}
+if (isset($_POST['envoi'])) {
+    if (!empty($_POST['identifiant']) AND !empty($_POST['mot_de_passe'])) {
+        $identifiant = $_POST['identifiant'];
+        $mot_de_passe = $_POST['mot_de_passe'];
+
+        try {
+            if (login($identifiant, $mot_de_passe, $conn)) {
+                header('Location: acceuil.html');
+                exit();
+            } else {
+                $error_message = "Votre identifiant ou mot de passe ne correspond pas";
+            }
+        } catch (PDOException $e) {
+            $error_message = "Échec de la connexion à la base de données : " . $e->getMessage();
+        }
+    }else{
+        $error_message = "Veuillez completez tout les champs";
+    }}
 
 function login($identifiant, $mot_de_passe, $conn) {
-    $sqllog = "SELECT * FROM utilisateur WHERE Login = ? AND Mot_de_passe = ?";
-    $quezy = $conn->prepare($sqllog);
-    $quezy->execute([$identifiant, $mot_de_passe]);
-    $user = $quezy->fetch(PDO::FETCH_ASSOC);
-    if ($user) {
-        header('Location: acceuil.html');
-    } else {
-        $error_message = "Votre identifiant ou mot de passe ne correspond pas";
+    try {
+        $sqllog = "SELECT * FROM utilisateur WHERE Login = ? AND Mot_de_passe = ?";
+        $quezy = $conn->prepare($sqllog);
+        $quezy->execute([$identifiant, $mot_de_passe]);
+        $user = $quezy->fetch(PDO::FETCH_ASSOC);
+
+        return $user !== false;
+    } catch (PDOException $e) {
+        echo "Échec de la requête : " . $e->getMessage();
+        return false;
     }
 }
 ?>
@@ -45,9 +60,7 @@ function login($identifiant, $mot_de_passe, $conn) {
             <h3>connexion</h3>
 
             <?php
-            if ($error_message !== "") {
-                echo '<p style="color: red;">' . $error_message . '</p>';
-            }
+                echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
             ?>
 
             <h4 class="info_connexion">Identifiant</h4>
@@ -55,12 +68,12 @@ function login($identifiant, $mot_de_passe, $conn) {
             <h4 class="info_connexion">Mot de passe</h4>
             <input type="password" name="mot_de_passe" class="info_button">
             <br>
-            <button type="submit" class="cesi"> Se connecter</button>
+            <button type="submit" class="cesi" name="envoi"> Se connecter</button>
             <br>
             <button class="cesi"><img src="src/cesi.png" alt="logo de cesi" id="logo_button"> Connection avec L'ent Cesi</button>
             <p></p>
             <i>problème de connexion</i>
         </form>
-    </main>
+    </main> 
 </body>
 </html>
