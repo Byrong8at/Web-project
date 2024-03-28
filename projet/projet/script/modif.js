@@ -1,13 +1,17 @@
 $(document).ready(function() {
     $("#Recherche").keyup(function() {
-        let Recherche = $(this).val();});
+        let Recherche = $(this).val();
         if (Recherche != "") {
             $.ajax({
-                type:"Get",
-                url: 'recherche.php',
-                data: "recherche="+encodeURIComponent(Recherche),
-                success: function(response) {
-                    $("#resultat").html(response);
+                type: 'GET',
+                url: '../modif.php',
+                data: 'Recherche=' + encodeURIComponent(Recherche),
+                success: function(data){
+                    $('.Resultat').html(data);
                 }
-            });}
+            });
+        } else {
+            $('.Resultat').html('');
+        }
     });
+});

@@ -3,13 +3,13 @@ require_once(dirname(__FILE__) .'/bdd.php');
 session_start();
 
 $error_message = "";
+$req = array();
 
-
-if (!isset($_GET["Recherche"])) {
-    $requ ="SELECT * FROM utilisateur WHERE nom Like ? Limit 5";
-    $req=$conn->prepare($requ);
-    $req->execute([$_GET["Recherche"]]); // Execute the query
-    $result = $req->fetchAll(PDO::FETCH_ASSOC); // Fetch the results
+if (isset($_GET["Recherche"])) {
+    $searchie=$_GET["Recherche"];
+    $search = '%' . $searchie . '%';
+    $req = $conn->query("SELECT * FROM utilisateur WHERE Nom LIKE '$search' LIMIT 5");
+    $req = $req->fetchALL();
 }
 
 if (isset($_POST['envoi'])) {
@@ -34,7 +34,7 @@ if (isset($_POST['envoi'])) {
     }
 function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe, $conn){
     try {
-        $sqllog = "UPDATE INTO utilisateur(statut, Nom, Prénom, Centre, Login, Mot_de_passe) VALUES (:statut, :nom, :prenom, :Centre, :identifiant, :mot_de_passe)";
+        $sqllog = "UPDATE utilisateur SET statut = :statut, Nom = :nom, Prénom = :prenom, Centre = :Centre, Login = :identifiant, Mot_de_passe = :mot_de_passe WHERE ID_user = :identifiant";
         $quezy = $conn->prepare($sqllog);
         $quezy->bindParam(':statut', $statut);
         $quezy->bindParam(':nom', $nom);
@@ -72,7 +72,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
     <meta name="description" content="Modification">
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/user_cre.css">
-    <title>Creation utilisateur</title>
+    <title>Modification utilisateur</title>
 </head>
 <body>
     <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
@@ -91,12 +91,12 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
             <p>Modification d'un compte</p>        
         </header>
         <section class="form-group">
-            <input type="text" id="Recherche" placeholder="Recherche">
+            <input type="text" id="Recherche" name="Recherche" placeholder="Recherche">
             <?php
-                foreach($result as $r){
+                foreach($req as $r){
                     ?>
-                    <div class="my-10 bg-white">
-                        <?=$r['Nom']."".$r['Prénom']?>
+                    <div class="Resultat my-10 bg-white">
+                        <?=$r['Nom']." ".$r['Prénom']?>
                     </div>
                 <?php
                 }
@@ -146,6 +146,9 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
         </form>
     </main>
     
-    <script src="script/creation.js"></script>
+    <script src="script/modif.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 </body>
 </html>
