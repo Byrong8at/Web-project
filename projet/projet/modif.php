@@ -5,7 +5,7 @@ session_start();
 $error_message = "";
 $req = array();
 
-if (isset($_GET["Recherche"])) {
+if (!isset($_GET["Recherche"])) {
     $searchie=$_GET["Recherche"];
     $search = '%' . $searchie . '%';
     $req = $conn->query("SELECT * FROM utilisateur WHERE Nom LIKE '$search' LIMIT 5");
@@ -93,18 +93,17 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
         <section class="form-group">
             <input type="text" id="Recherche" name="Recherche" placeholder="Recherche">
             <?php
-                foreach($req as $r){
+                foreach ($req as $r) {
                     ?>
-                    <div class="Resultat my-10 bg-white">
-                        <?=$r['Nom']." ".$r['Prénom']?>
+                    <div class="r mx-10 my-10 bg-white hover:bg-blue-900" data-nom="<?= $r['Nom'] ?>" data-prenom="<?= $r['Prénom'] ?>">
+                        <?= $r['Nom'] . " " . $r['Prénom'] ?>
                     </div>
-                <?php
+                    <?php
                 }
-            ?>
+                ?>
+
         </section>
-        <?php
-            echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
-        ?>
+        
         <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
             <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
                 <section class="flex flex-col justify-center items-center">
@@ -119,9 +118,9 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
                     </select>
                     <div class="flex flex-row">
                         <legend class="flex-none">Nom</legend>
-                        <input type="text" name="nom" class="text-black">
+                        <input type="text" name="nom" id="nom" class="text-black">
                         <legend class="flex-none">Prenom</legend>
-                        <input type="text" name="prenom" class="text-black">
+                        <input type="text" name="prenom" id="prenom" class="text-black">
                     </div>
                     
                     <legend>Centre</legend>

@@ -3,7 +3,7 @@ $(document).ready(function() {
         let Recherche = $(this).val();
         if (Recherche != "") {
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: '../modif.php',
                 data: 'Recherche=' + encodeURIComponent(Recherche),
                 success: function(data){
@@ -15,3 +15,15 @@ $(document).ready(function() {
         }
     });
 });
+
+
+$(document).ready(function() {
+    $(document).on('click', '.r', function() {
+        const nom = $(this).data('Nom');
+        const prenom = $(this).data('Prénom');
+
+        $('#nom').val(nom);
+        $('#prenom').val(prenom);
+    });
+});
+
