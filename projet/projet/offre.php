@@ -4,19 +4,12 @@ session_start();
 
 
 
-    // On détermine le nombre total d'articles
-    $sql = 'SELECT COUNT(*) AS nb_offre FROM `offre`;';
-
-    // On prépare la requête
-    $query = $conn->prepare($sql);
-
-    // On exécute
-    $query->execute();
-
-    // On récupère le nombre d'articles
-    $result = $query->fetch();
-
-    $nb_offre = (int) $result['nb_offre'];
+//pour determiner le nombre de page
+$sql = 'SELECT COUNT(*) AS nb_offre FROM `offre`;';
+$query = $conn->prepare($sql);
+$query->execute();
+$result = $query->fetch();
+$nb_offre = (int) $result['nb_offre'];
 
 $limit = 10;
 $page_actu = 1; 
@@ -25,6 +18,14 @@ if (isset($_GET['page']) && !empty($_GET['page'])){
     $page_actu=(int)strip_tags($_GET['page']);
 }else{
     $page_actu = 1;
+}
+if ($page_actu>$nb_Page){
+    header("Location: error.html");  
+}
+
+if ($page_actu<1){
+    header("Location: error.html");  
+    exit; 
 }
 function get_offre($conn, $limit, $page_actu) {
     $offset = ($page_actu - 1) * $limit;

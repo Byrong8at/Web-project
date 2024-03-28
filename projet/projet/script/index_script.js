@@ -3,6 +3,8 @@ document.getElementById("dispo").addEventListener("click", function() {
 });
 
 
-document.getElementById("decouvrir").addEventListener("click", function() {
-    window.location.href = "offre.html";
-});
+try{
+    document.getElementById("decouvrir").addEventListener("click", function() {
+        window.location.href = "offre.php";
+    });}
+    catch{}
