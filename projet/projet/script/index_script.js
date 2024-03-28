@@ -5,6 +5,6 @@ document.getElementById("dispo").addEventListener("click", function() {
 
 try{
     document.getElementById("decouvrir").addEventListener("click", function() {
-        window.location.href = "offre.php";
+        window.location.href = "recherche.php";
     });}
     catch{}
