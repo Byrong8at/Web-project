@@ -4,15 +4,23 @@ session_start();
 
 $error_message = "";
 
-if (isset($_POST['envoi'])) {
-        $statut = $_POST['statut'];
-        $nom= $_POST['nom'];
-        $prenom=$_POST['prenom'];
-        $Centre= $_POST['Centre'];
-        $promo=$_POST['promo'];
-        $identifiant = $_POST['Login'];
-        $mot_de_passe = $_POST['password'];
 
+if (!isset($_GET["Recherche"])) {
+    $requ ="SELECT * FROM utilisateur WHERE nom Like ? Limit 5";
+    $req=$conn->prepare($requ);
+    $req->execute([$_GET["Recherche"]]); // Execute the query
+    $result = $req->fetchAll(PDO::FETCH_ASSOC); // Fetch the results
+}
+
+if (isset($_POST['envoi'])) {
+    $statut = $_POST['statut'];
+    $nom= $_POST['nom'];
+    $prenom=$_POST['prenom'];
+    $Centre= $_POST['Centre'];
+    $promo=$_POST['promo'];
+    $identifiant = $_POST['Login'];
+    $mot_de_passe = $_POST['password'];
+    
         try {
             if (creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe, $conn)) {
                 $error_message ='valider';
@@ -26,7 +34,7 @@ if (isset($_POST['envoi'])) {
     }
 function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe, $conn){
     try {
-        $sqllog = "INSERT INTO utilisateur(statut, Nom, Prénom, Centre, Login, Mot_de_passe) VALUES (:statut, :nom, :prenom, :Centre, :identifiant, :mot_de_passe)";
+        $sqllog = "UPDATE INTO utilisateur(statut, Nom, Prénom, Centre, Login, Mot_de_passe) VALUES (:statut, :nom, :prenom, :Centre, :identifiant, :mot_de_passe)";
         $quezy = $conn->prepare($sqllog);
         $quezy->bindParam(':statut', $statut);
         $quezy->bindParam(':nom', $nom);
@@ -80,9 +88,20 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
     
     <main>
         <header class="flex justify-center items-center text-black text-4xl my-10 font-bold">
-            <p>Creation d'un compte</p>
-            
+            <p>Modification d'un compte</p>        
         </header>
+        <section class="form-group">
+            <input type="text" id="Recherche" placeholder="Recherche">
+            <?php
+                foreach($result as $r){
+                    ?>
+                    <div class="my-10 bg-white">
+                        <?=$r['Nom']."".$r['Prénom']?>
+                    </div>
+                <?php
+                }
+            ?>
+        </section>
         <?php
             echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
         ?>
@@ -123,7 +142,6 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
             </section>
             <section title="button part" >
                 <button type="submit" name="envoi" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider</button>
-                <button class="reinitialiser bg-red-700 text-white text-lg rounded-full px-6 h-14 hover:bg-red-900" onclick="restart()">Reinitialiser</button>
             </section>
         </form>
     </main>
