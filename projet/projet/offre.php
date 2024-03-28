@@ -1,17 +1,50 @@
 <?php
 require_once(dirname(__FILE__) .'/bdd.php');
 session_start();
-function get_offre($conn) {
-    $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse 
+
+
+
+    // On détermine le nombre total d'articles
+    $sql = 'SELECT COUNT(*) AS nb_offre FROM `offre`;';
+
+    // On prépare la requête
+    $query = $conn->prepare($sql);
+
+    // On exécute
+    $query->execute();
+
+    // On récupère le nombre d'articles
+    $result = $query->fetch();
+
+    $nb_offre = (int) $result['nb_offre'];
+
+$limit = 10;
+$page_actu = 1; 
+$nb_Page =ceil($nb_offre / $limit);
+if (isset($_GET['page']) && !empty($_GET['page'])){
+    $page_actu=(int)strip_tags($_GET['page']);
+}else{
+    $page_actu = 1;
+}
+function get_offre($conn, $limit, $page_actu) {
+    $offset = ($page_actu - 1) * $limit;
+    $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
-            INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise";
+            INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
+            LIMIT :limit OFFSET :offset";
     $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-  
-$offres = get_offre($conn);
+
+
+$offres = get_offre($conn, $limit, $page_actu);
+ 
+
+
 
 
 ?>
@@ -293,71 +326,20 @@ $offres = get_offre($conn);
                 </article>
                 <?php } ?>
 
-                  <article class="flex flex-row border border-gray-400 mb-6 relative">
-                    <button class="absolute top-0 right-0 mr-2 my-2">
-                      <img src="src/coeurrempli.png" class="w-10 h-10 coeur favori">
-                    </button>
-                    <img src="src/cesi.png" class="w-16 h-16">
-                    <div class="flex flex-col flex-grow justify-between ml-1">
-                      <div>
-                        <a href="www.google.fr" class="text-xl text-blue-500 font-bold">Stage développeur informatique</a>
-                        <h2>IBM</h2>
-                        <h2>Lille</h2>
-                      </div>
-                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
-                    </div>
-                  </article>
-                  <article class="flex flex-row border border-gray-400 mb-6 relative">
-                    <button class="absolute top-0 right-0 mr-2 my-2">
-                      <img src="src/coeur.png" class="w-10 h-10 coeur">
-                    </button>
-                    <img src="src/cesi.png" class="w-16 h-16">
-                    <div class="flex flex-col flex-grow justify-between ml-1">
-                      <div>
-                        <a href="www.google.fr" class="text-xl text-blue-500 font-bold">Stage développeur informatique</a>
-                        <h2>IBM</h2>
-                        <h2>Lille</h2>
-                      </div>
-                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
-                    </div>
-                  </article>
-                  <article class="flex flex-row border border-gray-400 mb-6 relative">
-                    <button class="absolute top-0 right-0 mr-2 my-2">
-                      <img src="src/coeur.png" class="w-10 h-10 coeur">
-                    </button>
-                    <img src="src/cesi.png" class="w-16 h-16">
-                    <div class="flex flex-col flex-grow justify-between ml-1">
-                      <div>
-                        <a href="www.google.fr" class="text-xl text-blue-500 font-bold">Stage développeur informatique</a>
-                        <h2>IBM</h2>
-                        <h2>Lille</h2>
-                      </div>
-                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
-                    </div>
-                  </article>
-                  <article class="flex flex-row border border-gray-400 mb-6 relative">
-                    <button class="absolute top-0 right-0 mr-2 my-2">
-                      <img src="src/coeur.png" class="w-10 h-10 coeur">
-                    </button>
-                    <img src="src/cesi.png" class="w-16 h-16">
-                    <div class="flex flex-col flex-grow justify-between ml-1">
-                      <div>
-                        <a href="www.google.fr" class="text-xl text-blue-500 font-bold">Stage développeur informatique</a>
-                        <h2>IBM</h2>
-                        <h2>Lille</h2>
-                      </div>
-                      <p class="self-end content-offre text-ellipsis overflow-hidden">En tant que développeur web, votre mission principale sera de concevoir, développer et maintenir des sites web et des applications web pour répondre aux besoins de nos clients. Vous serez responsable de la création de l'interface utilisateur, du développement du front-end et du back-end, ainsi que de l'intégration de fonctionnalités telles que des formulaires, des bases de données et des APIs. Vous devrez également vous assurer que les sites web sont compatibles avec les différents navigateurs et appareils, et qu'ils sont optimisés pour les moteurs de recherche.</p>
-                    </div>
-                  </article>
-                </section>
-            </section>
-            <ul class="flex flex-row justify-center">
-                <li class="mx-1"><button>1</button></li>
-                <li class="mx-1"><button>2</button></li>
-                <li class="mx-1"><button>3</button></li>
-                <li class="mx-1"><button>4</button></li>
-                <li class="mx-1"><button>5</button></li>
-            </ul>
+                  
+            <div class="flex justify-center items-center text-black">
+            <?php
+            echo "Page : " ;
+            
+            for ($i = 1; $i <= $nb_Page; $i++) {
+                if ($i == $page_actu) {
+                    echo "<strong id='element'>$i</strong> ";
+                } else {
+                    echo "<a href='?page=$i' id='element'>$i</a> ";
+                }
+            }
+            ?>
+        </div>
             
 
         </main>
