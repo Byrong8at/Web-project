@@ -119,74 +119,43 @@ $offres = get_offre($conn, $limite, $page_actu);
               </select>
               </div>
               <div class="hidden md:hidden text-xl flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
-                <label class="mb-2 font-bold">Niveau</label>
-                <div class="flex flex-col"></div>
-                <div class="flex items-center mb-2">
-                  <input class="bac0 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
-                  <label>Pas d'expérience</label>
-                </div>
-                <div class="flex items-center mb-2">
-                  <input class="bac1 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
-                  <label>Bac</label>
-                </div>
-                <div class="flex items-center mb-2">
-                  <input class="bac2 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
-                  <label>Bac+2</label>
-                </div>
-                <div class="flex items-center mb-2">
-                  <input class="bac3 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option2">
-                  <label>Bac+3</label>
-                </div>
-                <div class="flex items-center mb-2">  
-                  <input class="bac4 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option3">
-                  <label>Bac+4</label>
-                </div>
-                <div class="flex items-center mb-2">
-                  <input class="bac5 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option3">
-                  <label>Bac+5</label>
-                </div>
+                
                 <label class="pt-2 font-bold">Ville</label>
                 <input type="text" class="inputville border border-gray-400 rounded p-2">
-                <label class="pt-2 font-bold ">Contrat</label>
-                    <select class="selectcontrat border border-gray-400 rounded p-2">
-                      <option></option>
-                      <option>Stage</option>
-                      <option>Alternance</option>
-                    </select>
                     <label class="pt-2 font-bold">Durée Contrat</label>
-                    <select class="selectdureecontrat border border-gray-400 rounded p-2">
+                    <select name="durée" class="selectdureecontrat border border-gray-400 rounded p-2">
                       <option></option>
-                      <option>1 mois</option>
-                      <option>2 mois</option>
-                      <option>3 mois</option>
-                      <option>4 mois</option>
-                      <option>5 mois</option>
-                      <option>6+ mois</option>
+                      <option value="1">1 mois</option>
+                      <option value="2">2 mois</option>
+                      <option value="3">3 mois</option>
+                      <option value="4">4 mois</option>
+                      <option value="5">5 mois</option>
+                      <option value="7">6+ mois</option>
                     </select>
                 
                 <div class="flex items-center mb-2 mt-4">
-                  <input class="remuneration w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="">
+                  <input class="remuneration w-6 h-6 mr-2" type="checkbox" name="Salaire" value="1">
                   <label>Rémunération</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="teletravail w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="">
+                  <input class="teletravail w-6 h-6 mr-2" type="checkbox" name="tele" value="1">
                   <label>Télétravail</label>
                 </div>
                 <label class="py-2 font-bold">Domaine</label>
                 <div class="flex items-center mb-2">
-                  <input class="generaliste w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="generaliste w-6 h-6 mr-2" type="checkbox" name="Generaliste">
                   <label>Généraliste</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="informatique w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="informatique w-6 h-6 mr-2" type="checkbox" name="Info">
                   <label>Informatique</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="btp w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="btp w-6 h-6 mr-2" type="checkbox" name="btp">
                   <label>BTP</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="s3e w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="s3e w-6 h-6 mr-2" type="checkbox" name="Sei">
                   <label>Système embarqué</label>
                 </div>
               </div>
