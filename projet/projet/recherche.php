@@ -32,7 +32,7 @@ function get_offre($conn, $limite, $page_actu) {
     $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.voir = 1
+            WHERE offre.voir = 1 AND entreprise.Voir = 1
             LIMIT :limit OFFSET :debut";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':limit', $limite, PDO::PARAM_INT);
@@ -71,7 +71,7 @@ $offres = get_offre($conn, $limite, $page_actu);
         <main>
 
             <section class="w-full h-50vh relative">
-                <img src="src/ibm.jpeg" class="w-full h-96">
+                <img src="src/ibm.jpeg" class="w-full h-96" alt="offre moment">
                 <div class="flex flex-col items-center justify-center absolute top-0 left-0 right-0 bottom-0">
                     <h1 class="text-2xl md:text-3xl lg:text-4xl text-white px-8 py-2 font-size: 3vmin">Postuler à l'offre du moment</h1>
                     <button class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full">
@@ -307,9 +307,9 @@ $offres = get_offre($conn, $limite, $page_actu);
                 ?>
                 <article class="flex flex-row border border-gray-400 mb-6 relative">
                     <button class="absolute top-0 right-0 mr-2 my-2">
-                        <img src="src/coeur.png" class="w-10 h-10 coeur">
+                        <img name="love" src="src/coeur.png" class="w-10 h-10 coeur" alt="coeur">
                     </button>
-                    <img src="src/cesi.png" class="w-16 h-16">
+                    <img src="src/cesi.png" class="w-16 h-16" alt="logo">
                     <div class="flex flex-col flex-grow justify-between ml-1">
                         <div>
                             <a href="www.google.fr" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>

@@ -12,7 +12,7 @@
     <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
             <img src="src/logo.png" alt="logo du site" class="w-24 h-auto mr-0" >
             <div class="flex items-center space-x-4 flex-grow"> 
-                <input type="text" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search">
+                <input type="text"  aria-label="Search" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search">
             </div>
             <p class="hidden sm:inline ml-4">Nos offres </p> 
             <!-- faire que si on clique dessus un menu déroulant s'affiche en dessous -->
@@ -66,16 +66,16 @@
             <p class="text-xl font-bold"> Notre actualité : </p>
             <section class="hidden lg:flex flex-row items-center justify-center gap-x-1">
                 <!-- faire des sections et afficher texte uniquement si hover -->
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96 object-cover  scale-100 hover:scale-125 hover:z-50  hover:w-80 hover:brightness-50 shadow-2xl shadow-cyan-500/50">
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96 object-cover scale-100 hover:scale-125 hover:z-50 hover:w-80 hover:brightness-50 shadow-2xl shadow-blue-500/50">
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96 object-cover  scale-100 hover:scale-125 hover:z-50 hover:w-80 hover:brightness-50 shadow-2xl shadow-indigo-500/50">
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96  object-cover  scale-100 hover:scale-125 hover:z-50 hover:w-80 hover:brightness-50 shadow-2xl shadow-blue-800/50">
+                <img src="src/usine.webp" class="w-52 h-96 object-cover  scale-100 hover:scale-125 hover:z-50  hover:w-80 hover:brightness-50 shadow-2xl shadow-cyan-500/50" alt="actu">
+                <img src="src/usine.webp" class="w-52 h-96 object-cover scale-100 hover:scale-125 hover:z-50 hover:w-80 hover:brightness-50 shadow-2xl shadow-blue-500/50" alt="actu">
+                <img src="src/usine.webp" class="w-52 h-96 object-cover  scale-100 hover:scale-125 hover:z-50 hover:w-80 hover:brightness-50 shadow-2xl shadow-indigo-500/50" alt="actu">
+                <img src="src/usine.webp" class="w-52 h-96  object-cover  scale-100 hover:scale-125 hover:z-50 hover:w-80 hover:brightness-50 shadow-2xl shadow-blue-800/50" alt="actu">
             </section>
             <section class="my-10  flex lg:hidden overflow-x-auto w-full max-w-screen-xl">
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96 object-cover  scale-100  shadow-2xl mr-4 shadow-cyan-500/50">
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96 object-cover scale-100  shadow-2xl mr-4 shadow-blue-500/50">
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96 object-cover  scale-100  shadow-2xl mx-auto shadow-indigo-500/50">
-                <img src="https://www.navvis.com/hs-fs/hubfs/navvis-factory-planning2-image1.jpg?width=1200&name=navvis-factory-planning2-image1.jpg" class="w-52 h-96  object-cover  scale-100  shadow-2xl ml-4 shadow-blue-800/50">
+                <img src="src/usine.webp" class="w-52 h-96 object-cover  scale-100  shadow-2xl mr-4 shadow-cyan-500/50" alt="actu">
+                <img src="src/usine.webp" class="w-52 h-96 object-cover scale-100  shadow-2xl mr-4 shadow-blue-500/50" alt="actu">
+                <img src="src/usine.webp" class="w-52 h-96 object-cover  scale-100  shadow-2xl mx-auto shadow-indigo-500/50" alt="actu">
+                <img src="src/usine.webp" class="w-52 h-96  object-cover  scale-100  shadow-2xl ml-4 shadow-blue-800/50" alt="actu">
             </section>
         </section>
 
@@ -83,7 +83,7 @@
         <section class=" grid justify-center items-center mx-10 " title="newsletter">
             <section class="bg-blue-900 flex  w-72 h-60 justify-center items-center rounded-md mt-6 flex-col">
                 <p class="text-white text-xl text-center mb-4">Abonnez-vous à notre newsletter</p>
-                <input type="text" class="rounded-md w-60 h-12 mb-4">
+                <input type="text" class="rounded-md w-60 h-12 mb-4"  aria-label="Search">
                 <button class="bg-blue-500 text-white w-60 h-12 hover:bg-cyan-700">Enregistrer</button>
             </section>
         </section>

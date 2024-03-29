@@ -89,7 +89,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
         <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
             <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
                 <section class="flex flex-col justify-center items-center">
-                    <img src="src/user.png" class="w-44">
+                    <img src="src/user.png" class="w-44" alt="image user">
                     <button class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full">Modifier</button>
                 </section>
                 <section title="input" class="flex flex-col justify-center items-center ">

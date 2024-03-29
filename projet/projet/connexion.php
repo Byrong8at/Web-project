@@ -42,6 +42,7 @@ function login($identifiant, $mot_de_passe, $conn) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page de conenxion">
     <title>Connexion</title>
     <link rel="stylesheet" href="style/styleco.css">
 </head>
@@ -64,9 +65,9 @@ function login($identifiant, $mot_de_passe, $conn) {
             ?>
 
             <h4 class="info_connexion">Identifiant</h4>
-            <input type="text" name="identifiant" class="info_button">
+            <input type="text" name="identifiant" class="info_button" aria-label="Search">
             <h4 class="info_connexion">Mot de passe</h4>
-            <input type="password" name="mot_de_passe" class="info_button">
+            <input type="password" name="mot_de_passe" class="info_button" aria-label="Search">
             <br>
             <button type="submit" class="cesi" name="envoi"> Se connecter</button>
             <br>

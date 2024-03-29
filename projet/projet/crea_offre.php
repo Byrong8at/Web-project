@@ -11,7 +11,7 @@ if (isset($_POST['envoi'])) {
         $detail= $_POST['description'];
         $promo=$_POST['promo'];
         $duree=$_POST['durée'];
-        $date=$_POST['date'];
+        $dates=$_POST['date'];
         $salaire = $_POST['salaire'];
         $place= $_POST['place'];
         $visible = isset($_POST['visible']) ? (int) $_POST['visible'] : 0;
@@ -19,7 +19,7 @@ if (isset($_POST['envoi'])) {
         $ent=$_POST['ent'];
         
         try {
-            if (creation($nom, $ent, $compétences, $detail, $promo, $duree, $date, $salaire, $place, $visible, $tele, $conn)) {
+            if (creation($nom, $compétences, $detail, $promo, $duree, $dates, $salaire, $place, $visible, $tele,$ent, $conn)) {
                 $error_message ='';
             } else {
                 $error_message = "Une erreur à eu lieu";
@@ -32,29 +32,39 @@ if (isset($_POST['envoi'])) {
         }
     }
 
-function creation($nom, $ent, $compétences, $detail, $promo, $duree, $date, $salaire, $place, $visible, $tele, $conn) {
-    try {
-        $sqllog = "INSERT INTO offre(Nom, ID_entreprise, compétences, detail, types_de_promotions_concernées , durée_du_stage, date_de_l_offre, Rémunération, nombre_de_places_offertes_aux_étudiants, Voir, Teletravail) VALUES (:nom, :ent, :compétences, :detail, :promo, :duree, :date, :salaire, :place, :visible, :tele)";
-        $quezy = $conn->prepare($sqllog);
-        $quezy->bindParam(':nom', $nom);
-        $quezy->bindParam(':ent', $ent);
-        $quezy->bindParam(':compétences', $compétences);
-        $quezy->bindParam(':detail', $detail);
-        $quezy->bindParam(':promo', $promo);
-        $quezy->bindParam(':duree', $duree);
-        $quezy->bindParam(':date', $date);
-        $quezy->bindParam(':salaire', $salaire);
-        $quezy->bindParam(':place', $place);
-        $quezy->bindParam(':visible', $visible);
-        $quezy->bindParam(':tele', $tele);
+    function creation($nom, $compétences, $detail, $promo, $duree, $dates, $salaire, $place, $visible, $tele, $ent, $conn) {
+        try {
+            $sql = "SELECT COUNT(*) FROM offre WHERE Nom = :nom AND ID_entreprise = :ent";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':ent', $ent);
+            $stmt->execute();
+            $count = $stmt->fetchColumn();
+    
+            if ($count > 0) {
+                echo "L'offre existe déjà pour cette entreprise";
+                return false;
+            }
 
-        $quezy->execute();
-    } catch (PDOException $e) {
-        echo "Échec de la requête : " . $e->getMessage();
-        return false;
+            $quezy = $conn->prepare( "INSERT INTO offre(Nom, compétences, detail, promo, duree, Rémunération, date_debut, nombre_place, Voir, Teletravail, ID_entreprise) VALUES (:nom, :competences, :detail, :promo, :duree, :dates, :salaire, :place, :visible, :tele, :ent)");
+            $quezy->bindParam(':nom', $nom);
+            $quezy->bindParam(':competences', $compétences);
+            $quezy->bindParam(':detail', $detail);
+            $quezy->bindParam(':promo', $promo);
+            $quezy->bindParam(':duree', $duree);
+            $quezy->bindParam(':dates', $dates);
+            $quezy->bindParam(':salaire', $salaire);
+            $quezy->bindParam(':place', $place);
+            $quezy->bindParam(':visible', $visible);
+            $quezy->bindParam(':tele', $tele);
+            $quezy->bindParam(':ent', $ent);
+            $quezy->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erreur creation: " . $e->getMessage();
+        }
     }
-    return true;
-}
+    
 
 function entreprise($conn){
     try {
@@ -63,7 +73,7 @@ function entreprise($conn){
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        echo "" . $e->getMessage();
+        echo "Erreur ent" . $e->getMessage();
     }
 }
 
