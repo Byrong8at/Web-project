@@ -11,9 +11,9 @@ $query->execute();
 $result = $query->fetch();
 $nb_offre = (int) $result['nb_offre'];
 
-$limit = 10;
+$limite = 10;
 $page_actu = 1; 
-$nb_Page =ceil($nb_offre / $limit);
+$nb_Page =ceil($nb_offre / $limite);
 if (isset($_GET['page']) && !empty($_GET['page'])){
     $page_actu=(int)strip_tags($_GET['page']);
 }else{
@@ -27,27 +27,21 @@ if ($page_actu<1){
     header("Location: error.html");  
     exit; 
 }
-function get_offre($conn, $limit, $page_actu) {
-    $offset = ($page_actu - 1) * $limit;
+function get_offre($conn, $limite, $page_actu) {
+    $debut = ($page_actu - 1) * $limite;
     $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            LIMIT :limit OFFSET :offset";
+            WHERE offre.voir = 1
+            LIMIT :limit OFFSET :debut";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+    $stmt->bindParam(':limit', $limite, PDO::PARAM_INT);
+    $stmt->bindParam(':debut', $debut, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
-
-$offres = get_offre($conn, $limit, $page_actu);
- 
-
-
-
-
+$offres = get_offre($conn, $limite, $page_actu);
 ?>
 
 
@@ -307,7 +301,7 @@ $offres = get_offre($conn, $limit, $page_actu);
                 foreach ($offres as $offre) {
                     $id_offre = $offre['ID_offre'];
                     $nom_offre = $offre['Nom'];
-                    $description_offre = $offre['compétences'];
+                    $description_offre = $offre['detail'];
                     $nom_entreprise = $offre['entreprise_Nom']; 
                     $lieu= $offre['Adresse'];
                 ?>
@@ -322,7 +316,7 @@ $offres = get_offre($conn, $limit, $page_actu);
                             <h2><?php echo $nom_entreprise; ?></h2>
                             <h2><?php echo $lieu; ?></h2>
                         </div>
-                        <p class="self-end content-offre text-ellipsis overflow-hidden"><?php echo $description_offre; ?></p>
+                        <p class="text-right content-offre text-ellipsis overflow-hidden"><?php echo $description_offre; ?></p>
                     </div>
                 </article>
                 <?php } ?>
