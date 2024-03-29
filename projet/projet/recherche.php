@@ -32,8 +32,16 @@ function get_offre($conn, $limite, $page_actu) {
     $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.voir = 1 AND entreprise.Voir = 1
-            LIMIT :limit OFFSET :debut";
+            WHERE offre.voir = 1 AND entreprise.Voir = 1";
+            if (isset($_GET["Name_offre"])) {
+                    $sql .= " ORDER BY " . $_GET['Name_offre'];
+                }
+            if (isset($_GET["name_ent"])) {
+                $sql .= " ORDER BY " . $_GET['name_ent'];
+                }
+                
+            $sql.="LIMIT :limit OFFSET :debut";
+
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':limit', $limite, PDO::PARAM_INT);
     $stmt->bindParam(':debut', $debut, PDO::PARAM_INT);
@@ -192,23 +200,23 @@ $offres = get_offre($conn, $limite, $page_actu);
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>Date</label>
                     <select class="selectdate border border-gray-400 rounded p-2">
-                      <option></option>
+                      <option ></option>
                       <option>Aujourd'hui</option>
                       <option>Ces 3 dernier jours</option>
                       <option>Cette semaine</option>
                       <option>Ce mois-ci</option>
                     </select>
                     <label>Nom d'offres</label>
-                    <select class="selectoffre border border-gray-400 rounded p-2">
-                      <option></option>
-                      <option>Croissant</option>
-                      <option>Décroissant</option>
+                    <select name="Name_offre" class="selectoffre border border-gray-400 rounded p-2">
+                      <option ></option>
+                      <option value="ASC">Croissant</option>
+                      <option value="DESC">Décroissant</option>
                     </select>
                     <label>Nom d'entreprise</label>
-                    <select class="selectentreprise border border-gray-400 rounded p-2">
-                      <option></option>
-                      <option>Croissant</option>
-                      <option>Décroissant</option>
+                    <select name="name_ent" class="selectentreprise border border-gray-400 rounded p-2">
+                      <option ></option>
+                      <option value="ASC">Croissant</option>
+                      <option value="DESC">Décroissant</option>
                     </select>
                   </div>
                   <h2 class="text-center text-3xl font-bold my-2 mt-4">Filtrer</h2>
