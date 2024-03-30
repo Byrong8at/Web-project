@@ -17,3 +17,15 @@ function traitement($img) {
 }
 return $img;
 }
+
+function delete_img($conn,$id_ent) {
+    $sql = "SELECT logo FROM entreprise WHERE ID_entreprise = :id_ent";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id_ent', $id_ent);
+    $stmt->execute();
+    $img = $stmt->fetchColumn();
+
+    if (file_exists($img)) {
+        unlink($img);
+    }
+}
