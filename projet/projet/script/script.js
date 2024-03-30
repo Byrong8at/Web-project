@@ -18,13 +18,15 @@ $(document).on('click', '.user-item', function() {
         data: { userId: userId },
         dataType: 'json', 
         success: function(userDetails) {
+            $('#id_user').val(userDetails.ID_user);
             $('#statut').val(userDetails.Statut);
             $('#nom').val(userDetails.Nom);
             $('#prenom').val(userDetails.Prénom);
             $('#Centre').val(userDetails.Centre);
             $('#Login').val(userDetails.Login);
             $('#password').val(userDetails.Mot_de_passe);
-        },
+            $('#promo').val(userDetails.Id_Promo);
+        } ,
         
     });
 });

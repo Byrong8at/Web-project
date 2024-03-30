@@ -1,16 +1,8 @@
 <?php
 require_once(dirname(__FILE__) .'/bdd.php');
 session_start();
-
 $error_message = "";
 $req = array();
-
-if (!isset($_GET["Recherche"])) {
-    $searchie=$_GET["Recherche"];
-    $search = '%' . $searchie . '%';
-    $req = $conn->query("SELECT * FROM utilisateur WHERE Nom LIKE '$search' LIMIT 5");
-    $req = $req->fetchALL();
-}
 
 if (isset($_POST['envoi'])) {
     $statut = $_POST['statut'];
@@ -20,9 +12,11 @@ if (isset($_POST['envoi'])) {
     $promo=$_POST['promo'];
     $identifiant = $_POST['Login'];
     $mot_de_passe = $_POST['password'];
+    $Id_user=$_POST['id_user'];
+    
     
         try {
-            if (creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe, $conn)) {
+            if (update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$Id_user, $conn)) {
                 $error_message ='valider';
                 
             } else {
@@ -32,25 +26,23 @@ if (isset($_POST['envoi'])) {
             $error_message = "Échec de la connexion à la base de données : " . $e->getMessage();
         }
     }
-function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe, $conn){
+function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$Id_user, $conn){
     try {
-        $sqllog = "UPDATE utilisateur SET statut = :statut, Nom = :nom, Prénom = :prenom, Centre = :Centre, Login = :identifiant, Mot_de_passe = :mot_de_passe WHERE ID_user = :identifiant";
+        $sqllog = "UPDATE utilisateur SET  Nom = :nom, Prénom = :prenom, Login = :identifiant, Mot_de_passe = :mot_de_passe,Centre = :Centre, statut = :statut WHERE ID_user = :id_user";
         $quezy = $conn->prepare($sqllog);
-        $quezy->bindParam(':statut', $statut);
         $quezy->bindParam(':nom', $nom);
         $quezy->bindParam(':prenom', $prenom);
-        $quezy->bindParam(':Centre', $Centre);
         $quezy->bindParam(':identifiant', $identifiant);
         $quezy->bindParam(':mot_de_passe', $mot_de_passe);
+        $quezy->bindParam(':statut', $statut);
+        $quezy->bindParam(':Centre', $Centre);
+        $quezy->bindParam(':id_user', $Id_user);
         $quezy->execute();
-        $sql = "INSERT INTO integrer (ID_user, Id_Promo)
-            VALUES (
-                (SELECT ID_user FROM utilisateur WHERE Login = :identifiant LIMIT 1),
-                (SELECT Id_Promo FROM promotion WHERE Id_Promo = :promo LIMIT 1)
-            )";
+        $sql = "UPDATE integrer
+                SET Id_Promo = :promo 
+                WHERE ID_user=:Id_user";
         $stmt = $conn->prepare($sql);
-
-        $stmt->bindParam(':identifiant', $identifiant);
+        $stmt->bindParam(':Id_user', $Id_user);
         $stmt->bindParam(':promo', $promo);
 
         
@@ -62,20 +54,23 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
         return false;
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="Fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Modification">
     <meta name="theme-color" content="#567BB2">
-    <link rel="stylesheet" href="style/user_cre.css">
-    <title>Modification utilisateur</title>
+    <title>Modifier</title>
+    <link href="style/compte.css" rel="stylesheet">
+    
 </head>
 <body>
-    <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
+        <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
                 <a href="acceuil.html">
                 <img src="src/logo.png" alt="logo du site" class="w-24 h-auto mr-0" ></a>
                 <div class="flex items-center space-x-4 flex-grow"> 
@@ -85,26 +80,12 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
                 <!-- faire que si on clique dessus un menu déroulant s'affiche en dessous -->
                 &nbsp;&nbsp;&nbsp;&nbsp;<img src="src/user.svg" alt="profile picture" class="w-10 h-auto">&nbsp;&nbsp;  
         </header>
-    
+    <input type="text" id="search" placeholder="Rechercher..." onkeyup="searchData(this.value)">
+    <div id="result"></div>
     <main>
-        <header class="flex justify-center items-center text-black text-4xl my-10 font-bold">
-            <p>Modification d'un compte</p>        
-        </header>
-        <section class="form-group">
-            <input type="text" id="Recherche" name="Recherche" placeholder="Recherche">
-            <?php
-                foreach ($req as $r) {
-                    ?>
-                    <div class="r mx-10 my-10 bg-white hover:bg-blue-900" data-nom="<?= $r['Nom'] ?>" data-prenom="<?= $r['Prénom'] ?>">
-                        <?= $r['Nom'] . " " . $r['Prénom'] ?>
-                    </div>
-                    <?php
-                }
-                ?>
+    <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
+        <input type="hidden" name="id_user" id="id_user" value="">
 
-        </section>
-        
-        <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
             <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
                 <section class="flex flex-col justify-center items-center">
                     <img src="src/user.png" class="w-44">
@@ -112,7 +93,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
                 </section>
                 <section title="input" class="flex flex-col justify-center items-center ">
                     <legend class="text-right ">Statut</legend>
-                    <select name="statut" class="w-96 mb-4 text-black">
+                    <select id="statut" name="statut" class="w-96 mb-4 text-black">
                             <option value="1" name="Etudiant">Etudiant</option>
                             <option value="0" name="tuteur">Tuteur</option>
                     </select>
@@ -124,9 +105,9 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
                     </div>
                     
                     <legend>Centre</legend>
-                    <input type="text" name="Centre" class="text-black">
+                    <input type="text" name="Centre" id="Centre" class="text-black">
                     <p>Promotion</p>
-                    <select name="promo" class="text-black bg-white">
+                    <select id="promo" name="promo" class="text-black bg-white">
                             <option  value="1">X1_i1</option>
                             <option value="2">X1_i2</option>
                             <option  value="3">X1_i3</option>
@@ -134,9 +115,9 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
                             <option  value="5">X1_i5</option>
                     </select>
                     <p>Login</p>
-                    <input type="text" name="Login" class="text-black">
+                    <input type="text" id="Login" name="Login" class="text-black">
                     <p>Mot de passe</p>
-                    <input type="password" name="password" class="text-black">
+                    <input type="password" id="password" name="password" class="text-black">
                 </section>
             </section>
             <section title="button part" >
@@ -144,10 +125,8 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
             </section>
         </form>
     </main>
-    
-    <script src="script/modif.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script/script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
