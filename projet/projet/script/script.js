@@ -1,8 +1,10 @@
 function searchData(value) {
+    const searchType = $('#search').data('searchtype');
+    console.log(searchType)
     $.ajax({
         url: 'search.php',
         type: 'POST',
-        data: { search: value },
+        data: { search: value,type: searchType },
         success: function(response) {
             $('#result').html(response);
         }

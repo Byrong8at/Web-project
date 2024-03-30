@@ -80,7 +80,7 @@ function supprimer($Id_user, $conn){
         </header>
         <div class="flex justify-center items-center my-10" title="recherche">
             <div class="flex flex-col items-center">
-                <input type="text" id="search" placeholder="Rechercher..." class="w-64 border-2 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" onkeyup="searchData(this.value)">
+                <input type="text" id="search" data-searchtype="user" placeholder="Rechercher..." class="w-64 border-2 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" onkeyup="searchData(this.value)">
                 <div id="result" class="mt-4"></div>
             </div>
         </div>
