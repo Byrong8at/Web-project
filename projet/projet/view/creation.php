@@ -1,7 +1,7 @@
 <?php
-require_once(dirname(__FILE__) .'/bdd.php');
+require_once(dirname(__FILE__) . '/../modele/bdd.php');
 require_once(dirname(__FILE__) .'/tele.php');
-session_start();
+require_once(dirname(__FILE__) .'/../controller/adminredirection.php'); 
 
 $error_message = "";
 
@@ -73,8 +73,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
     <link rel="stylesheet" href="style/user_cre.css">
     <title>Creation utilisateur</title>
 </head>
-<body>
-    <?php require_once(dirname(__FILE__) .'/../controller/adminredirection.php');?>   
+<body> 
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     
     <main>

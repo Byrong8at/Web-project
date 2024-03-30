@@ -8,7 +8,5 @@ if (!isset($_SESSION['user'])) {
 } else if ($_SESSION['user']['Statut'] != 0) {
     header('Location: error.html');
     exit();
-} else {
-    exit();
 }
 ?>

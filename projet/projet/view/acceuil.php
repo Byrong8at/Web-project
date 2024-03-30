@@ -1,3 +1,4 @@
+<?php require_once(dirname(__FILE__) .'/../controller/redirection.php');?>  
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,8 +9,7 @@
     <title>Acceuil</title>
     <link href="style/acceuil.css" rel="stylesheet">
 </head>
-<body>
-    <?php require_once(dirname(__FILE__) .'/../controller/redirection.php');?>   
+<body> 
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     <main >
         <header>

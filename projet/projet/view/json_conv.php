@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/../Modele/bdd.php');
+require_once(dirname(__FILE__) . '/../modele/bdd.php');
 session_start();
 
 if(isset($_GET['userId'])) {

@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . '/../modele/bdd.php');
-session_start();
+require_once(dirname(__FILE__) .'/../controller/adminredirection.php');
 
 $error_message = "";
 
@@ -79,8 +79,7 @@ $name_ent=entreprise($conn);
     <link rel="stylesheet" href="style/user_cre.css">
     <title>Creation offre</title>
 </head>
-<body>
-    <?php require_once(dirname(__FILE__) .'/../controller/adminredirection.php');?>   
+<body> 
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     
     <main>

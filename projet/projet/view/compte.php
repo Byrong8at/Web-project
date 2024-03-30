@@ -1,3 +1,5 @@
+<?php require_once(dirname(__FILE__) .'/../controller/redirection.php');?>  
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,7 +11,7 @@
     <link href="style/compte.css" rel="stylesheet">
 </head>
 <body>   
-    <?php require_once(dirname(__FILE__) .'/../controller/redirection.php');?>   
+     
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     <main>
         <section class="flex flex-row">

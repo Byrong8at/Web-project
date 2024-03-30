@@ -1,8 +1,9 @@
 <?php
-require_once(dirname(__FILE__) . '/../Modele/bdd.php');
+require_once(dirname(__FILE__) .'/../controller/adminredirection.php'); 
+require_once(dirname(__FILE__) . '/../modele/bdd.php');
 require_once(dirname(__FILE__) .'/tele.php');
 
-session_start();
+
 $error_message = "";
 $req = array();
 
@@ -80,7 +81,6 @@ function update_ent($nom,$secteur,$adr_1,$adr_2,$adr_3, $visible,$img,$id_ent, $
     
 </head>
 <body>
-    <?php require_once(dirname(__FILE__) .'/../controller/adminredirection.php');?>   
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
         <div class="flex justify-center items-center my-10" title="recherche">
             <div class="flex flex-col items-center">

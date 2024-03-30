@@ -1,7 +1,6 @@
 <?php
-require_once(dirname(__FILE__) . '/../controller/adminredirection.php');
 require_once(dirname(__FILE__) . '/../modele/bdd.php');
-session_start();
+<?php require_once(dirname(__FILE__) .'/../controller/adminredirection.php');?>
 
 $error_message = "";
 $req = array();
@@ -76,8 +75,6 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
     <title>Modification utilisateur</title>
 </head>
 <body>
-    <?php require_once(dirname(__FILE__) .'/../controller/adminredirection.php');?>   
-
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     
     <main>

@@ -1,7 +1,7 @@
 <?php
-require_once(dirname(__FILE__) . '/../Modele/bdd.php');
+require_once(dirname(__FILE__) . '/../modele/bdd.php');
 require_once(dirname(__FILE__) .'/tele.php');
-session_start();
+require_once(dirname(__FILE__) .'/../controller/adminredirection.php');
 
 $error_message = "";
 
@@ -80,7 +80,6 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $avis, $note
     <title>Creation entreprise</title>
 </head>
 <body>
-    <?php require_once(dirname(__FILE__) .'/../controller/adminredirection.php');?>   
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     
     <main>

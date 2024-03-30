@@ -1,7 +1,7 @@
 <?php
 
 
-require_once(dirname(__FILE__) .'/bdd.php');
+require_once(dirname(__FILE__) . '/../modele/bdd.php');
 session_start();
 
 if (!empty($_POST['search'])) {

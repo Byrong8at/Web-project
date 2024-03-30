@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__) . '/../Modele/bdd.php');
-session_start();
+require_once(dirname(__FILE__) . '/../modele/bdd.php');
+require_once(dirname(__FILE__) .'/../controller/adminredirection.php');
 $error_message = "";
 $req = array();
 
@@ -68,7 +68,6 @@ function supprimer($Id_user, $conn){
     
 </head>
 <body>
-    <?php require_once(dirname(__FILE__) .'/../controller/adminredirection.php');?>   
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
         <div class="flex justify-center items-center my-10" title="recherche">
             <div class="flex flex-col items-center">
