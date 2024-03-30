@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__) .'/bdd.php');
+require_once(dirname(__FILE__) .'/tele.php');
 session_start();
 
 $error_message = "";
@@ -14,8 +15,8 @@ if (isset($_POST['envoi'])) {
         $visible = isset($_POST['visible']) ? (int) $_POST['visible'] : 0;
         $note=0.0;
         $avis=0;
-        $img = 'src/profil/' . basename($nom) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        traitement($nom,$img);
+        $img = 'src/logo/' . basename($nom) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        traitement($img);
         //"src/logo/".$nom
         try {
             if (creation($nom,$secteur,$adr_1,$adr_2,$adr_3, $visible,$avis,$note,$img, $conn)) {
@@ -33,25 +34,7 @@ if (isset($_POST['envoi'])) {
     }
 
 
-function traitement($nom,$img) {
-    if (!empty($_FILES['image']['name'])) {
-        $targetDir = 'src/logo/';
-        $targetFile = $targetDir . basename($nom) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 
-        $check = getimagesize($_FILES['image']['tmp_name']);
-        if ($check !== false) {
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                $img = $targetFile;
-            } else {
-                $error_message = "Une erreur est survenue lors du téléchargement de l'image.";
-            }
-        } else {
-            $error_message = "Le fichier n'est pas une image valide.";
-        }
-    
-}
-return $img;
-}
 function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $avis, $note, $img, $conn) {
     try {
         $sql = "SELECT COUNT(*) FROM entreprise WHERE Nom = :nom";

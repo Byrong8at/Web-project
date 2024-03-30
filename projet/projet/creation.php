@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__) .'/bdd.php');
+require_once(dirname(__FILE__) .'/tele.php');
 session_start();
 
 $error_message = "";
@@ -14,7 +15,7 @@ if (isset($_POST['envoi'])) {
         $identifiant = $_POST['Login'];
         $mot_de_passe = $_POST['password'];
         $img = 'src/profil/' . basename($identifiant) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        traitement_img($identifiant, $img);
+        traitement( $img);
 
         try {
             if (creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$img, $conn)) {
@@ -28,26 +29,7 @@ if (isset($_POST['envoi'])) {
         }
     }
 
-function traitement_img($identifiant,$img) {
-    if (!empty($_FILES['image']['name'])) {
-        $targetDir = 'src/profil/';
-        $targetFile = $targetDir . basename($identifiant) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 
-        $check = getimagesize($_FILES['image']['tmp_name']);
-        if ($check !== false) {
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-                $img = $targetFile;
-                
-            } else {
-                $error_message = "Une erreur est survenue lors du téléchargement de l'image.";
-            }
-        } else {
-            $error_message = "Le fichier n'est pas une image valide.";
-        }
-    
-}
-return $img;
-}
 function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$img, $conn){
     try {
         $sqllog = "INSERT INTO utilisateur(statut, Nom, Prénom, Centre, Login, Mot_de_passe,logo) VALUES (:statut, :nom, :prenom, :Centre, :identifiant, :mot_de_passe, :logo)";
