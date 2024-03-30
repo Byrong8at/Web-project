@@ -80,8 +80,13 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
                 <!-- faire que si on clique dessus un menu déroulant s'affiche en dessous -->
                 &nbsp;&nbsp;&nbsp;&nbsp;<img src="src/user.svg" alt="profile picture" class="w-10 h-auto">&nbsp;&nbsp;  
         </header>
-    <input type="text" id="search" placeholder="Rechercher..." onkeyup="searchData(this.value)">
-    <div id="result"></div>
+        <div class="flex justify-center items-center my-10" title="recherche">
+            <div class="flex flex-col items-center">
+                <input type="text" id="search" placeholder="Rechercher..." class="w-64 border-2 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" onkeyup="searchData(this.value)">
+                <div id="result" class="mt-4"></div>
+            </div>
+        </div>
+
     <main>
     <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
         <input type="hidden" name="id_user" id="id_user" value="">
@@ -107,7 +112,7 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
                     <legend>Centre</legend>
                     <input type="text" name="Centre" id="Centre" class="text-black">
                     <p>Promotion</p>
-                    <select id="promo" name="promo" class="text-black bg-white">
+                    <select id="promo" name="promo"  class="text-black bg-white">
                             <option  value="1">X1_i1</option>
                             <option value="2">X1_i2</option>
                             <option  value="3">X1_i3</option>

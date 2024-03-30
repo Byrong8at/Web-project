@@ -18,6 +18,7 @@ $(document).on('click', '.user-item', function() {
         data: { userId: userId },
         dataType: 'json', 
         success: function(userDetails) {
+            console.log(userDetails.Id_Promo)
             $('#id_user').val(userDetails.ID_user);
             $('#statut').val(userDetails.Statut);
             $('#nom').val(userDetails.Nom);
