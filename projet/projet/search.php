@@ -42,5 +42,15 @@ function getoffre($search_term, $conn){
 }
 
 function get_entreprise($search_term, $conn){
+    $sql = "SELECT * FROM entreprise WHERE Nom LIKE :search_term";
 
+    $stmt = $conn->prepare($sql);
+    $search_term_like = '%' . $search_term . '%';
+    $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);
+    $stmt->execute();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo '<p class="ent-item" data-id="' . $row['ID_entreprise'] . ' style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p>';
+
+    }
 };

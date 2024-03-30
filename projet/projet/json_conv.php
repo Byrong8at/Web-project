@@ -21,3 +21,16 @@ if(isset($_GET['userId'])) {
     $userDetails = array_merge($userinfo, $userpromo);
     echo json_encode($userDetails);
 }
+
+if(isset($_GET['entId'])) {
+    $entId = $_GET['entId'];
+    
+    $sql = "SELECT * FROM entreprise WHERE ID_entreprise = :entId";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':entId', $entId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $entinfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo json_encode($entinfo);
+}
+
