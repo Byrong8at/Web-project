@@ -14,7 +14,7 @@ if (isset($_POST['envoi'])) {
         $visible = isset($_POST['visible']) ? (int) $_POST['visible'] : 0;
         $note=0.0;
         $avis=0;
-        $img = "src/logo/".$nom;
+        $img = 'src/profil/' . basename($nom) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         traitement($nom,$img);
         //"src/logo/".$nom
         try {

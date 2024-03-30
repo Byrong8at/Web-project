@@ -5,6 +5,7 @@ session_start();
 $error_message = "";
 
 if (isset($_POST['envoi'])) {
+        //rajouter empty
         $statut = $_POST['statut'];
         $nom= $_POST['nom'];
         $prenom=$_POST['prenom'];
@@ -12,9 +13,11 @@ if (isset($_POST['envoi'])) {
         $promo=$_POST['promo'];
         $identifiant = $_POST['Login'];
         $mot_de_passe = $_POST['password'];
+        $img = 'src/profil/' . basename($identifiant) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        traitement_img($identifiant, $img);
 
         try {
-            if (creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe, $conn)) {
+            if (creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$img, $conn)) {
                 $error_message ='valider';
                 
             } else {
@@ -24,9 +27,30 @@ if (isset($_POST['envoi'])) {
             $error_message = "Échec de la connexion à la base de données : " . $e->getMessage();
         }
     }
-function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe, $conn){
+
+function traitement_img($identifiant,$img) {
+    if (!empty($_FILES['image']['name'])) {
+        $targetDir = 'src/profil/';
+        $targetFile = $targetDir . basename($identifiant) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+
+        $check = getimagesize($_FILES['image']['tmp_name']);
+        if ($check !== false) {
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $img = $targetFile;
+                
+            } else {
+                $error_message = "Une erreur est survenue lors du téléchargement de l'image.";
+            }
+        } else {
+            $error_message = "Le fichier n'est pas une image valide.";
+        }
+    
+}
+return $img;
+}
+function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$img, $conn){
     try {
-        $sqllog = "INSERT INTO utilisateur(statut, Nom, Prénom, Centre, Login, Mot_de_passe) VALUES (:statut, :nom, :prenom, :Centre, :identifiant, :mot_de_passe)";
+        $sqllog = "INSERT INTO utilisateur(statut, Nom, Prénom, Centre, Login, Mot_de_passe,logo) VALUES (:statut, :nom, :prenom, :Centre, :identifiant, :mot_de_passe, :logo)";
         $quezy = $conn->prepare($sqllog);
         $quezy->bindParam(':statut', $statut);
         $quezy->bindParam(':nom', $nom);
@@ -34,6 +58,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
         $quezy->bindParam(':Centre', $Centre);
         $quezy->bindParam(':identifiant', $identifiant);
         $quezy->bindParam(':mot_de_passe', $mot_de_passe);
+        $quezy->bindParam(':logo', $img);
         $quezy->execute();
         $sql = "INSERT INTO integrer (ID_user, Id_Promo)
             VALUES (
@@ -86,11 +111,12 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
         <?php
             echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
         ?>
-        <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
+        <form method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row justify-center items-center text-white">
             <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
                 <section class="flex flex-col justify-center items-center">
                     <img src="src/user.png" class="w-44" alt="image user">
-                    <button class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full">Modifier</button>
+                    <input type="file" name="image" class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full" accept="image/*" text="Parcourir">
+
                 </section>
                 <section title="input" class="flex flex-col justify-center items-center ">
                     <legend class="text-right ">Statut</legend>

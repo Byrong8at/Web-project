@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS Utilisateur(
    Centre VARCHAR(50),
    Statut INT,
    CV VARCHAR(50),
+   logo VARCHAR(50),
    PRIMARY KEY(ID_user)
 );
 
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS Offre(
    Voir boolean NOT NULL,
    Teletravail boolean NOT NULL,
    ID_entreprise INT NOT NULL,
+   
    PRIMARY KEY(ID_offre),
    FOREIGN KEY(ID_entreprise) REFERENCES Entreprise(ID_entreprise)
 );
@@ -80,13 +82,6 @@ CREATE TABLE IF NOT EXISTS admin(
    PRIMARY KEY(Id_Admin)
 );
 
-CREATE TABLE IF NOT EXISTS effectuer(
-   ID_user INT,
-   ID_Candi INT,
-   PRIMARY KEY(ID_user, ID_Candi),
-   FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user),
-   FOREIGN KEY(ID_Candi) REFERENCES Candidature(ID_Candi)
-);
 
 CREATE TABLE IF NOT EXISTS Integrer(
    ID_user INT,
