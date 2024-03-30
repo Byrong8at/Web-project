@@ -109,6 +109,7 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
 
             <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
                 <section class="flex flex-col justify-center items-center">
+                    
                     <img src="src/user.png" id="img" class="w-44">
                     <input type="file" name="image" class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full" accept="image/*" text="Parcourir">
                 </section>
