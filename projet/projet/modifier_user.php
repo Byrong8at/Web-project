@@ -1,5 +1,7 @@
 <?php
 require_once(dirname(__FILE__) .'/bdd.php');
+require_once(dirname(__FILE__) .'/tele.php');
+
 session_start();
 $error_message = "";
 $req = array();
@@ -13,10 +15,23 @@ if (isset($_POST['envoi'])) {
     $identifiant = $_POST['Login'];
     $mot_de_passe = $_POST['password'];
     $Id_user=$_POST['id_user'];
-    
+    if (!empty($_FILES['image']['name'])) {
+        $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $img = 'src/profil/' . basename($identifiant) . '.' . $extension;
+        traitement($img);
+    } else {
+        $sql = "SELECT logo FROM utilisateur WHERE ID_user = :Id_user";
+        $quezy = $conn->prepare($sql);
+        $quezy->bindParam(':Id_user', $Id_user);
+        $quezy->execute();
+        $ancien_chemin_image = $quezy->fetchColumn();
+        $ancienne_extension = pathinfo($ancien_chemin_image, PATHINFO_EXTENSION);
+        $img = 'src/profil/' . basename($identifiant) . '.' . $ancienne_extension;
+        rename($ancien_chemin_image, $img);
+    }
     
         try {
-            if (update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$Id_user, $conn)) {
+            if (update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$Id_user,$img, $conn)) {
                 $error_message ='valider';
                 
             } else {
@@ -26,9 +41,9 @@ if (isset($_POST['envoi'])) {
             $error_message = "Échec de la connexion à la base de données : " . $e->getMessage();
         }
     }
-function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$Id_user, $conn){
+function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$Id_user,$img, $conn){
     try {
-        $sqllog = "UPDATE utilisateur SET  Nom = :nom, Prénom = :prenom, Login = :identifiant, Mot_de_passe = :mot_de_passe,Centre = :Centre, statut = :statut WHERE ID_user = :id_user";
+        $sqllog = "UPDATE utilisateur SET  Nom = :nom, Prénom = :prenom, Login = :identifiant, Mot_de_passe = :mot_de_passe,Centre = :Centre, statut = :statut,logo=:logo WHERE ID_user = :id_user";
         $quezy = $conn->prepare($sqllog);
         $quezy->bindParam(':nom', $nom);
         $quezy->bindParam(':prenom', $prenom);
@@ -37,6 +52,7 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
         $quezy->bindParam(':statut', $statut);
         $quezy->bindParam(':Centre', $Centre);
         $quezy->bindParam(':id_user', $Id_user);
+        $quezy->bindParam(':logo', $img);
         $quezy->execute();
         $sql = "UPDATE integrer
                 SET Id_Promo = :promo 
@@ -88,13 +104,13 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
         </div>
 
     <main>
-    <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
+    <form method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row justify-center items-center text-white">
         <input type="hidden" name="id_user" id="id_user" value="">
 
             <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
                 <section class="flex flex-col justify-center items-center">
-                    <img src="src/user.png" class="w-44">
-                    <button class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full">Modifier</button>
+                    <img src="src/user.png" id="img" class="w-44">
+                    <input type="file" name="image" class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full" accept="image/*" text="Parcourir">
                 </section>
                 <section title="input" class="flex flex-col justify-center items-center ">
                     <legend class="text-right ">Statut</legend>

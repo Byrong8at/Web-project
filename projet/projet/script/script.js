@@ -21,6 +21,7 @@ $(document).on('click', '.user-item', function() {
             $('#id_user').val(entDetails.ID_user);
             $('#statut').val(entDetails.Statut);
             $('#nom').val(entDetails.Nom);
+            $('#img').attr("src", entDetails.logo);
             $('#prenom').val(entDetails.Prénom);
             $('#Centre').val(entDetails.Centre);
             $('#Login').val(entDetails.Login);
