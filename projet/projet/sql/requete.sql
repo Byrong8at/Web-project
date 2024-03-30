@@ -11,4 +11,3 @@ from entreprise;
 
 select * 
 from offre
-

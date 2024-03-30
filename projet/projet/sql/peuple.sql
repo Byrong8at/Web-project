@@ -16,10 +16,10 @@ INSERT INTO Entreprise (Nom, secteur_d_activité, Adresse, Note_avis, Stat_postu
 ('CHU', 'Santé', '10 Boulevard de la Santé', 4.2, 14, 0, 'logo_entreprise_c.png');
 
 
-INSERT INTO Offre (Nom, compétences,detail, types_de_promotions_concernées, durée_du_stage, Rémunération, date_de_l_offre, nombre_de_places_offertes_aux_étudiants,Voir, Teletravail, ID_entreprise) VALUES
-('Développeur Web', 'HTML, CSS, JavaScript',"", 'Informatique', 6, 1500.00, '2024-04-01', 5, 0,1, 1),
-('Analyste financier','Analyse financière, Excel',"",   'Finance', 3, 2000.00, '2024-03-15', 3, 1,1, 2),
-('Assistant médical', 'Secrétariat médical, Communication',"", 'Santé', 4, 1800.00, '2024-03-10', 2, 0,0, 3);
+INSERT INTO Offre (Nom, compétences, types_de_promotions_concernées, durée_du_stage, Rémunération, date_de_l_offre, nombre_de_places_offertes_aux_étudiants, Teletravail, ID_entreprise) VALUES
+('Développeur Web', 'HTML, CSS, JavaScript', 'Informatique', 6, 1500.00, '2024-04-01', 5, 0, 1),
+('Analyste financier', 'Analyse financière, Excel',  'Finance', 3, 2000.00, '2024-03-15', 3, 1, 2),
+('Assistant médical', 'Secrétariat médical, Communication', 'Santé', 4, 1800.00, '2024-03-10', 2, 0, 3);
 
 INSERT INTO Promotion (Nom_promo) VALUES
 ('X2_i3'),
