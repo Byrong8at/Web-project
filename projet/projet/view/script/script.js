@@ -1,21 +1,9 @@
-function searchData(value) {
-    const searchType = $('#search').data('searchtype');
-    $.ajax({
-        url: 'search.php',
-        type: 'POST',
-        data: { search: value,type: searchType },
-        success: function(response) {
-            $('#result').html(response);
-        }
-    });
-}
-
 function searchall(value) {
     const searchType = $('#search_entete').data('searchtype');
     $.ajax({
-        url: 'search.php',
+        url: '/../controller/controller.php',
         type: 'POST',
-        data: { search: value,type: searchType },
+        data: { search: value, type: searchType, function: 'search' },
         success: function(response) {
             $('#resultat').html(response);
         }

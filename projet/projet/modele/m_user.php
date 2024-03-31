@@ -4,7 +4,7 @@
         public function get_all($conn, $id) {
             $sql = "SELECT utilisateur.*
                     FROM utilisateur
-                    WHERE utilisateur.ID_utilisateur = :id";
+                    WHERE utilisateur.ID_user = :id";
     
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
