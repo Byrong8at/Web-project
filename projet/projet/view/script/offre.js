@@ -111,3 +111,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+
+document.getElementById('valider').addEventListener('click', function() {
+    var date = document.querySelector('select[name="Date"]').value;
+    var nom_offre = document.querySelector('select[name="Name_offre"]').value;
+    var nom_entreprise = document.querySelector('select[name="name_ent"]').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'recherche.php?Date=' + date + '&Name_offre=' + nom_offre + '&name_ent=' + nom_entreprise, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Mettre à jour la partie de la page affichant les offres avec la réponse du serveur
+            document.getElementById('offre').innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send();
+});

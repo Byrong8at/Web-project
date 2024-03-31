@@ -2,7 +2,6 @@
 require_once(dirname(__FILE__) .'/../controller/redirection.php');
 require_once(dirname(__FILE__) . '/../modele/bdd.php');
 
-//pour determiner le nombre de page
 $sql = 'SELECT COUNT(*) AS nb_offre FROM `offre`;';
 $query = $conn->prepare($sql);
 $query->execute();
@@ -25,14 +24,59 @@ if ($page_actu<1){
     header("Location: error.html");  
     exit; 
 }
-function get_offre($conn, $limite, $page_actu) {
+
+// Récupérer les valeurs de tri sélectionnées
+$tri_date = isset($_GET['Date']) ? $_GET['Date'] : null;
+$tri_nom_offre = isset($_GET['Name_offre']) ? $_GET['Name_offre'] : null;
+$tri_nom_entreprise = isset($_GET['name_ent']) ? $_GET['name_ent'] : null;
+$tri_colonne = '';
+$tri_ordre = '';
+if (isset($_POST['valider'])) {
+  
+  switch ($tri_date) {
+      case 'Aujourd\'hui':
+          $tri_colonne = 'offre.date'; // Remplacer 'date' par le nom de la colonne contenant la date dans votre base de données
+          $tri_ordre = 'ASC';
+          break;
+      // Ajouter d'autres cas pour les autres options de tri par date
+      // ...
+  }
+
+  switch ($tri_nom_offre) {
+      case 'ASC':
+          $tri_colonne = 'offre.Nom';
+          $tri_ordre = 'ASC';
+          break;
+      case 'DESC':
+          $tri_colonne = 'offre.Nom';
+          $tri_ordre = 'DESC';
+          break;
+  }
+
+  switch ($tri_nom_entreprise) {
+      case 'ASC':
+          $tri_colonne = 'entreprise.Nom';
+          $tri_ordre = 'ASC';
+          break;
+      case 'DESC':
+          $tri_colonne = 'entreprise.Nom';
+          $tri_ordre = 'DESC';
+          break;
+  }
+  get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
+}
+function get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre) {
     $debut = ($page_actu - 1) * $limite;
     $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.voir = 1 AND entreprise.Voir = 1
-            LIMIT :limit OFFSET :debut
-";
+            WHERE offre.voir = 1 AND entreprise.Voir = 1";
+
+    if (!empty($tri_colonne) && !empty($tri_ordre)) {
+      $sql .= " ORDER BY $tri_colonne $tri_ordre";
+    }
+
+      $sql .= " LIMIT :limit OFFSET :debut";
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':limit', $limite, PDO::PARAM_INT);
@@ -41,7 +85,8 @@ function get_offre($conn, $limite, $page_actu) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-$offres = get_offre($conn, $limite, $page_actu);
+$offres = get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
+
 ?>
 
 
@@ -78,9 +123,10 @@ $offres = get_offre($conn, $limite, $page_actu);
               <button id="filtrermobile" class="w-full bg-blue-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white rounded px-8 py-2 font-size: 1.5vmin mt-4 rounded-full mx-2">Filtrer</button>
               <button id="triermobile" class="w-full bg-blue-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white rounded px-8 py-2 font-size: 1.5vmin mt-4 rounded-full mx-2">Trier</button>
             </section>
+            
             <div class="hidden md:hidden flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
               <label>Date</label>
-              <select class="selectdate border border-gray-400 rounded p-2">
+              <select name="date" class="selectdate border border-gray-400 rounded p-2">
                 <option></option>
                 <option>Aujourd'hui</option>
                 <option>Ces 3 dernier jours</option>
@@ -88,57 +134,50 @@ $offres = get_offre($conn, $limite, $page_actu);
                 <option>Ce mois-ci</option>
               </select>
               <label>Nom d'offres</label>
-              <select class="selectoffre border border-gray-400 rounded p-2">
-                <option></option>
-                <option></option>
-                <option>Croissant</option>
-                <option>Décroissant</option>
+              <select name="Name_offre" class="selectoffre border border-gray-400 rounded p-2">
+                      <option ></option>
+                      <option value="ASC">Croissant</option>
+                      <option value="DESC">Décroissant</option>
               </select>
               <label>Nom d'entreprise</label>
-              <select class="selectentreprise border border-gray-400 rounded p-2 mb-2">
-                <option></option>
-                <option></option>
-                <option>Croissant</option>
-                <option>Décroissant</option>
+              <select name="name_ent"  class="selectentreprise border border-gray-400 rounded p-2 mb-2">
+                      <option ></option>
+                      <option value="ASC">Croissant</option>
+                      <option value="DESC">Décroissant</option>
               </select>
               </div>
               <div class="hidden md:hidden text-xl flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
                 <label class="mb-2 font-bold">Niveau</label>
                 <div class="flex flex-col"></div>
                 <div class="flex items-center mb-2">
-                  <input class="bac0 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
+                  <input class="bac0 w-6 h-6 mr-2" type="checkbox" name="Bac" value="Null">
                   <label>Pas d'expérience</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="bac1 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
+                  <input class="bac1 w-6 h-6 mr-2" type="checkbox" name="Bac+1" value="1">
                   <label>Bac</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="bac2 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option1">
+                  <input class="bac2 w-6 h-6 mr-2" type="checkbox" name="Bac+2" value="2">
                   <label>Bac+2</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="bac3 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option2">
+                  <input class="bac3 w-6 h-6 mr-2" type="checkbox" name="Bac+3" value="3">
                   <label>Bac+3</label>
                 </div>
                 <div class="flex items-center mb-2">  
-                  <input class="bac4 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option3">
+                  <input class="bac4 w-6 h-6 mr-2" type="checkbox" name="Bac+4" value="4">
                   <label>Bac+4</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="bac5 w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="option3">
+                  <input class="bac5 w-6 h-6 mr-2" type="checkbox" name="Bac+5" value="5">
                   <label>Bac+5</label>
                 </div>
                 <label class="pt-2 font-bold">Ville</label>
-                <input type="text" class="inputville border border-gray-400 rounded p-2">
-                <label class="pt-2 font-bold ">Contrat</label>
-                    <select class="selectcontrat border border-gray-400 rounded p-2">
-                      <option></option>
-                      <option>Stage</option>
-                      <option>Alternance</option>
-                    </select>
+                <input name="Ville" type="text" class="inputville border border-gray-400 rounded p-2">
+    
                     <label class="pt-2 font-bold">Durée Contrat</label>
-                    <select class="selectdureecontrat border border-gray-400 rounded p-2">
+                    <select name="durée" class="selectdureecontrat border border-gray-400 rounded p-2">
                       <option></option>
                       <option>1 mois</option>
                       <option>2 mois</option>
@@ -149,28 +188,28 @@ $offres = get_offre($conn, $limite, $page_actu);
                     </select>
                 
                 <div class="flex items-center mb-2 mt-4">
-                  <input class="remuneration w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="">
+                  <input class="remuneration w-6 h-6 mr-2" type="checkbox" name="salaire" value="">
                   <label>Rémunération</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="teletravail w-6 h-6 mr-2" type="checkbox" name="myCheckbox" value="">
+                  <input class="teletravail w-6 h-6 mr-2" type="checkbox" name="tele" value="">
                   <label>Télétravail</label>
                 </div>
                 <label class="py-2 font-bold">Domaine</label>
                 <div class="flex items-center mb-2">
-                  <input class="generaliste w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="generaliste w-6 h-6 mr-2" type="checkbox" name="Généraliste">
                   <label>Généraliste</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="informatique w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="informatique w-6 h-6 mr-2" type="checkbox" name="Informatique">
                   <label>Informatique</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="btp w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="btp w-6 h-6 mr-2" type="checkbox" name="BTP">
                   <label>BTP</label>
                 </div>
                 <div class="flex items-center mb-2">
-                  <input class="s3e w-6 h-6 mr-2" type="checkbox" name="myCheckbox">
+                  <input class="s3e w-6 h-6 mr-2" type="checkbox" name="Systeme">
                   <label>Système embarqué</label>
                 </div>
               </div>
@@ -183,7 +222,7 @@ $offres = get_offre($conn, $limite, $page_actu);
                   <button id="trier" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Trier par</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>Date</label>
-                    <select class="selectdate border border-gray-400 rounded p-2">
+                    <select name="Date" class="selectdate border border-gray-400 rounded p-2">
                       <option ></option>
                       <option>Aujourd'hui</option>
                       <option>Ces 3 dernier jours</option>
@@ -207,64 +246,59 @@ $offres = get_offre($conn, $limite, $page_actu);
                   <button id="niveau" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Niveau</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>
-                      <input class="bac0" type="checkbox" name="myCheckbox" value="option1">
+                      <input class="bac0" type="checkbox" name="bac" value="Null">
                       Pas d'expérience
                     </label>
                     <label>
-                      <input class="bac1" type="checkbox" name="myCheckbox" value="option1">
+                      <input class="bac1" type="checkbox" name="Bac+1" value="1">
                       Bac
                     </label>
                     <label>
-                      <input class="bac2" type="checkbox" name="myCheckbox" value="option1">
+                      <input class="bac2" type="checkbox" name="Bac+2" value="2">
                       Bac+2
                     </label>
                     <label>
-                      <input class="bac3" type="checkbox" name="myCheckbox" value="option2">
+                      <input class="bac3" type="checkbox" name="Bac+3" value="3">
                       Bac+3
                     </label>
                     <label>
-                      <input class="bac4" type="checkbox" name="myCheckbox" value="option3">
+                      <input class="bac4" type="checkbox" name="Bac+4" value="4">
                       Bac+4
                     </label>
                     <label>
-                      <input class="bac5" type="checkbox" name="myCheckbox" value="option3">
+                      <input class="bac5" type="checkbox" name="Bac+5" value="5">
                       Bac+5
                     </label>
                   </div>
                   <button id="localisation" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Localisation</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>Ville</label>
-                    <input class="inputville border border-gray-400 rounded p-2" type="text" class="border border-gray-400 rounded p-2">
+                    <input name="Ville" class="inputville border border-gray-400 rounded p-2" type="text" class="border border-gray-400 rounded p-2">
                   </div>
                   <button id="domaine" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Domaine</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
                     <label>
-                      <input class="generaliste" type="checkbox" name="myCheckbox">
+                      <input class="generaliste" type="checkbox" name="Généraliste">
                       Généraliste
                     </label>
                     <label>
-                      <input class="informatique" type="checkbox" name="myCheckbox">
+                      <input class="informatique" type="checkbox" name="Informatique">
                       Informatique
                     </label>
                     <label>
-                      <input class="btp" type="checkbox" name="myCheckbox">
+                      <input class="btp" type="checkbox" name="BTP">
                       BTP
                     </label>
                     <label>
-                      <input class="s3e" type="checkbox" name="myCheckbox">
+                      <input class="s3e" type="checkbox" name="Systeme">
                       Système embarqué
                     </label>
                   </div>
                   <button id="contrat" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Contrat</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
-                    <label>Contrat</label>
-                    <select class="selectcontrat border border-gray-400 rounded p-2">
-                      <option></option>
-                      <option>Stage</option>
-                      <option>Alternance</option>
-                    </select>
+                    
                     <label>Durée Contrat</label>
-                    <select class="selectdureecontrat border border-gray-400 rounded p-2">
+                    <select name="durée" class="selectdureecontrat border border-gray-400 rounded p-2">
                       <option></option>
                       <option>1 mois</option>
                       <option>2 mois</option>
@@ -274,16 +308,16 @@ $offres = get_offre($conn, $limite, $page_actu);
                       <option>6+ mois</option>
                     </select>
                     <label>
-                      <input class="remuneration" type="checkbox" name="myCheckbox" value="">
+                      <input class="remuneration" type="checkbox" name="salaire" value="">
                       Rémunération
                     </label>
                     <label>
-                      <input class="teletravail" type="checkbox" name="myCheckbox" value="">
+                      <input class="teletravail" type="checkbox" name="tele" value="">
                       Télétravail
                     </label>
                   </div>
                   <div class="grid justify-items-stretch my-10">
-                    <button id="valider" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Valider</button>
+                    <button  id="valider" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Valider</button>
                     <button id="réinitialiser" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Réinitialiser</button>
                   </div>
                 </section>
@@ -304,7 +338,7 @@ $offres = get_offre($conn, $limite, $page_actu);
                     <img src="src/cesi.png" class="w-16 h-16" alt="logo">
                     <div class="flex flex-col flex-grow justify-between ml-1">
                         <div>
-                            <a href="offre.php?ID_offre=<?php echo $id_offre; ?>" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
+                            <a href="www.google.fr" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
                             <h2><?php echo $nom_entreprise; ?></h2>
                             <h2><?php echo $lieu; ?></h2>
                         </div>
