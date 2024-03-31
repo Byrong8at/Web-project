@@ -16,7 +16,7 @@
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     <main >
         <header>
-            <section class="z-50 relative  max-w-screen mx-auto">
+            <section class="z-10 relative  max-w-screen mx-auto">
                 <img src="src/datacenter.jpg" alt="image promo" class="w-full h-80 lg:h-auto lg:max-h-96 bg-opacity-50">
                 <p class="absolute bottom-10 left-10 text-white text-xl  bg-opacity-50 p-2">L'informatique pas de panique.</p>
             </section>
