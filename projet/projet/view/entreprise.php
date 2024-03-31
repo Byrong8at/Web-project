@@ -12,13 +12,15 @@
     <?php
     require_once(dirname(__FILE__) .'/../controller/controller.php');
     redirection();
+    $data = get_all($_GET['ID_entreprise'],"entreprise");
+    $entreprise_offres = get_entrepriseOffres($_GET['ID_entreprise']);
     ?>   
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     <main>
         <header>
             <section class="relative max-w-screen mx-auto ">
                 <img src="src/capgemini.jpg" alt="image promo" class=" w-full h-100 lg:h-auto lg:max-h-96 bg-opacity-50">
-                <span class="absolute bottom-20 left-20 text-white text-3xl  text-shadow-[0_4px_8px_#6366f1] p-2 underline "><?php echo $_GET['ID_entreprise'];?></span>
+                <span class="absolute bottom-20 left-20 text-white text-3xl  text-shadow-[0_4px_8px_#6366f1] p-2 underline "><?php echo $data[0]['Nom'];?></span>
             </section>
         </header>
         <main class="mx-10 my-10">
@@ -31,65 +33,20 @@
             <section title="offre en cours " class="text-white">
                 <p class="text-xl font-bold text-black">Les offres en cours :</p>
                 <section class="flex overflow-x-auto  w-full max-w-screen-3xl my-2">
+
+                <?php
+                foreach ($entreprise_offres as $offre) {
+                    $nom_offre = $offre['Nom'];
+                    $date = $offre['date_de_l_offre'];
+                    $description_offre = $offre['detail'];
+                ?>
+                <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 mr-4 lg:mr-0 flex-none ">
+                            <p><?php echo $nom_offre?></p>
+                            <p>Date : <?php echo $date?></p>
+                            <p>Mission :</br><?php echo $description_offre?></p>
+                        </section>
+                <?php } ?>
                     
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 mr-4 lg:mr-0 flex-none ">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Mission:</p>
-                        </section>
-                
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 text-white mr-4 lg:mr-0 flex-none">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Mission:</p>
-                        </section>
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 mr-4 lg:mr-0 flex-none ">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Mission:</p>
-                        </section>
-                
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 text-white mr-4 lg:mr-0 flex-none">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Mission:</p>
-                        </section>
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10  mr-4 lg:mr-0 flex-none ">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Mission:</p>
-                        </section>
-                
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 text-white mr-4 lg:mr-0 flex-none">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Accessibilité</p>
-                            <p>Mission:</p>
-                        </section>
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 mr-4 lg:mr-0 flex-none">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Accessibilité</p>
-                            <p>Mission:</p>
-                        </section>
-                
-                        <section title="offre de stage" class="text-left bg-custom-blue-sky px-4 w-64 h-80 lg:mx-10 text-white mr-auto lg:mr-0 flex-none">
-                            <p>Nom du stage</p>
-                            <p>Date</p>
-                            <p>Type de Contrat</p>
-                            <p>Accessibilité</p>
-                            <p>Mission:</p>
-                        </section>
-                        
-                        
-                        <!-- Ajoutez plus de sections au besoin -->
 
                 </section>
                 <button id="see-offre" class="flex justify-center items-center rounded-md text-lg bg-custom-blue-sky hover:bg-cyan-900 w-40 my-2 px-4 py-2 text-white mx-auto">Voir plus</button>

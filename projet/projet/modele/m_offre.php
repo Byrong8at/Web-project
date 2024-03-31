@@ -1,5 +1,5 @@
 <?php 
-    require_once(dirname(__FILE__) .'/bdd.php');
+    require_once(dirname(__FILE__) .'/../controller/controller.php');
     class offre{
         public function get_all($conn, $id) {
             $sql = "SELECT offre.*
