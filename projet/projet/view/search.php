@@ -18,6 +18,9 @@ if (!empty($_POST['search'])) {
         case 'offre':
             echo getoffre($search_term, $conn);
             break;
+        case 'all':
+            echo getall($search_term, $conn);
+            break;
         default:
             echo "Type de recherche invalide";
             break;
@@ -63,3 +66,58 @@ function get_entreprise($search_term, $conn){
 
     }
 };
+
+function getall($search_term, $conn){
+    $results = array();
+
+    $sql = "SELECT ID_entreprise, Nom
+            FROM entreprise
+            WHERE entreprise.Nom LIKE :search_term
+            LIMIT 3";
+    $stmt = $conn->prepare($sql);
+    $search_term_like = '%' . $search_term . '%';
+    $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);
+    $stmt->execute();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $row['category'] = 'entreprise';
+        $results[] = $row;
+    }
+
+    $sqllog = "SELECT ID_offre , Nom
+            FROM offre
+            WHERE offre.Nom LIKE :search_term
+            LIMIT 3";
+    $stmt = $conn->prepare($sqllog);
+    $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);
+    $stmt->execute();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $row['category'] = 'offre';
+        $results[] = $row;
+    }
+
+    $sqlp = "SELECT ID_user,Prénom,Nom
+            FROM utilisateur
+            WHERE utilisateur.Nom LIKE :search_term OR utilisateur.Prénom LIKE :search_term
+            LIMIT 3";
+    $stmt = $conn->prepare($sqlp);
+    $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);
+    $stmt->execute();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $row['category'] = 'utilisateur';
+        $results[] = $row;
+    }
+
+    foreach ($results as $row) {
+        switch ($row['category']) {
+            case 'entreprise':
+                echo '<p class="all-item" data-id="' . $row['ID_entreprise'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p>';
+                break;
+            case 'offre':
+                echo '<p class="all-item" data-id="' . $row['ID_offre'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p>';
+                break;
+            case 'utilisateur':
+                echo '<p class="all-item" data-id="' . $row['ID_user'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] ." ". $row['Prénom'] . '</p>';
+                break;
+        }
+    }
+}
