@@ -338,7 +338,7 @@ $offres = get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
                     <img src="src/cesi.png" class="w-16 h-16" alt="logo">
                     <div class="flex flex-col flex-grow justify-between ml-1">
                         <div>
-                            <a href="www.google.fr" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
+                            <a href="offre.php?ID_offre=<?php echo $id_offre; ?>" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
                             <h2><?php echo $nom_entreprise; ?></h2>
                             <h2><?php echo $lieu; ?></h2>
                         </div>
