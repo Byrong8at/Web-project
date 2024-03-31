@@ -12,6 +12,17 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     
+        public function get_adrEntreprise($conn, $id){
+            $sql = "SELECT entreprise.Adresse
+                    FROM entreprise
+                    INNER JOIN offre ON entreprise.ID_entreprise = offre.ID_entreprise
+                    WHERE offre.ID_offre = :id";
+    
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        }
         public function get_nomEntreprise($conn, $id){
             $sql = "SELECT entreprise.Nom
                     FROM entreprise
@@ -23,6 +34,5 @@
             $stmt->execute();
             return $stmt->fetchColumn();
         }
-
     }
 ?>
