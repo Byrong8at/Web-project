@@ -14,4 +14,4 @@ module.exports = {
   plugins: [],
 }
 
-/*npx tailwindcss -i ./style/tail_element.css -o ./style/compte.css --watch*/
+/*npx tailwindcss -i ./style/tail_element.css -o ./style/gerer.css --watch*/

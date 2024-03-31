@@ -22,6 +22,10 @@ function searchall(value) {
     });
 }
 
+document.getElementById("logo").addEventListener("click", function() {
+    document.getElementById("profil").classList.toggle("hidden");
+});
+
 $(document).on('click', '.user-item', function() {
     let userId = $(this).data('id');
     $.ajax({
@@ -66,6 +70,40 @@ $(document).on('click', '.ent-item', function() {
                 $('#visible').prop('checked', false);
             }
         } ,
+        
+    });
+});
+
+$(document).on('click', '.offre-item', function() {
+    let offreId = $(this).data('id');
+    $.ajax({
+        url: 'json_conv.php',
+        type: 'GET',
+        data: { offreId: offreId},
+        dataType: 'json', 
+        success: function(offreinfo) {
+            $('#id_user').val(offreinfo.ID_offre);
+            $('#nom').val(offreinfo.Nom);
+            $('#competences').val(offreinfo.competences);
+            $('#description').val(offreinfo.detail);
+            $('#promo').val(offreinfo.promo);
+            $('#durée').val(offreinfo.durée_du_stage);
+            $('#salaire').val(offreinfo.Rémunération);
+            $('#date').val(offreinfo.date_de_l_offre);
+            $('#place').val(offreinfo.place);
+            $('#ent').val(offreinfo.ID_entreprise);
+            if (offreinfo.Voir === 1) {
+                $('#visible').prop('checked', true);
+            } else {
+                $('#visible').prop('checked', false);
+            }
+            if (offreinfo.Teletravail === 1) {
+                $('#tele').prop('checked', true);
+            } else {
+                $('#tele').prop('checked', false);
+            }
+        } ,
+
         
     });
 });
