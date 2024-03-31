@@ -33,6 +33,22 @@ function get_entrepriseOffres($id){
     return $data;
 }
 
+function get_adressesEntreprise($id){
+    global $conn;
+    $class = new entreprise();
+    $data = $class->get_adresses($conn, $id);
+    return $data;
+}
+
+function page_offre($id){
+    global $conn;
+    $classoffre = new offre();
+    $data_offre = $classoffre->get_all($conn, $id);
+    $data_offre[0]['entreprise_Nom'] = $classoffre->get_nomEntreprise($conn, $id);
+    $data_offre[0]['entreprise_Adresse'] = $classoffre->get_adressesEntreprise($conn, $id);
+    return $data_offre;
+}
+
 function adminredirection(){
     if (!isset($_SESSION)) {
         session_start();
@@ -57,6 +73,7 @@ function redirection(){
         exit();
     }
 }
+
 
 function search($search_term){
     $dtb = initbdd();

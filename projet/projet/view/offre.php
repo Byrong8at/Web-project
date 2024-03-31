@@ -59,9 +59,9 @@ function postuler($id_user,$id_offre,  $conn){
     <?php require_once(dirname(__FILE__) .'/entete.php')?>
     <?php 
         require_once(dirname(__FILE__) .'/../modele/m_offre.php');
-        $classoffre = new offre();
-        $data_offre = $classoffre->get_all($conn, $_GET['ID_offre']);
-        $data_offre[0]['entreprise_Nom'] = $classoffre->get_nomEntreprise($conn, $_GET['ID_offre']);
+        $data_offre = page_offre($_GET['ID_offre']);
+        print_r($data_offre);
+        
     ?>
     
     <main>
@@ -87,6 +87,18 @@ function postuler($id_user,$id_offre,  $conn){
                 };
             ?>
         </h2>
+        <?php
+            if($data_offre[0]['entreprise_Adresse'][0]['Adresse'] != ""){
+                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Adresse : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse'] . "</h2>";
+            }
+            if($data_offre[0]['entreprise_Adresse'][0]['Adresse_2'] != ""){
+                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Adresse 2 : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse_2'] . "</h2>";
+            }
+            if($data_offre[0]['entreprise_Adresse'][0]['Adresse_3'] != ""){
+                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Adresse 3 : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse_3'] . "</h2>";
+            }
+        ?>
+
         <h2 class="text-lg mx-4 md:text-lg lg:text-xl">Tes missions : <?php echo $data_offre[0]['detail'];?></h2>
         <form method="Post">
         <?php
