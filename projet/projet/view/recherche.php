@@ -30,15 +30,9 @@ function get_offre($conn, $limite, $page_actu) {
     $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.voir = 1 AND entreprise.Voir = 1";
-            if (isset($_GET["Name_offre"])) {
-                    $sql .= " ORDER BY " . $_GET['Name_offre'];
-                }
-            if (isset($_GET["name_ent"])) {
-                $sql .= " ORDER BY " . $_GET['name_ent'];
-                }
-                
-            $sql.="LIMIT :limit OFFSET :debut";
+            WHERE offre.voir = 1 AND entreprise.Voir = 1
+            LIMIT :limit OFFSET :debut
+";
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':limit', $limite, PDO::PARAM_INT);
@@ -47,7 +41,7 @@ function get_offre($conn, $limite, $page_actu) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//$offres = get_offre($conn, $limite, $page_actu);
+$offres = get_offre($conn, $limite, $page_actu);
 ?>
 
 
@@ -310,7 +304,7 @@ function get_offre($conn, $limite, $page_actu) {
                     <img src="src/cesi.png" class="w-16 h-16" alt="logo">
                     <div class="flex flex-col flex-grow justify-between ml-1">
                         <div>
-                            <a href="www.google.fr" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
+                            <a href="offre.php?ID_offre=<?php echo $id_offre; ?>" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
                             <h2><?php echo $nom_entreprise; ?></h2>
                             <h2><?php echo $lieu; ?></h2>
                         </div>

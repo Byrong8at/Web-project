@@ -12,7 +12,7 @@
             <input type="text" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search">
         </div>
         <a href="deconnexion.php">Se déconnecter</a>
-        <p class="hidden sm:inline ml-4">Nos offres</p>
+        <a href="recherche.php" class="hidden sm:inline ml-4">Nos offres</a>
         <a href="compte.php"><img src="../logo/<?php echo $_SESSION['user']['logo']; ?>" alt="profile picture" class="w-10 h-auto"><?php echo " " . $_SESSION['user']['Nom']; ?></a>
     <?php else: ?>
         <a href="index.php">
