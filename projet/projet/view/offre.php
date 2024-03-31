@@ -1,5 +1,5 @@
-<?php require_once(dirname(__FILE__) .'/../controller/redirection.php')?>
-<?php require_once(dirname(__FILE__) .'/../modele/bdd.php')?>
+<?php require_once(dirname(__FILE__) .'/../controller/controller.php');
+redirection();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

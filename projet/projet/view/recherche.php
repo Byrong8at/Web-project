@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__) .'/../controller/redirection.php');
-require_once(dirname(__FILE__) . '/../modele/bdd.php');
+require_once(dirname(__FILE__) .'/../controller/controller.php');
+redirection();
 
 $sql = 'SELECT COUNT(*) AS nb_offre FROM `offre`;';
 $query = $conn->prepare($sql);
@@ -330,6 +330,7 @@ $offres = get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
                     $description_offre = $offre['detail'];
                     $nom_entreprise = $offre['entreprise_Nom']; 
                     $lieu= $offre['Adresse'];
+                    $id_entreprise = $offre['ID_entreprise'];
                 ?>
                 <article class="flex flex-row border border-gray-400 mb-6 relative">
                     <button class="absolute top-0 right-0 mr-2 my-2">
@@ -339,7 +340,7 @@ $offres = get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
                     <div class="flex flex-col flex-grow justify-between ml-1">
                         <div>
                             <a href="offre.php?ID_offre=<?php echo $id_offre; ?>" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
-                            <h2><?php echo $nom_entreprise; ?></h2>
+                            <a href="entreprise.php?ID_entreprise=<?php echo $id_entreprise; ?>"><h2><?php echo $nom_entreprise; ?></h2></a>
                             <h2><?php echo $lieu; ?></h2>
                         </div>
                         <p class="text-right content-offre text-ellipsis overflow-hidden"><?php echo $description_offre; ?></p>

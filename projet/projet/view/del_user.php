@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__) . '/../modele/bdd.php');
-require_once(dirname(__FILE__) .'/../controller/adminredirection.php');
+require_once(dirname(__FILE__) .'/../controller/controller.php');
+adminredirection();
 $error_message = "";
 $req = array();
 
