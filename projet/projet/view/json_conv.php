@@ -34,3 +34,16 @@ if(isset($_GET['entId'])) {
     echo json_encode($entinfo);
 }
 
+if(isset($_GET['offreId'])) {
+    $offreId = $_GET['offreId'];
+    
+    $sql = "SELECT * FROM offre WHERE ID_offre = :offreId";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':offreId', $offreId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $offreinfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo json_encode($offreinfo);
+}
+
+
