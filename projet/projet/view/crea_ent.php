@@ -13,8 +13,6 @@ if (isset($_POST['envoi'])) {
         $adr_2=$_POST['adr_2'];
         $adr_3 = $_POST['adr_3'];
         $visible = isset($_POST['visible']) ? (int) $_POST['visible'] : 0;
-        $note=0.0;
-        $avis=0;
         $img = 'src/logo/' . basename($nom) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         traitement($img);
         //"src/logo/".$nom
@@ -48,15 +46,13 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $avis, $note
             return false;
         }
 
-        $sqllog = "INSERT INTO entreprise(Nom, secteur_d_activité, Adresse, Adresse_2, Adresse_3, Note_avis, Stat_postule, Voir, logo) VALUES (:nom, :secteur, :adr_1, :adr_2, :adr_3, :note, :stat, :visible, :img)";
+        $sqllog = "INSERT INTO entreprise(Nom, secteur_d_activité, Adresse, Adresse_2, Adresse_3, Voir, logo) VALUES (:nom, :secteur, :adr_1, :adr_2, :adr_3,  :visible, :img)";
         $quezy = $conn->prepare($sqllog);
         $quezy->bindParam(':nom', $nom);
         $quezy->bindParam(':secteur', $secteur);
         $quezy->bindParam(':adr_1', $adr_1);
         $quezy->bindParam(':adr_2', $adr_2);
         $quezy->bindParam(':adr_3', $adr_3);
-        $quezy->bindParam(':note', $note);
-        $quezy->bindParam(':stat', $avis);
         $quezy->bindParam(':visible', $visible);
         $quezy->bindParam(':img', $img);
         $quezy->execute();

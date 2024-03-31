@@ -47,3 +47,6 @@ if(isset($_GET['offreId'])) {
 }
 
 
+if(isset($_GET['allid'])) {
+
+}
