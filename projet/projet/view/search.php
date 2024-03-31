@@ -73,7 +73,7 @@ function getall($search_term, $conn){
 
     $sql = "SELECT ID_entreprise, Nom
             FROM entreprise
-            WHERE entreprise.Nom LIKE :search_term
+            WHERE Nom LIKE :search_term AND Voir=1
             LIMIT 3";
     $stmt = $conn->prepare($sql);
     $search_term_like = '%' . $search_term . '%';
@@ -84,9 +84,9 @@ function getall($search_term, $conn){
         $results[] = $row;
     }
 
-    $sqllog = "SELECT ID_offre , Nom
+    $sqllog = "SELECT ID_offre , Nom,Voir
             FROM offre
-            WHERE offre.Nom LIKE :search_term
+            WHERE Nom LIKE :search_term AND Voir=1
             LIMIT 3";
     $stmt = $conn->prepare($sqllog);
     $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);
@@ -98,7 +98,7 @@ function getall($search_term, $conn){
 
     $sqlp = "SELECT ID_user,Prénom,Nom
             FROM utilisateur
-            WHERE utilisateur.Nom LIKE :search_term OR utilisateur.Prénom LIKE :search_term
+            WHERE Nom LIKE :search_term OR Prénom LIKE :search_term
             LIMIT 3";
     $stmt = $conn->prepare($sqlp);
     $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);

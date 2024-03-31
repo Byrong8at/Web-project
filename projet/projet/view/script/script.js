@@ -106,4 +106,18 @@ $(document).on('click', '.offre-item', function() {
 
         
     });
+    
+});
+$(document).on('click', '.all-item', function() {
+    let allid = $(this).data('id');
+    $.ajax({
+        url: 'json_conv.php',
+        type: 'GET',
+        data: { allid: allid},
+        dataType: 'json', 
+        success: function(entDetails ) {
+            
+        } ,
+        
+    });
 });
