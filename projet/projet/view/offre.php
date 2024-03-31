@@ -60,7 +60,6 @@ function postuler($id_user,$id_offre,  $conn){
     <?php 
         require_once(dirname(__FILE__) .'/../modele/m_offre.php');
         $data_offre = page_offre($_GET['ID_offre']);
-        print_r($data_offre);
         
     ?>
     
