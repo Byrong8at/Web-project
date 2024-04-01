@@ -91,10 +91,23 @@ CREATE TABLE IF NOT EXISTS Integrer(
 
 CREATE TABLE Stage(
    ID_Stage INT AUTO_INCREMENT,
-   ID_Candi INT,
+   ID_Candi INT  NOT NULL,
    ID_user INT NOT NULL,
    PRIMARY KEY(ID_Stage) ,
    FOREIGN KEY(ID_Candi) REFERENCES Candidature(ID_Candi),
    FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user)
 );
 
+
+
+CREATE TABLE Avis(
+   Id_avis INT AUTO_INCREMENT,
+   Note DECIMAL(15,2) NOT NULL,
+   description VARCHAR(1024),
+   Jour DATE,
+   ID_user INT NOT NULL,
+   ID_offre INT NOT NULL,
+   PRIMARY KEY(Id_avis),
+   FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user),
+   FOREIGN KEY(ID_offre) REFERENCES Offre(ID_offre)
+);

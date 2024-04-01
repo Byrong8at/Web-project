@@ -51,7 +51,7 @@ INSERT INTO Wishlist (ID_offre, ID_user) VALUES
 (3, 3);
 
 
-INSERT INTO Candidature (Etat_Postule, ID_offre, ID_user) VALUES
+INSERT INTO Candidature ( ID_offre, ID_user) VALUES
 ( 1, 1),
 ( 1, 2),
 ( 1, 3),
@@ -62,3 +62,6 @@ INSERT INTO Candidature (Etat_Postule, ID_offre, ID_user) VALUES
 ( 3, 4),
 ( 3, 5);
 
+INSERT INTO `stage` ( `ID_Candi`, `ID_user`) VALUES
+( 1, 1),
+( 5, 1);

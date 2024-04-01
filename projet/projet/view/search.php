@@ -22,6 +22,9 @@ if (!empty($_POST['search'])) {
         case 'all':
             echo getall($search_term, $conn);
             break;
+        case 'candidature':
+            echo getcandidature($search_term, $conn);
+            break;
         default:
             echo "Type de recherche invalide";
             break;
@@ -53,7 +56,20 @@ function getoffre($search_term, $conn){
         echo '<p class="offre-item" data-id="' . $row['ID_offre'] . ' style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p>';
     }
 }
+function getcandidature($search_term, $conn){
+    $sql = "SELECT offre.*,entreprise.Nom as entreprise_nom FROM offre 
+            INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
+            WHERE offre.Nom LIKE :search_term AND offre.Voir = 1 AND entreprise.Voir = 1";
 
+    $stmt = $conn->prepare($sql);
+    $search_term_like = '%' . $search_term . '%';
+    $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);
+    $stmt->execute();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo '<p class="offre-item" data-id="' . $row['ID_offre'] . ' style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p>';
+    }
+}
 function get_entreprise($search_term, $conn){
     $sql = "SELECT * FROM entreprise WHERE Nom LIKE :search_term";
 

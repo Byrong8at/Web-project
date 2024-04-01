@@ -22,7 +22,7 @@
         
         <div class="relative mr-4">
             <?php if ($_SESSION['user']['logo']) { ?>
-                <img id="logo" src="<?php echo $_SESSION['user']['logo']; ?>" alt="profile picture" class="w-10 h-auto"></a>
+                <img id="logo" src="<?php echo $_SESSION['user']['logo']; ?>" alt="profile picture" class="w-10 h-16 rounded-full"></a>
                 <?php }else{ ?>
                     <img id="logo" src="src/user.png" alt="profile picture" class="w-10 h-auto"></a>
             <?php } ?>
@@ -32,6 +32,7 @@
                     <a href="offre_gerer.php" class="block px-4 py-2 hover:bg-gray-300">Gérer Offre</a>
                     <a href="entreprise_gerer.php" class="block px-4 py-2 hover:bg-gray-300">Gérer Entreprise</a>
                     <a href="postuler.php" class="block px-4 py-2 hover:bg-gray-300">Gérer les Stages</a>
+                    <a href="avis.php" class="block px-4 py-2 hover:bg-gray-300">Laissez un avis</a>
                     <a href="deconnexion.php" class="block px-4 py-2 hover:bg-gray-300">Se déconnecter</a>
                 <?php elseif ($_SESSION['user']['Statut'] == 1): ?>
                     <a href="compte.php" class="block px-4 py-2 hover:bg-gray-300">Mon compte</a>

@@ -114,11 +114,11 @@ const monthNames = [
     }
   }
   
-  // Get current date
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
   
-  // Generate calendar for current month
-  generateCalendar(currentYear, currentMonth);
   
+  
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+const currentMonth = currentDate.getMonth();
+generateCalendar(currentYear, currentMonth);
+

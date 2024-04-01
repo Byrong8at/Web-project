@@ -46,7 +46,103 @@ if(isset($_GET['offreId'])) {
     echo json_encode($offreinfo);
 }
 
+if(isset($_GET['post_id'])) {
+    $post_id = $_GET['post_id'];
+    
+    $sql = "SELECT candidature.*, utilisateur.Nom, utilisateur.Prénom, utilisateur.Centre, integrer.Id_Promo, promotion.Nom_promo
+            FROM candidature
+            JOIN utilisateur ON candidature.ID_user = utilisateur.ID_user
+            JOIN integrer ON utilisateur.ID_user = integrer.ID_user
+            JOIN promotion ON integrer.Id_Promo = promotion.Id_Promo
+            WHERE ID_offre = :post_id
+            AND candidature.ID_Candi NOT IN (
+            SELECT stage.ID_candi
+            FROM stage
+            )";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+    $stmt->execute();
 
-if(isset($_GET['allid'])) {
-
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo '
+            <div class="bg-custom-green shadow-md rounded-lg p-4 mx-4 my-2 flex items-center">
+                <div class="w-full h-full border-2 border-gray-300 p-4 flex flex-col justify-center items-center">
+                    <div class="flex flex row">
+                        <p class="text-lg font-semibold">' . $row['Nom'] . ' ' . $row['Prénom'] . '</p>
+                        <img src="src/valider.png" data-id="'.$row['ID_Candi'].'" alt="valider" class="ml-8 w-8 h-8 valide">
+                    </div>
+                    <p class="">Promotion ' . $row['Nom_promo'] . '</p>
+                    <p class="">Centre ' . $row['Centre'] . '</p>
+                    
+                </div>
+            </div>
+        ';
 }
+}
+
+if(isset($_GET['candi_id'])) {
+    $candi_id = $_GET['candi_id'];
+    $sql = "SELECT * FROM candidature WHERE ID_Candi=:candi_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':candi_id', $candi_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $user=$stmt->fetch(PDO::FETCH_ASSOC);
+
+    $user_id = $user['ID_user'];
+    $countQuery = "SELECT COUNT(*) FROM stage WHERE ID_Candi=:candi_id AND ID_user=:FAV_user";
+    $countStmt = $conn->prepare($countQuery);
+    $countStmt->bindParam(':candi_id', $candi_id, PDO::PARAM_INT);
+    $countStmt->bindParam(':FAV_user', $user_id, PDO::PARAM_INT);
+    $countStmt->execute();
+    $count = $countStmt->fetchColumn();
+
+    
+
+    if ($count > 0) {
+        echo "Déjà inscrit";
+    } else {
+        stage_valide($candi_id,$user_id, $conn);
+    }
+    
+}
+
+function stage_valide($candi_id,$user_id, $conn) {
+    $sql = "INSERT INTO stage(ID_Candi,ID_user) VALUES (:candi_id,:FAV_user)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':candi_id', $candi_id, PDO::PARAM_INT);
+    $stmt->bindParam(':FAV_user', $user_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $stmt->fetch(PDO::FETCH_ASSOC);
+    
+
+    $sql_place="UPDATE offre
+                SET place = place - 1
+                WHERE ID_offre IN (
+                SELECT offre.ID_offre
+                FROM offre
+                LEFT JOIN candidature ON offre.ID_offre = candidature.ID_offre
+                WHERE candidature.ID_candi = :candi 
+                ) ";
+    $stmt_place = $conn->prepare($sql_place);
+    $stmt_place->bindParam(':candi', $candi_id, PDO::PARAM_INT);
+    $stmt_place->execute();
+    $resultat = $stmt_place->fetch(PDO::FETCH_ASSOC);
+
+    $place = $resultat['place'];
+
+    if($place==0){
+        $sql_voir= 'DELETE FROM offre WHERE place=0 AND ID_offre IN (
+            SELECT offre.ID_offre
+            FROM offre
+            LEFT JOIN candidature ON offre.ID_offre = candidature.ID_offre
+            WHERE candidature.ID_candi = :candi_id 
+            )';
+        $stmt_voir = $conn->prepare($sql_voir);
+        $stmt_voir->bindParam(':candi', $candi_id, PDO::PARAM_INT);
+        $stmt_voir->execute();
+        $resultat = $stmt_voir->fetch(PDO::FETCH_ASSOC);
+    }
+
+    echo "RECRUTEMENT VALIDER";
+};
+       
