@@ -45,7 +45,10 @@ function page_offre($id){
     $classoffre = new offre();
     $data_offre = $classoffre->get_all($conn, $id);
     $data_offre[0]['entreprise_Nom'] = $classoffre->get_nomEntreprise($conn, $id);
-    $data_offre[0]['entreprise_Adresse'] = $classoffre->get_adressesEntreprise($conn, $id);
+    $adresses = $classoffre->get_adressesEntreprise($conn, $id);
+    $data_offre[0]['entreprise_Adresse'] = $adresses[0]['Adresse'];
+    $data_offre[0]['entreprise_Adresse2'] = $adresses[0]['Adresse_2'];
+    $data_offre[0]['entreprise_Adresse3'] = $adresses[0]['Adresse_3'];
     return $data_offre;
 }
 
