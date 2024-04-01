@@ -7,6 +7,6 @@ catch{}
 
 try{
     document.getElementById("retour").addEventListener("click", function() {
-        window.location.href = "acceuil.html";
+        window.location.href = "acceuil.php";
     });}
 catch{}

@@ -21,12 +21,17 @@
         <a href="recherche.php" class="hidden sm:inline mr-4">Nos offres</a>
         
         <div class="relative mr-4">
-            <img id="logo" src="<?php echo $_SESSION['user']['logo']; ?>" alt="profile picture" class="w-10 h-auto"></a>
+            <?php if ($_SESSION['user']['logo']) { ?>
+                <img id="logo" src="<?php echo $_SESSION['user']['logo']; ?>" alt="profile picture" class="w-10 h-auto"></a>
+                <?php }else{ ?>
+                    <img id="logo" src="src/user.png" alt="profile picture" class="w-10 h-auto"></a>
+            <?php } ?>
             <section id="profil" class="rtl:mr-3 hidden absolute top-0 start-0 mt-4 mx-36 w-48 bg-white border border-gray-300 text-black">
                 <?php if ($_SESSION['user']['Statut'] == 0): ?>
                     <a href="User.php" class="block px-4 py-2 hover:bg-gray-300">Gérer utilisateur</a>
                     <a href="offre_gerer.php" class="block px-4 py-2 hover:bg-gray-300">Gérer Offre</a>
                     <a href="entreprise_gerer.php" class="block px-4 py-2 hover:bg-gray-300">Gérer Entreprise</a>
+                    <a href="postuler.php" class="block px-4 py-2 hover:bg-gray-300">Gérer les Stages</a>
                     <a href="deconnexion.php" class="block px-4 py-2 hover:bg-gray-300">Se déconnecter</a>
                 <?php elseif ($_SESSION['user']['Statut'] == 1): ?>
                     <a href="compte.php" class="block px-4 py-2 hover:bg-gray-300">Mon compte</a>

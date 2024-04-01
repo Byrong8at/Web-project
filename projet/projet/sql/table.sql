@@ -55,7 +55,6 @@ CREATE TABLE IF NOT EXISTS Wishlist(
 
 CREATE TABLE Candidature(
    ID_Candi INT AUTO_INCREMENT,
-   Etat_Postule boolean NOT NULL,
    ID_offre INT NOT NULL,
    ID_user INT,
    PRIMARY KEY(ID_Candi),
@@ -89,3 +88,13 @@ CREATE TABLE IF NOT EXISTS Integrer(
    FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user),
    FOREIGN KEY(Id_Promo) REFERENCES Promotion(Id_Promo)
 );
+
+CREATE TABLE Stage(
+   ID_Stage INT AUTO_INCREMENT,
+   ID_Candi INT,
+   ID_user INT NOT NULL,
+   PRIMARY KEY(ID_Stage) ,
+   FOREIGN KEY(ID_Candi) REFERENCES Candidature(ID_Candi),
+   FOREIGN KEY(ID_user) REFERENCES Utilisateur(ID_user)
+);
+

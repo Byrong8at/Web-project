@@ -10,6 +10,18 @@ function searchall(value) {
     });
 }
 
+function searchData(value) {
+    const searchType = $('#search').data('searchtype');
+    $.ajax({
+        url: 'search.php',
+        type: 'POST',
+        data: { search: value,type: searchType },
+        success: function(response) {
+            $('#result').html(response);
+        }
+    });
+}
+
 document.getElementById("logo").addEventListener("click", function() {
     document.getElementById("profil").classList.toggle("hidden");
 });

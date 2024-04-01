@@ -60,7 +60,7 @@ function adminredirection(){
         header('Location: connexion.php');
         exit();
     } else if ($_SESSION['user']['Statut'] != 0) {
-        header('Location: error.html');
+        header('Location: error.php');
         exit();
     }
 }

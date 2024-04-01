@@ -52,13 +52,13 @@ INSERT INTO Wishlist (ID_offre, ID_user) VALUES
 
 
 INSERT INTO Candidature (Etat_Postule, ID_offre, ID_user) VALUES
-(true, 1, 1),
-(true, 1, 2),
-(true, 1, 3),
-(true, 2, 2),
-(true, 2, 3),
-(true, 2, 4),
-(true, 3, 3),
-(true, 3, 4),
-(true, 3, 5);
+( 1, 1),
+( 1, 2),
+( 1, 3),
+(2, 2),
+( 2, 3),
+( 2, 4),
+( 3, 3),
+( 3, 4),
+( 3, 5);
 
