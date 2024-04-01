@@ -141,7 +141,7 @@ $wishs=get_wish($conn);
               <button id="triermobile" class="w-full bg-blue-900 text-xl sm:text-2xl md:text-2xl lg:text-3xl text-white rounded px-8 py-2 font-size: 1.5vmin mt-4 rounded-full mx-2">Trier</button>
             </section>
             
-            <div class="hidden md:hidden flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
+            <form class="hidden md:hidden flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
               <label>Date</label>
               <select name="date" class="selectdate border border-gray-400 rounded p-2">
                 <option></option>
@@ -162,8 +162,12 @@ $wishs=get_wish($conn);
                       <option value="ASC">Croissant</option>
                       <option value="DESC">Décroissant</option>
               </select>
+              <div class="grid justify-items-stretch my-10">
+                    <button  id="valider" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Valider</button>
+                    <button id="réinitialiser" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Réinitialiser</button>
               </div>
-              <div class="hidden md:hidden text-xl flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
+              </form>
+              <form class="hidden md:hidden text-xl flex flex-col allfiltri border-solid border-gray-400 border-2 mt-6 mb-6 mx-4 px-4 py-2">
                 <label class="mb-2 font-bold">Niveau</label>
                 <div class="flex flex-col"></div>
                 <div class="flex items-center mb-2">
@@ -229,12 +233,16 @@ $wishs=get_wish($conn);
                   <input class="s3e w-6 h-6 mr-2" type="checkbox" name="Systeme">
                   <label>Système embarqué</label>
                 </div>
-              </div>
+                <div class="grid justify-items-stretch my-10">
+                    <button  id="valider" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Valider</button>
+                    <button id="réinitialiser" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Réinitialiser</button>
+                  </div>
+              </form>
             
             
             
             <section id="main" class="flex">
-                <section id="filtretri" class="item-center hidden md:flex flex-col w-1/4 border-t border-r border-gray-400 px-4" alt="Section Filtre et Tri">
+                <form id="filtretri" class="item-center hidden md:flex flex-col w-1/4 border-t border-r border-gray-400 px-4" alt="Section Filtre et Tri">
                   <h2 class="text-center text-3xl font-bold my-2">Trier</h2>
                   <button id="trier" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Trier par</button>
                   <div class="hidden allfiltri flex flex-col text-basic sm:text-basic md:text-basic lg:text-xl mx-4">
@@ -337,7 +345,7 @@ $wishs=get_wish($conn);
                     <button  id="valider" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Valider</button>
                     <button id="réinitialiser" class="bg-blue-900 text-xl sm:text-xl md:text-xl lg:text-3xl text-white rounded py-2 font-size: 1.5vmin mt-4 rounded-full my-3 mx-2">Réinitialiser</button>
                   </div>
-                </section>
+                </form>
                 
                 <section id="offre" class="w-full md:w-3/4 p-6 border-t border-gray-400" alt="Section offre">
                 <?php

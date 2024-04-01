@@ -24,4 +24,5 @@ class search{
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
+    function Filtre_Tri(){}
 }
