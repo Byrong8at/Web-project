@@ -13,7 +13,6 @@ function searchData(value) {
 
 $(document).on('click', '.offre-item', function() {
     let post_id = $(this).data('id');
-    console.log("je début")
     $.ajax({
         url: 'json_conv.php',
         type: 'GET',
@@ -28,7 +27,6 @@ $(document).on('click', '.offre-item', function() {
 
 $(document).on('click', '.valide', function() {
     let candi_id = $(this).data('id');
-    console.log("je début")
     let answer = window.confirm("Etes vous sure de valider le Stage?");
     if (answer) {
         $.ajax({
@@ -37,7 +35,6 @@ $(document).on('click', '.valide', function() {
             data: { candi_id: candi_id},
             success: function(response ) {
                 $('#candi').html(response);
-                console.log("i'm here")
             } ,
             
         });

@@ -118,7 +118,7 @@ $name_ent=entreprise($conn);
                     <legend>Salaire</legend>
                     <input type="text" name="salaire" class="text-black">
                     <legend>Date de l'offre</legend>
-                    <input type="text" name="date" class="text-black">
+                    <input type="date" name="date" class="text-black">
                     <legend>Nombre de places :</legend>
                     <select name="place" class="text-black">
                         <option value="0" class="text-black" >0</option>
