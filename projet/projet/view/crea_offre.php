@@ -102,9 +102,7 @@ $name_ent=entreprise($conn);
                         <legend class="flex-none">compétences</legend>
                         <input type="text" id="competences" name="competences" class="text-black">
                         <legend class="flex-none">Description (maximun 256 caractères)</legend>
-                        <textarea name="description" id="description" class="text-black">
-                            Veuillez décrire l'offre
-                        </textarea>
+                        <textarea name="description" id="description" class="text-black"></textarea>
                         <legend class="flex-none">Type de promo concerné</legend>
                         <select name="promo" class="text-black bg-white">
                             <option  value="1">X1_i1</option>
