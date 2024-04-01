@@ -13,7 +13,9 @@ if (isset($_POST['envoi'])) {
         $detail= $_POST['description'];
         $promo=$_POST['promo'];
         $duree=$_POST['durée'];
-        $dates=$_POST['date'];
+        $date_avis = $_POST['date']; 
+        $timestamp = strtotime($date_avis);
+        $dates = date('Y-m-d', $timestamp);
         $salaire = $_POST['salaire'];
         $place= $_POST['place'];
         $visible = isset($_POST['visible']) ? (int) $_POST['visible'] : 0;
