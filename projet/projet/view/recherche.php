@@ -66,26 +66,43 @@ if (isset($_POST['valider'])) {
   get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
 }
 function get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre) {
-    $debut = ($page_actu - 1) * $limite;
-    $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
-            FROM offre
-            INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.voir = 1 AND entreprise.Voir = 1";
+  $debut = ($page_actu - 1) * $limite;
+  $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
+          FROM offre
+          INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
+          WHERE offre.voir = 1 AND entreprise.Voir = 1
+          ";
 
-    if (!empty($tri_colonne) && !empty($tri_ordre)) {
-      $sql .= " ORDER BY $tri_colonne $tri_ordre";
-    }
+  if (!empty($tri_colonne) && !empty($tri_ordre)) {
+    $sql .= " ORDER BY $tri_colonne $tri_ordre";
+  }
 
-      $sql .= " LIMIT :limit OFFSET :debut";
+    $sql .= " LIMIT :limit OFFSET :debut";
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':limit', $limite, PDO::PARAM_INT);
-    $stmt->bindParam(':debut', $debut, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt = $conn->prepare($sql);
+  $stmt->bindParam(':limit', $limite, PDO::PARAM_INT);
+  $stmt->bindParam(':debut', $debut, PDO::PARAM_INT);
+  $stmt->execute();
+ return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 }
+function get_wish($conn){
+  $sqllog = "SELECT wishlist.ID_user, wishlist.ID_offre as wish_id_offre
+          FROM wishlist
+          WHERE ID_User=:ID_use
+          ";
+
+  $stmt = $conn->prepare($sqllog);
+  $stmt->bindParam(':ID_use', $_SESSION['user']['ID_user'], PDO::PARAM_INT);
+  $stmt->execute();
+  
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+};
 
 $offres = get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
+$wishs=get_wish($conn);
 
 ?>
 
@@ -325,27 +342,49 @@ $offres = get_offre($conn, $limite, $page_actu, $tri_colonne, $tri_ordre);
                 <section id="offre" class="w-full md:w-3/4 p-6 border-t border-gray-400" alt="Section offre">
                 <?php
                 foreach ($offres as $offre) {
-                    $id_offre = $offre['ID_offre'];
-                    $nom_offre = $offre['Nom'];
-                    $description_offre = $offre['detail'];
-                    $nom_entreprise = $offre['entreprise_Nom']; 
-                    $lieu= $offre['Adresse'];
-                    $id_entreprise = $offre['ID_entreprise'];
-                ?>
-                <article class="flex flex-row border border-gray-400 mb-6 relative">
-                    <button class="absolute top-0 right-0 mr-2 my-2">
-                        <img name="love" src="src/coeur.png" class="w-10 h-10 coeur" alt="coeur">
-                    </button>
-                    <img src="src/cesi.png" class="w-16 h-16" alt="logo">
-                    <div class="flex flex-col flex-grow justify-between ml-1">
-                        <div>
-                            <a href="offre.php?ID_offre=<?php echo $id_offre; ?>" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
-                            <a href="entreprise.php?ID_entreprise=<?php echo $id_entreprise; ?>"><h2><?php echo $nom_entreprise; ?></h2></a>
-                            <h2><?php echo $lieu; ?></h2>
-                        </div>
-                        <p class="text-right content-offre text-ellipsis overflow-hidden"><?php echo $description_offre; ?></p>
-                    </div>
-                </article>
+                  $id_offre = $offre['ID_offre'];
+                  $nom_offre = $offre['Nom'];
+                  $view=$offre['Voir'];
+                  $description_offre = $offre['detail'];
+                  $nom_entreprise = $offre['entreprise_Nom'];
+                  $lieu= $offre['Adresse'];
+                  $id_entreprise = $offre['ID_entreprise'];
+                  
+                  
+              ?>
+              <article class="flex flex-row border border-gray-400 mb-6 relative">
+                  <button class="absolute top-0 right-0 mr-2 my-2 ">
+                  <?php
+                    $wish_found = false;
+                    foreach ($wishs as $wish) {
+                        $wish_id = $wish['wish_id_offre'];
+                        $wish_user = $wish['ID_user'];
+                        
+
+                        if ($wish_user == $_SESSION['user']['ID_user'] && $wish_id == $id_offre) {
+                            $wish_found = true;
+                            break;
+                        }
+                    }
+
+                    if ($wish_found) {
+                        echo '<img name="love" src="src/coeurrempli.png" class="w-10 h-10 coeur favorite fav-add" data-id="' . $id_offre . '" alt="coeur">';
+                    } else {
+                        echo '<img name="love" src="src/coeur.png" class="w-10 h-10 coeur  fav-add" data-id="' . $id_offre . '" alt="coeur">';
+                    }
+                    ?>
+
+                  </button>
+                  <img src="src/cesi.png" class="w-16 h-16" alt="logo">
+                  <div class="flex flex-col flex-grow justify-between ml-1">
+                      <div>
+                          <a href="offre.php?ID_offre=<?php echo $id_offre; ?>" class="text-xl text-blue-500 font-bold"><?php echo $nom_offre; ?></a>
+                          <a href="entreprise.php?ID_entreprise=<?php echo $id_entreprise; ?>"><h2><?php echo $nom_entreprise; ?></h2></a>
+                          <h2><?php echo $lieu; ?></h2>
+                      </div>
+                      <p class="text-right content-offre text-ellipsis overflow-hidden"><?php echo $description_offre; ?></p>
+                  </div>
+              </article>
                 <?php } ?>
 
                   

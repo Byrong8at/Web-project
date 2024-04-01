@@ -71,7 +71,11 @@ function postuler($id_user,$id_offre,  $conn){
         </section>
         <section class="flex flex-row  items-center mb-2 ">
             <p class="text-lg ml-4 md:text-lg lg:text-xl italic"><?php echo $data_offre[0]['entreprise_Nom'];?></p>
-            <p class="text-lg md:text-lg lg:text-xl italic">/<Adresse></p>
+            <p class="text-lg md:text-lg lg:text-xl italic">
+            <?php if($data_offre[0]['entreprise_Adresse'][0]['Adresse'] != ""){
+                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>/" . $data_offre[0]['entreprise_Adresse'][0]['Adresse'] . " </h2>";
+            }?>
+
             <p class="text-lg md:text-lg lg:text-xl">/Compétences :<?php echo $data_offre[0]['competences'];?></p>
         </section>
         
@@ -87,14 +91,12 @@ function postuler($id_user,$id_offre,  $conn){
             ?>
         </h2>
         <?php
-            if($data_offre[0]['entreprise_Adresse'][0]['Adresse'] != ""){
-                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Adresse : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse'] . "</h2>";
-            }
+            
             if($data_offre[0]['entreprise_Adresse'][0]['Adresse_2'] != ""){
-                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Adresse 2 : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse_2'] . "</h2>";
+                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Deuxieme adresse : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse_2'] . "</h2>";
             }
             if($data_offre[0]['entreprise_Adresse'][0]['Adresse_3'] != ""){
-                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Adresse 3 : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse_3'] . "</h2>";
+                echo "<h2 class='text-lg mx-4 py-4 md:text-lg lg:text-xl'>Troisieme adresse : " . $data_offre[0]['entreprise_Adresse'][0]['Adresse_3'] . "</h2>";
             }
         ?>
 
