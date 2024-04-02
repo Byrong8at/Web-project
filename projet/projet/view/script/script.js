@@ -125,3 +125,19 @@ $(document).on('click', '.all-item', function() {
     });
 });
 
+$(document).ready(function(){
+    $("#validerpc").click(function(){
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/../controller/controller.php",
+            data: { function: 'searchoffre', date: $("#Date").val(), name: $("#Name_offre").val(), ordre: $("#name_ent").val() },
+            success: function(response) {
+                console.log(response);
+                $(".offrearticles").remove();
+                console.log("Response: " + response);
+                $("#offre").html(response);
+            }
+        });
+    });
+});
