@@ -195,11 +195,12 @@ function adminredirection(){
     if (!isset($_SESSION['user'])) {
         header('Location: connexion.php');
         exit();
-    } else if ($_SESSION['user']['Statut'] != 0) {
+    } else if ($_SESSION['user']['Statut'] != 0 || $_SESSION['user']['Statut'] != 2) {
         header('Location: error.php');
         exit();
     }
 }
+
 
 function redirection(){
     if (!isset($_SESSION)) {
