@@ -10,26 +10,26 @@
     <meta name="description" content="gere eleve">
     <meta name="theme-color" content="#567BB2">
     <title>Gerer offre</title>
-    <link rel="stylesheet" href="style/gerer.css" >
+    <link rel="stylesheet" href="style/acceuil.css" >
+    <link href="style/script.css" rel="stylesheet">
 </head>
 <body> 
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
-    <main class="my-32">
-        <p class="text-xl">Gerer les entreprises</p>
-        <section title="choix"class=" mx-10 flex  justify-between items-center ">
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="crea_ent.php">Crée une entreprise</p>
-            </section>
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="modif_ent.php">Modifier une entreprise</p>
-            </section>
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="del_ent.php">Supprimer une entreprise</p>
-            </section>
-
-
+    <main class="mt-4">
+        <p>Gerer les entreprises</p>
+        <section class="container">
+            <div class="box">
+                <p><a href="crea_ent.php">Crée une entreprise</a></p>
+            </div>
+            <div class="box">
+                <p><a href="modif_ent.php">Modifier une entreprise</a></p>
+            </div>
+            <div class="box">
+                <p><a href="del_ent.php">Supprimer une entreprise</a></p>
+            </div>
         </section>
     </main>
+
     <?php require_once(dirname(__FILE__) .'/footer.php');?>
 </body>
 </html>

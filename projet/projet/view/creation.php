@@ -95,8 +95,14 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
                 <section title="input" class="flex flex-col justify-center items-center ">
                     <legend class="text-right ">Statut</legend>
                     <select name="statut" class="w-96 mb-4 text-black">
-                            <option value="1" name="Etudiant">Etudiant</option>
-                            <option value="0" name="tuteur">Tuteur</option>
+                            <button type="submit" name="postuler" class="bg-custom-green px-8 py-8 flex justify-items-end text-white ml-auto mr-4 rounded-md">Postuler</button>
+                            <?php if ($_SESSION['user']['Statut'] == 1){?>
+                                <option value="1" name="Etudiant">Etudiant</option>
+                            <?php }else{?>
+                                <option value="1" name="Etudiant">Etudiant</option>
+                                <option value="0" name="tuteur">Tuteur</option>
+                            <?php }?>
+                            
                     </select>
                     <div class="flex flex-row">
                         <legend class="flex-none">Nom</legend>

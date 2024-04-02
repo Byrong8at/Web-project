@@ -18,11 +18,11 @@
 
         </div>
         
-        <a href="recherche.php" class="hidden sm:inline mr-4">Nos offres</a>
+        
         
         <div class="relative mr-4">
             <?php if ($_SESSION['user']['logo']) { ?>
-                <img id="logo" src="<?php echo $_SESSION['user']['logo']; ?>" alt="profile picture" class="w-10 h-16 rounded-full"></a>
+                <img id="logo" src="<?php echo $_SESSION['user']['logo']; ?>" alt="profile picture" class="w-10 h-10 rounded-full"></a>
                 <?php }else{ ?>
                     <img id="logo" src="src/user.png" alt="profile picture" class="w-10 h-auto"></a>
             <?php } ?>
@@ -40,9 +40,10 @@
                 <?php endif; ?>
             </section>
         </div>
+
         <p class=" mr-4"><?php echo " " . $_SESSION['user']['Prénom']; ?></p>
 
-
+        <a href="recherche.php" class="hidden sm:inline mr-4">Nos offres</a>
         <?php else: ?>
         <a href="index.php">
             <img src="src/logo.png" alt="logo du site" class="w-24 h-auto mr-0">

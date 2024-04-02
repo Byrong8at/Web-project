@@ -10,24 +10,23 @@
     <meta name="description" content="gere eleve">
     <meta name="theme-color" content="#567BB2">
     <title>Gerer offre</title>
-    <link rel="stylesheet" href="style/gerer.css" >
+    <link href="style/acceuil.css" rel="stylesheet">
+    <link href="style/script.css" rel="stylesheet">
 </head>
 <body> 
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
-    <main class="my-32">
-        <p class="text-xl flex justify-center items-center">Gerer les offres</p>
-        <section title="choix"class=" mx-10 flex  justify-between items-center ">
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="crea_offre.php">Crée une offre</p>
-            </section>
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="modif_off.php">Modifier une offre</p>
-            </section>
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="del_off.php">Supprimer une offre</p>
-            </section>
-
-
+    <main class="mt-4">
+        <p>Gerer les offres</p>
+        <section class="container">
+            <div class="box">
+                <p><a href="crea_offre.php">Crée une offre</a></p>
+            </div>
+            <div class="box">
+                <p><a href="modif_off.php">Modifier une offre</a></p>
+            </div>
+            <div class="box">
+                <p><a href="del_off.php">Supprimer une offre</a></p>
+            </div>
         </section>
     </main>
     <?php require_once(dirname(__FILE__) .'/footer.php');?>

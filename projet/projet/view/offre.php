@@ -103,7 +103,7 @@ function postuler($id_user,$id_offre,  $conn){
         <form method="Post">
         <?php
             echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
-        if ($_SESSION['user']['Statut'] == 1){?>
+        if ($_SESSION['user']['Statut'] != 0){?>
             <button type="submit" name="postuler" class="bg-custom-green px-8 py-8 flex justify-items-end text-white ml-auto mr-4 rounded-md">Postuler</button>
             <?php } ?>
         </form>

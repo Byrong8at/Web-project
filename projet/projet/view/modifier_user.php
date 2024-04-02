@@ -109,8 +109,12 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
                 <section title="input" class="flex flex-col justify-center items-center ">
                     <legend class="text-right ">Statut</legend>
                     <select id="statut" name="statut" class="w-96 mb-4 text-black">
-                            <option value="1" name="Etudiant">Etudiant</option>
-                            <option value="0" name="tuteur">Tuteur</option>
+                            <?php if ($_SESSION['user']['Statut'] == 1){?>
+                                <option value="1" name="Etudiant">Etudiant</option>
+                            <?php }else{?>
+                                <option value="1" name="Etudiant">Etudiant</option>
+                                <option value="0" name="tuteur">Tuteur</option>
+                            <?php }?>
                     </select>
                     <div class="flex flex-row">
                         <legend class="flex-none">Nom</legend>

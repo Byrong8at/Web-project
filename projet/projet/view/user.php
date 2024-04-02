@@ -10,25 +10,28 @@
     <meta name="description" content="gere eleve">
     <meta name="theme-color" content="#567BB2">
     <title>Gerer utilisateur</title>
-    <link rel="stylesheet" href="style/gerer.css" >
+    <link href="style/acceuil.css" rel="stylesheet">
+    <link href="style/script.css" rel="stylesheet">
 </head>
 <body> 
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
-    <main class="my-32">
-        <section title="choix"class=" mx-10 flex  justify-between items-center ">
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="creation.php">Crée Eleve</p>
-            </section>
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="modifier_user.php">Modifier Eleve</p>
-            </section>
-            <section title="crée" class="bg-blue-500 text-white px-10 py-10">
-                <p><a href="del_user.php">Supprimer Eleve</p>
-            </section>
-
-
+    <main class="mt-4">
+        <p>Gerer les utilisateurs</p>
+        <section class="container">
+            <div class="box">
+                <p><a href="creation.php">Crée Eleve</a></p>
+            </div>
+            <div class="box">
+                <p><a href="modifier_user.php">Modifier Eleve</a></p>
+            </div>
+            <div class="box">
+                <p><a href="del_user.php">Supprimer Eleve</a></p>
+            </div>
         </section>
     </main>
-    <?php require_once(dirname(__FILE__) .'/footer.php');?>
+
+    
+
+
 </body>
 </html>

@@ -135,7 +135,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
             </section>
         </form>
     </main>
-    
+    <?php require_once(dirname(__FILE__) .'/footer.php');?>
     <script src="script/modif.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

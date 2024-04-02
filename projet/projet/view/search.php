@@ -31,8 +31,12 @@ if (!empty($_POST['search'])) {
     }
 }
 function get_user($search_term, $conn){
-    $sql = "SELECT * FROM utilisateur WHERE Nom LIKE :search_term OR Prénom LIKE :search_term";
+    if ($_SESSION['user']['Statut'] ==0){
+        $sql = "SELECT * FROM utilisateur WHERE Nom LIKE :search_term OR Prénom LIKE :search_term AND Statut=1";
 
+    }else{
+        $sql = "SELECT * FROM utilisateur WHERE Nom LIKE :search_term OR Prénom LIKE :search_term";
+    }
     $stmt = $conn->prepare($sql);
     $search_term_like = '%' . $search_term . '%';
     $stmt->bindParam(':search_term', $search_term_like, PDO::PARAM_STR);
