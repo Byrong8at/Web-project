@@ -124,7 +124,7 @@ $wishs=get_wish($conn);
     
         <main>
 
-            
+        
             <section class="w-full h-auto relative mt-8 mb-4">
               <h1 class="text-center text-4xl font-bold md:text-4xl sm:text-4xl xl:text-7xl">EMPLOI DISPONIBLE</h1>
             </section>

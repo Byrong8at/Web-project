@@ -65,6 +65,7 @@ function supprimer($Id_user, $conn){
     <meta name="theme-color" content="#567BB2">
     <title>Supprimer</title>
     <link href="style/compte.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/crea.css">
     
 </head>
 <body>
@@ -77,19 +78,24 @@ function supprimer($Id_user, $conn){
         </div>
 
     <main>
-    <form method="post" class="flex flex-col md:flex-row justify-center items-center text-white">
+    
+    <form method="post" enctype="multipart/form-data" class="flex flex-col  justify-center items-center text-white">
         <input type="hidden" name="id_user" id="id_user" value="">
 
-            <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
+            <section title="formulaire creation" class="flex  justify-center items-center bg-custom-green px-10 py-10 my-4">
                 <section class="flex flex-col justify-center items-center">
+                    
                     <img src="src/user.png" id="img" class="w-44">
-                    <button class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full">Supprimer</button>
                 </section>
                 <section title="input" class="flex flex-col justify-center items-center ">
                     <legend class="text-right ">Statut</legend>
                     <select id="statut" name="statut" class="w-96 mb-4 text-black">
-                            <option value="1" name="Etudiant">Etudiant</option>
-                            <option value="0" name="tuteur">Tuteur</option>
+                            <?php if ($_SESSION['user']['Statut'] == 0){?>
+                                <option value="1" name="Etudiant">Etudiant</option>
+                            <?php }else{?>
+                                <option value="1" name="Etudiant">Etudiant</option>
+                                <option value="0" name="tuteur">Tuteur</option>
+                            <?php }?>
                     </select>
                     <div class="flex flex-row">
                         <legend class="flex-none">Nom</legend>
@@ -115,7 +121,8 @@ function supprimer($Id_user, $conn){
                 </section>
             </section>
             <section title="button part" >
-                <button type="submit" name="envoi" class=" finish bg-red-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-red-900">Supprimer</button>
+                <button type="submit" name="envoi" class=" finish bg-red-800 text-white text-lg rounded-full  w-32 h-14 mx-10 hover:bg-red-900">Supprimer</button>
+                
             </section>
         </form>
     </main>

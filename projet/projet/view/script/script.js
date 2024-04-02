@@ -28,6 +28,7 @@ document.getElementById("logo").addEventListener("click", function() {
 
 $(document).on('click', '.user-item', function() {
     let userId = $(this).data('id');
+    $('#result').empty();
     $.ajax({
         url: 'json_conv.php',
         type: 'GET',
@@ -50,6 +51,7 @@ $(document).on('click', '.user-item', function() {
 
 $(document).on('click', '.ent-item', function() {
     let entId = $(this).data('id');
+    $('#result').empty();
     $.ajax({
         url: 'json_conv.php',
         type: 'GET',
@@ -76,6 +78,7 @@ $(document).on('click', '.ent-item', function() {
 
 $(document).on('click', '.offre-item', function() {
     let offreId = $(this).data('id');
+    $('#result').empty();
     $.ajax({
         url: 'json_conv.php',
         type: 'GET',

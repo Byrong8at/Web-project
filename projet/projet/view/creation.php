@@ -69,71 +69,64 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Modification">
+    <meta name="description" content="Creation">
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/user_cre.css">
+    <link rel="stylesheet" href="style/crea.css">
     <title>Creation utilisateur</title>
 </head>
 <body> 
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
     
+    <body>
     <main>
-        <header class="flex justify-center items-center text-black text-4xl my-10 font-bold">
-            <p>Creation d'un compte</p>
-            
-        </header>
-        <?php
-            echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
-        ?>
-        <form method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row justify-center items-center text-white">
-            <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
-                <section class="flex flex-col justify-center items-center">
+    <a href="user.php" class="btn-link">
+        <button class="my-button" onclick="window.location.href = 'user.php';">Retour</button>
+    </a>
+        <form method="post" enctype="multipart/form-data">
+            <section title="formulaire creation">
+                <section>
                     <img src="src/user.png" class="w-44" alt="image user">
-                    <input type="file" name="image" class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full" accept="image/*" text="Parcourir">
-
+                    <input type="file" name="image" accept="image/*">
                 </section>
-                <section title="input" class="flex flex-col justify-center items-center ">
-                    <legend class="text-right ">Statut</legend>
-                    <select name="statut" class="w-96 mb-4 text-black">
-                            <button type="submit" name="postuler" class="bg-custom-green px-8 py-8 flex justify-items-end text-white ml-auto mr-4 rounded-md">Postuler</button>
-                            <?php if ($_SESSION['user']['Statut'] == 1){?>
-                                <option value="1" name="Etudiant">Etudiant</option>
-                            <?php }else{?>
-                                <option value="1" name="Etudiant">Etudiant</option>
-                                <option value="0" name="tuteur">Tuteur</option>
-                            <?php }?>
-                            
+                <section title="input">
+                    <legend>Statut</legend>
+                    <select name="statut">
+                        <?php if ($_SESSION['user']['Statut'] == 0){?>
+                            <option value="1" name="Etudiant">Etudiant</option>
+                        <?php }else{?>
+                            <option value="1" name="Etudiant">Etudiant</option>
+                            <option value="0" name="tuteur">Tuteur</option>
+                        <?php }?>
                     </select>
-                    <div class="flex flex-row">
-                        <legend class="flex-none">Nom</legend>
-                        <input type="text" name="nom" class="text-black">
-                        <legend class="flex-none">Prenom</legend>
-                        <input type="text" name="prenom" class="text-black">
+                    <div>
+                        <legend>Nom</legend>
+                        <input type="text" name="nom">
+                        <legend>Prenom</legend>
+                        <input type="text" name="prenom">
                     </div>
-                    
                     <legend>Centre</legend>
-                    <input type="text" name="Centre" class="text-black">
+                    <input type="text" name="Centre">
                     <p>Promotion</p>
-                    <select name="promo" class="text-black bg-white">
-                            <option  value="1">X1_i1</option>
-                            <option value="2">X1_i2</option>
-                            <option  value="3">X1_i3</option>
-                            <option  value="4">X1_i4</option>
-                            <option  value="5">X1_i5</option>
+                    <select name="promo">
+                        <option  value="1">X1_i1</option>
+                        <option value="2">X1_i2</option>
+                        <option  value="3">X1_i3</option>
+                        <option  value="4">X1_i4</option>
+                        <option  value="5">X1_i5</option>
                     </select>
                     <p>Login</p>
-                    <input type="text" name="Login" class="text-black">
+                    <input type="text" name="Login">
                     <p>Mot de passe</p>
-                    <input type="password" name="password" class="text-black">
+                    <input type="password" name="password">
                 </section>
             </section>
-            <section title="button part" >
-                <button type="submit" name="envoi" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider</button>
-                <button class="reinitialiser bg-red-700 text-white text-lg rounded-full px-6 h-14 hover:bg-red-900" onclick="restart()">Reinitialiser</button>
+            <section title="button part">
+                <button type="submit" name="envoi" class="finish">Valider</button>
+                <button class="reinitialiser" onclick="restart()">Reinitialiser</button>
             </section>
         </form>
     </main>
-    
     <script src="script/creation.js"></script>
 </body>
 </html>

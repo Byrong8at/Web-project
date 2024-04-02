@@ -84,6 +84,7 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
     <meta name="theme-color" content="#567BB2">
     <title>Modifier</title>
     <link href="style/compte.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/offre_gerer.css">
     
 </head>
 <body>
@@ -97,32 +98,31 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
         </div>
 
     <main>
-    <form method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row justify-center items-center text-white">
+    
+    <form method="post" enctype="multipart/form-data" class="">
         <input type="hidden" name="id_user" id="id_user" value="">
 
-            <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
+            <section title="formulaire creation" class="">
                 <section class="flex flex-col justify-center items-center">
                     
                     <img src="src/user.png" id="img" class="w-44">
-                    <input type="file" name="image" class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full" accept="image/*" text="Parcourir">
+                    <input type="file" name="image" class="" accept="image/*" text="Fichier">
                 </section>
-                <section title="input" class="flex flex-col justify-center items-center ">
-                    <legend class="text-right ">Statut</legend>
+                <section title="input" class=" ">
+                    <legend class="text-left ">Statut</legend>
                     <select id="statut" name="statut" class="w-96 mb-4 text-black">
-                            <?php if ($_SESSION['user']['Statut'] == 1){?>
+                            <?php if ($_SESSION['user']['Statut'] == 0){?>
                                 <option value="1" name="Etudiant">Etudiant</option>
                             <?php }else{?>
                                 <option value="1" name="Etudiant">Etudiant</option>
                                 <option value="0" name="tuteur">Tuteur</option>
                             <?php }?>
                     </select>
-                    <div class="flex flex-row">
-                        <legend class="flex-none">Nom</legend>
-                        <input type="text" name="nom" id="nom" class="text-black">
-                        <legend class="flex-none">Prenom</legend>
-                        <input type="text" name="prenom" id="prenom" class="text-black">
-                    </div>
-                    
+                    <legend class="flex-none">Nom</legend>
+                    <input type="text" name="nom" id="nom" class="text-black">
+                    <legend class="flex-none">Prenom</legend>
+                    <input type="text" name="prenom" id="prenom" class="text-black">
+                
                     <legend>Centre</legend>
                     <input type="text" name="Centre" id="Centre" class="text-black">
                     <p>Promotion</p>
@@ -140,7 +140,8 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
                 </section>
             </section>
             <section title="button part" >
-                <button type="submit" name="envoi" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider</button>
+                <button type="submit" name="envoi " class="finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900 ">Valider</button>
+                    <button class="bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900 " onclick="window.location.href = 'user.php';">Retour</button>
             </section>
         </form>
     </main>

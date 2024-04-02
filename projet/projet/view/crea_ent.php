@@ -17,7 +17,7 @@ if (isset($_POST['envoi'])) {
         traitement($img);
         //"src/logo/".$nom
         try {
-            if (creation($nom,$secteur,$adr_1,$adr_2,$adr_3, $visible,$avis,$note,$img, $conn)) {
+            if (creation($nom,$secteur,$adr_1,$adr_2,$adr_3, $visible,$img, $conn)) {
                 $error_message ='';
                 
             } else {
@@ -33,7 +33,7 @@ if (isset($_POST['envoi'])) {
 
 
 
-function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $avis, $note, $img, $conn) {
+function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $img, $conn) {
     try {
         $sql = "SELECT COUNT(*) FROM entreprise WHERE Nom = :nom";
         $stmt = $conn->prepare($sql);
@@ -73,6 +73,7 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $avis, $note
     <meta name="description" content="Modification">
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/user_cre.css">
+    <link rel="stylesheet" href="style/offre_gerer.css">
     <title>Creation entreprise</title>
 </head>
 <body>
@@ -86,19 +87,17 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $avis, $note
         <?php
             echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
         ?>
-        <form method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row justify-center items-center text-white">
-            <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
-                <section class="flex flex-col justify-center items-center">
+        <form method="post" enctype="multipart/form-data" class="">
+            <section title="formulaire creation" class="">
+                <section class="">
                     <img src="src/user.png" class="w-44">
-                    <input type="file" name="image" class="bg-custom-purple text-white text-lg w-24 h-14 rounded-full" accept="image/*">Parcourir</button>
+                    <input type="file" name="image" class="" accept="image/*">
                 </section>
-                <section title="input" class="flex flex-col justify-center items-center ">
-                    <div class="flex flex-row">
+                <section title="input" class=" ">
                         <legend class="flex-none">Nom</legend>
                         <input type="text" name="nom" class="text-black">
                         <legend class="flex-none">Secteur d'activité</legend>
                         <input type="text" name="secteur" class="text-black">
-                    </div>
                     
                     <legend>Adresse</legend>
                     <input type="text" name="adr_1" class="text-black" required>

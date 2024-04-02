@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.blue-text {
+    color: rgb(57, 57, 128);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.form-input, .form-select {
+    box-sizing: border-box;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 40%;
+}
+.form-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+}
+.form-button:hover {
+    background-color: #0056b3;
+}
+#date_avis{
+    width: 7rem;
+}
+textarea {
+    border: 0.1rem solid #325899;
+}

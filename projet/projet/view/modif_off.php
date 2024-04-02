@@ -85,6 +85,7 @@ $name_ent=entreprise($conn);
     <meta name="theme-color" content="#567BB2">
     <title>Modifier offre</title>
     <link href="style/compte.css" rel="stylesheet">
+    <link href="style/offre_gerer.css" rel="stylesheet">
     
 </head>
 <body>
@@ -96,30 +97,27 @@ $name_ent=entreprise($conn);
             </div>
         </div>
 
-    <main>
-    <form method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row justify-center items-center text-white">
-        <input type="hidden" name="id_user" id="id_user" value="">
+        <main>
+        <form method="post" enctype="multipart/form-data" class="">
+            <input type="hidden" name="id_user" id="id_user" value="">
 
-        <section title="formulaire creation" class="flex flex-row justify-center items-center bg-custom-green px-10 py-10 my-10">
-                <section title="input" class="flex flex-col justify-center items-center ">
-                    <div class="flex flex-col">
+            <section title="formulaire creation" class="">
+                <section title="input" class=" ">
                         <legend class="flex-none">Nom</legend>
                         <input type="text" id="nom" name="nom" class="text-black">
-                    </div>
-                        <legend class="flex-none">compétences</legend>
-                        <input type="text" id="competences" name="competences" class="text-black">
-                        <legend class="flex-none">Description (maximun 256 caractères)</legend>
-                        <textarea name="description" id="description" class="text-black"></textarea>
-                        <legend class="flex-none">Type de promo concerné</legend>
-                        <select id="promo" name="promo" class="text-black bg-white">
-                            <option  value="1">X1_i1</option>
-                            <option value="2">X1_i2</option>
-                            <option  value="3">X1_i3</option>
-                            <option  value="4">X1_i4</option>
-                            <option  value="5">X1_i5</option>
-                        </select>
-                    
-                    
+                    <legend class="flex-none">compétences</legend>
+                    <input type="text" id="competences" name="competences" class="text-black">
+                    <legend class="flex-none">Description (maximun 256 caractères)</legend>
+                    <textarea name="description" id="description" class="text-black"></textarea>
+                    <legend class="flex-none">Type de promo concerné</legend>
+                    <select id="promo" name="promo" class="text-black bg-white">
+                        <option  value="1">X1_i1</option>
+                        <option value="2">X1_i2</option>
+                        <option  value="3">X1_i3</option>
+                        <option  value="4">X1_i4</option>
+                        <option  value="5">X1_i5</option>
+                    </select>
+
                     <legend>Durée du stage(en semaine)</legend>
                     <input type="text"id="durée" name="durée" class="text-black" >
                     <legend>Salaire</legend>
@@ -141,11 +139,10 @@ $name_ent=entreprise($conn);
                         <option value="10" class="text-black">10 ou +</option>
                     </select>
 
-                    
                     <p>Rendre visible?</p>
-                    <input type="checkbox" id="visible" name="visible" value="1">  
+                    <input type="checkbox" id="visible" name="visible" value="1">
                     <p>Télétravail?</p>
-                    <input type="checkbox" id="tele" name="tele" value="1">     
+                    <input type="checkbox" id="tele" name="tele" value="1">
                     <section title="choisir ent">
                         <legend>Appartient à quel entreprise</legend>
                         <select id="ent" name="ent" class="text-black">
@@ -160,13 +157,14 @@ $name_ent=entreprise($conn);
                             <?php } ?>
                         </select>
                     </section>
-            <section title="button part" >
-                <button type="submit" name="envoi" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider</button>
+                </section>
+                <section title="button part" >
+                    <button type="submit" name="envoi" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider</button>
+                </section>
             </section>
         </form>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script/script.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>

@@ -63,44 +63,40 @@ $stage=stage_select_tuteur($conn);
     <meta name="theme-color" content="#567BB2">
     <title>Avis</title>
     <link href="style/compte.css" rel="stylesheet">
+    <link href="style/avis.css" rel="stylesheet">
 </head>
 <body>   
      
     <?php require_once(dirname(__FILE__) .'/entete.php');?>
 
-<main>
-<p class="flex justify-center items-center mx-10 text-xl">Vos avis:</p>
-                <form method="POST" >
-                    <div class="flex flex-row">
-                        <p>Avis fait le : </p>
-                        <input type="text" id="date_avis" name="date_avis" readonly>
-                    </div>
-                    <label>Quel stage choisir</label>
-                
-                    <select name="avis">
-                        <?php foreach ($stage as $stage) {
-                            $id_offre = $stage['ID_offre'];
-                            $nom_offre = $stage['Nom'];
-                            $nom_ent = $stage['ent_Nom'];
-                        ?>
-                        <option class="text-black text-lg" value="<?php echo $id_offre; ?>"><?php echo $nom_offre; ?>-<span class="text-md"><?php echo $nom_ent ?></span></option>
-                        <?php } ?>
-                    </select>
-                    <label>Decrivez votre avis</label>
-                    <textarea name="Description" class="border border-gray-200 w-32"></textarea>
-                    <section class="flex flex-col w-32">
-                        <label>Note de ce stage:</label>
-                        <input id="pi_input" name="note" type="range" min="0" max="5" step="0.5" />
-                        <p>Votre note: <output id="value"></output></p>
-                    </section>
-
-                    <button type="submit" name="noter" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider votre avis</button>
-                </form>
+    <main>
+    <p class="blue-text" style="font-size: 24px;">Vos avis:</p>
+    <form method="POST" class="form-container">
+        <div>
+            <p class="blue-text">Avis fait le : </p>
+            <input type="text" id="date_avis" name="date_avis" readonly class="form-input">
+        </div>
+        <label class="blue-text">Quel stage choisir</label>
+        <select name="avis" class="form-select">
+            <?php foreach ($stage as $stage) {
+                $id_offre = $stage['ID_offre'];
+                $nom_offre = $stage['Nom'];
+                $nom_ent = $stage['ent_Nom'];
+            ?>
+            <option value="<?php echo $id_offre; ?>"><?php echo $nom_offre; ?>-<span><?php echo $nom_ent ?></span></option>
+            <?php } ?>
+        </select>
+        <label class="blue-text">Decrivez votre avis</label>
+        <textarea name="Description" class="form-input"></textarea>
+        <section>
+            <label class="blue-text">Note de ce stage:</label>
+            <input id="pi_input" name="note" type="range" min="0" max="5" step="0.5" />
+            <p>Votre note: <output id="value"></output></p>
         </section>
-        
-    </section>
-    </section>
-    </main>
+        <button type="submit" name="noter" class="form-button">Valider votre avis</button>
+    </form>
+</main>
+
     <script src="script/avis.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </body>

@@ -126,22 +126,9 @@ function stage_valide($candi_id,$user_id, $conn) {
     $stmt_place = $conn->prepare($sql_place);
     $stmt_place->bindParam(':candi', $candi_id, PDO::PARAM_INT);
     $stmt_place->execute();
-    $resultat = $stmt_place->fetch(PDO::FETCH_ASSOC);
+    $stmt_place->fetch(PDO::FETCH_ASSOC);
 
-    $place = $resultat['place'];
-
-    if($place==0){
-        $sql_voir= 'DELETE FROM offre WHERE place=0 AND ID_offre IN (
-            SELECT offre.ID_offre
-            FROM offre
-            LEFT JOIN candidature ON offre.ID_offre = candidature.ID_offre
-            WHERE candidature.ID_candi = :candi_id 
-            )';
-        $stmt_voir = $conn->prepare($sql_voir);
-        $stmt_voir->bindParam(':candi', $candi_id, PDO::PARAM_INT);
-        $stmt_voir->execute();
-        $resultat = $stmt_voir->fetch(PDO::FETCH_ASSOC);
-    }
+    
 
     echo "RECRUTEMENT VALIDER";
 };

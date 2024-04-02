@@ -11,14 +11,11 @@
         </a>
         <div class="flex items-center space-x-4 flex-grow">
         <div class=" z-50 relative ">
-            <input type="text" id="search_entete" data-searchtype="all" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search" onkeyup="searchall(this.value)">
-            <div id="resultat" class="  absolute w-full mt-4 text-black bg-white border border-gray-300 "></div>
+            <input type="text" id="search_entete" data-searchtype="all" class="w-full sm:w-48 md:w-200 lg:w-80 xl:w-200 h-10 px-4 rounded-full border border-gray-300 text-black" placeholder="Search" oninput="checkSearchBox()" onkeyup="searchall(this.value)">
+            <div id="resultat" class=" absolute w-full mt-4 text-black bg-white border border-gray-300 "></div>
         </div>
 
-
         </div>
-        
-        
         
         <div class="relative mr-4">
             <?php if ($_SESSION['user']['logo']) { ?>
