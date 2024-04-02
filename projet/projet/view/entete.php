@@ -24,7 +24,7 @@
                     <img id="logo" src="src/user.png" alt="profile picture" class="w-10 h-auto"></a>
             <?php } ?>
             <section id="profil" class="rtl:mr-3 hidden absolute top-0 start-0 mt-4 mx-36 w-48 bg-white border border-gray-300 text-black">
-                <?php if ($_SESSION['user']['Statut'] == 0): ?>
+                <?php if ($_SESSION['user']['Statut'] == 0 or $_SESSION['user']['Statut'] ==2): ?>
                     <a href="User.php" class="block px-4 py-2 hover:bg-gray-300">Gérer utilisateur</a>
                     <a href="offre_gerer.php" class="block px-4 py-2 hover:bg-gray-300">Gérer Offre</a>
                     <a href="entreprise_gerer.php" class="block px-4 py-2 hover:bg-gray-300">Gérer Entreprise</a>

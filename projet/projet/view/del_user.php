@@ -48,7 +48,7 @@ function supprimer($Id_user, $conn){
 
         return true;
     } catch (PDOException $e) {
-        echo "Échec de la requête : " . $e->getMessage();
+        $error_message= "Échec de la requête : " . $e->getMessage();
         return false;
     }
 }
@@ -65,7 +65,7 @@ function supprimer($Id_user, $conn){
     <meta name="theme-color" content="#567BB2">
     <title>Supprimer</title>
     <link href="style/compte.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/crea.css">
+    <link rel="stylesheet" href="style/offre_gerer.css">
     
 </head>
 <body>
@@ -78,18 +78,20 @@ function supprimer($Id_user, $conn){
         </div>
 
     <main>
-    
-    <form method="post" enctype="multipart/form-data" class="flex flex-col  justify-center items-center text-white">
+    <?php
+            echo '<p name="error-message">' . $error_message . '</p>';
+        ?>
+    <form method="post" enctype="multipart/form-data" class="">
         <input type="hidden" name="id_user" id="id_user" value="">
 
-            <section title="formulaire creation" class="flex  justify-center items-center bg-custom-green px-10 py-10 my-4">
-                <section class="flex flex-col justify-center items-center">
+            <section title="formulaire creation" class="">
+                <section class="r">
                     
                     <img src="src/user.png" id="img" class="w-44">
                 </section>
-                <section title="input" class="flex flex-col justify-center items-center ">
-                    <legend class="text-right ">Statut</legend>
-                    <select id="statut" name="statut" class="w-96 mb-4 text-black">
+                <section title="input" class="">
+                    <legend class="text-left ">Statut</legend>
+                    <select id="statut" name="statut" class=" text-black">
                             <?php if ($_SESSION['user']['Statut'] == 0){?>
                                 <option value="1" name="Etudiant">Etudiant</option>
                             <?php }else{?>
@@ -97,12 +99,10 @@ function supprimer($Id_user, $conn){
                                 <option value="0" name="tuteur">Tuteur</option>
                             <?php }?>
                     </select>
-                    <div class="flex flex-row">
-                        <legend class="flex-none">Nom</legend>
+                        <legend >Nom</legend>
                         <input type="text" name="nom" id="nom" class="text-black">
-                        <legend class="flex-none">Prenom</legend>
+                        <legend >Prenom</legend>
                         <input type="text" name="prenom" id="prenom" class="text-black">
-                    </div>
                     
                     <legend>Centre</legend>
                     <input type="text" name="Centre" id="Centre" class="text-black">
@@ -116,8 +116,6 @@ function supprimer($Id_user, $conn){
                     </select>
                     <p>Login</p>
                     <input type="text" id="Login" name="Login" class="text-black">
-                    <p>Mot de passe</p>
-                    <input type="password" id="password" name="password" class="text-black">
                 </section>
             </section>
             <section title="button part" >

@@ -31,7 +31,7 @@ legend {
     margin-bottom: 10px;
 }
 
-input[type="text"], textarea, select {
+input[type="text"], textarea, select,input[type="password"] {
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;

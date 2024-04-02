@@ -4,6 +4,8 @@ require_once(dirname(__FILE__) .'/../modele/m_offre.php');
 require_once(dirname(__FILE__) .'/../modele/m_user.php');
 require_once(dirname(__FILE__) .'/../modele/m_search.php');
 
+$cle_ssl="demacia";
+
 if (isset($_POST['function']) && $_POST['function'] == 'search') {
     $search_term = $_POST['search'];
     search($search_term);
@@ -161,7 +163,7 @@ function get_offre_trifiltre($limite, $page_actu, $date, $nom, $ordre) {
     $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.voir = 1 AND entreprise.Voir = 1
+            WHERE offre.voir = 1 AND entreprise.Voir = 1 AND offre.place<>0
             AND $whereClause 
             $orderClause $ordreClause
             LIMIT :limit OFFSET :debut";
@@ -195,7 +197,7 @@ function adminredirection(){
     if (!isset($_SESSION['user'])) {
         header('Location: connexion.php');
         exit();
-    } else if ($_SESSION['user']['Statut'] != 0 || $_SESSION['user']['Statut'] != 2) {
+    } else if ($_SESSION['user']['Statut'] != 0 && $_SESSION['user']['Statut'] != 2) {
         header('Location: error.php');
         exit();
     }
@@ -222,13 +224,13 @@ function search($search_term){
     foreach ($data as $row) {
         switch ($row['category']) {
             case 'entreprise':
-                echo '<a href="entreprise.php?ID_entreprise=' . $row['ID'] . '"><p class="all-item" data-id="' . $row['ID'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p></a>';
+                echo '<a href="entreprise.php?ID_entreprise=' . $row['ID'] . '"><p class="all-item" data-id="' . $row['ID'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'gray\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p></a>';
                 break;
             case 'offre':
-                echo '<a href="offre.php?ID_offre=' . $row['ID'] . '"><p class="all-item" data-id="' . $row['ID'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p></a>';
+                echo '<a href="offre.php?ID_offre=' . $row['ID'] . '"><p class="all-item" data-id="' . $row['ID'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'gray\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] . '</p></a>';
                 break;
             case 'utilisateur':
-                echo '<a href="utilisateur.php?ID_utilisateur=' . $row['ID'] . '"><p class="all-item" data-id="' . $row['ID'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'blue\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] ." ". $row['Prénom'] . '</p></a>';
+                echo '<a href="utilisateur.php?ID_utilisateur=' . $row['ID'] . '"><p class="all-item" data-id="' . $row['ID'] . '" style="background-color: transparent; cursor: pointer;" onmouseover="this.style.backgroundColor=\'gray\'" onmouseout="this.style.backgroundColor=\'transparent\'">' . $row['Nom'] ." ". $row['Prénom'] . '</p></a>';
                 break;
         }
     }
@@ -278,6 +280,7 @@ function article($print){
                         break;
                     }
                 }
+            
             if ($wish_found) {
                 $wish_img = '<img name="love" src="src/coeurrempli.png" class="w-10 h-10 coeur favorite fav-add" data-id="' . $id_offre . '" alt="coeur">';
             } else {

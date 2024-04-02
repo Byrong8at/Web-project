@@ -35,19 +35,7 @@ $wishs = get_wish();
     
         <main>
 
-<<<<<<< HEAD
-        
-=======
-            <section class="w-full h-50vh relative">
-                <img src="src/ibm.jpeg" class="w-full h-96" alt="offre moment">
-                <div class="flex flex-col items-center justify-center absolute top-0 left-0 right-0 bottom-0">
-                    <h1 class="text-2xl md:text-3xl lg:text-4xl text-white px-8 py-2 font-size: 3vmin">Postuler à l'offre du moment</h1>
-                    <button class="bg-blue-900 text-xl md:text-2xl lg:text-3xl text-white rounded- px-8 py-2 font-size: 1.5vmin mt-4 rounded-full">
-                        Postuler
-                    </button>
-                </div>
-            </section>
->>>>>>> d198a1f89fae24f80b2b3638e4e1c67232addc7d
+
             <section class="w-full h-auto relative mt-8 mb-4">
               <h1 class="text-center text-4xl font-bold md:text-4xl sm:text-4xl xl:text-7xl">EMPLOI DISPONIBLE</h1>
             </section>

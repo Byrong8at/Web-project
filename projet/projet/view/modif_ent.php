@@ -61,7 +61,7 @@ function update_ent($nom,$secteur,$adr_1,$adr_2,$adr_3, $visible,$img,$id_ent, $
 
         return true;
     } catch (PDOException $e) {
-        echo "Échec de la requête : " . $e->getMessage();
+        $error_message= "Échec de la requête : " . $e->getMessage();
         return false;
     }
 }
@@ -92,6 +92,9 @@ function update_ent($nom,$secteur,$adr_1,$adr_2,$adr_3, $visible,$img,$id_ent, $
         </div>
 
     <main>
+    <?php
+            echo '<p name="error-message">' . $error_message . '</p>';
+        ?>
     <form method="post" enctype="multipart/form-data" class="">
         <input type="hidden" name="id_user" id="id_user" value="">
         <section title="formulaire creation" class="">

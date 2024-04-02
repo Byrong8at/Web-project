@@ -14,10 +14,15 @@ if (isset($_POST['envoi'])) {
         $Centre= $_POST['Centre'];
         $promo=$_POST['promo'];
         $identifiant = $_POST['Login'];
-        $mot_de_passe = $_POST['password'];
+        $mot_de_passe = hash("sha256", $_POST["pass"]);
+        if(empty($_FILES['image']['name'])){
+            $img=null;
+        }
+        else{
         $img = 'src/profil/' . basename($identifiant) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         traitement( $img);
-
+        }
+        
         try {
             if (creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,$img, $conn)) {
                 $error_message ='valider';
@@ -40,7 +45,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
         $quezy->bindParam(':prenom', $prenom);
         $quezy->bindParam(':Centre', $Centre);
         $quezy->bindParam(':identifiant', $identifiant);
-        $quezy->bindParam(':mot_de_passe', $mot_de_passe);
+        $quezy->bindParam(':mot_de_passe',$mot_de_passe);
         $quezy->bindParam(':logo', $img);
         $quezy->execute();
         $sql = "INSERT INTO integrer (ID_user, Id_Promo)
@@ -58,7 +63,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
 
         return true;
     } catch (PDOException $e) {
-        echo "Échec de la requête : " . $e->getMessage();
+        $error_message= "Échec de la requête : " . $e->getMessage();
         return false;
     }
 }
@@ -72,7 +77,7 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
     <meta name="description" content="Creation">
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/user_cre.css">
-    <link rel="stylesheet" href="style/crea.css">
+    <link rel="stylesheet" href="style/offre_gerer.css">
     <title>Creation utilisateur</title>
 </head>
 <body> 
@@ -80,9 +85,9 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
     
     <body>
     <main>
-    <a href="user.php" class="btn-link">
-        <button class="my-button" onclick="window.location.href = 'user.php';">Retour</button>
-    </a>
+    <?php
+            echo '<p name="error-message">' . $error_message . '</p>';
+        ?>
         <form method="post" enctype="multipart/form-data">
             <section title="formulaire creation">
                 <section>
@@ -118,12 +123,12 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
                     <p>Login</p>
                     <input type="text" name="Login">
                     <p>Mot de passe</p>
-                    <input type="password" name="password">
+                    <input type="password" name="pass">
                 </section>
             </section>
             <section title="button part">
-                <button type="submit" name="envoi" class="finish">Valider</button>
-                <button class="reinitialiser" onclick="restart()">Reinitialiser</button>
+                <button type="submit" name="envoi" class="finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900 ">Valider</button>
+                <button class="reinitialiser bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900 " onclick="restart()">Reinitialiser</button>
             </section>
         </form>
     </main>

@@ -5,9 +5,9 @@ session_start();
 $error_message = "";
 
 if (isset($_POST['envoi'])) {
-    if (!empty($_POST['identifiant']) AND !empty($_POST['mot_de_passe'])) {
+    if (!empty($_POST['identifiant']) AND !empty($_POST['password'])) {
         $identifiant = $_POST['identifiant'];
-        $mot_de_passe =$_POST['mot_de_passe'];
+        $mot_de_passe = hash("sha256", $_POST["password"]);
 
         try {
             if ($data = login($identifiant, $mot_de_passe, $conn)) {
@@ -26,18 +26,20 @@ if (isset($_POST['envoi'])) {
 
 function login($identifiant, $mot_de_passe, $conn) {
     try {
-        $sqllog = "SELECT * FROM utilisateur WHERE Login = ? AND Mot_de_passe = ?";
+        $sqllog = "SELECT * FROM utilisateur WHERE Login = ? and Mot_de_passe=?";
         $quezy = $conn->prepare($sqllog);
         $quezy->execute([$identifiant, $mot_de_passe]);
         $user = $quezy->fetch(PDO::FETCH_ASSOC);
+        print_r($user);
+        print_r($mot_de_passe);
 
-        if ($user !== false) {
+        if ($user !== false ) {
             return $user;
         } else {
             return false;
         }
     } catch (PDOException $e) {
-        echo "Échec de la requête : " . $e->getMessage();
+        $error_message= "Échec de la requête : " . $e->getMessage();
         return false;
     }
 }
@@ -72,7 +74,7 @@ function login($identifiant, $mot_de_passe, $conn) {
             <h4 class="info_connexion">Identifiant</h4>
             <input type="text" name="identifiant" class="info_button" aria-label="Search">
             <h4 class="info_connexion">Mot de passe</h4>
-            <input type="password" name="mot_de_passe" class="info_button" aria-label="Search">
+            <input type="password" name="password" class="info_button" aria-label="Search">
             <br>
             <button type="submit" class="cesi" name="envoi"> Se connecter</button>
             <br>

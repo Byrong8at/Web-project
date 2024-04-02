@@ -57,7 +57,7 @@ function update_off($nom, $competences, $detail, $promo, $duree, $dates, $salair
 
         return true;
     } catch (PDOException $e) {
-        echo "Échec de la requête : " . $e->getMessage();
+        $error_message= "Échec de la requête : " . $e->getMessage();
         return false;
     }
 }
@@ -69,7 +69,7 @@ function entreprise($conn){
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
-        echo "Erreur ent" . $e->getMessage();
+        $error_message= "Erreur ent" . $e->getMessage();
     }
 }
 
@@ -98,6 +98,9 @@ $name_ent=entreprise($conn);
         </div>
 
         <main>
+        <?php
+            echo '<p name="error-message">' . $error_message . '</p>';
+        ?>
         <form method="post" enctype="multipart/form-data" class="">
             <input type="hidden" name="id_user" id="id_user" value="">
 

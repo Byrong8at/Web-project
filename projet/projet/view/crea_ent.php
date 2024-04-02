@@ -57,7 +57,7 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $img, $conn)
         $quezy->bindParam(':img', $img);
         $quezy->execute();
     } catch (PDOException $e) {
-        echo "Échec de la requête : " . $e->getMessage();
+        $error_message= "Échec de la requête : " . $e->getMessage();
         return false;
     }
     return true;
@@ -85,7 +85,7 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $img, $conn)
             
         </header>
         <?php
-            echo '<p name="error-message" style="color: red;">' . $error_message . '</p>';
+            echo '<p name="error-message">' . $error_message . '</p>';
         ?>
         <form method="post" enctype="multipart/form-data" class="">
             <section title="formulaire creation" class="">
@@ -94,9 +94,9 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $img, $conn)
                     <input type="file" name="image" class="" accept="image/*">
                 </section>
                 <section title="input" class=" ">
-                        <legend class="flex-none">Nom</legend>
-                        <input type="text" name="nom" class="text-black">
-                        <legend class="flex-none">Secteur d'activité</legend>
+                        <legend class= >Nom</legend>
+                        <input type="text" pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" name="nom" class="text-black">
+                        <legend >Secteur d'activité</legend>
                         <input type="text" name="secteur" class="text-black">
                     
                     <legend>Adresse</legend>

@@ -29,7 +29,7 @@ function get_user($search_term, $conn){
         $sql = "SELECT * FROM utilisateur WHERE (Nom LIKE :search_term OR Prénom LIKE :search_term) AND Statut=1";
 
     }else{
-        $sql = "SELECT * FROM utilisateur WHERE Nom LIKE :search_term OR Prénom LIKE :search_term";
+        $sql = "SELECT * FROM utilisateur WHERE Nom LIKE :search_term OR Prénom LIKE :search_term and statut <>2";
     }
     $stmt = $conn->prepare($sql);
     $search_term_like = '%' . $search_term . '%';

@@ -95,10 +95,8 @@ $name_ent=entreprise($conn);
         <form method="post" enctype="multipart/form-data">
             <section title="formulaire creation">
                 <section title="input">
-                    <div>
                         <legend class="flex-none">Nom</legend>
                         <input type="text" name="nom">
-                    </div>
                     <legend class="flex-none">compétences</legend>
                     <input type="text" id="competences" name="competences">
                     <legend class="flex-none">Description (maximun 256 caractères)</legend>

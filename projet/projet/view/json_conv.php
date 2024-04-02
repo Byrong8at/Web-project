@@ -11,6 +11,7 @@ if(isset($_GET['userId'])) {
     $stmt->execute();
 
     $userinfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    
     $sqllog = "SELECT Id_Promo FROM integrer WHERE ID_user = :userId";
     $stmt = $conn->prepare($sqllog);
     $stmt->bindParam(':userId', $userId, PDO::PARAM_INT);

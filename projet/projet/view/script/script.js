@@ -42,7 +42,6 @@ $(document).on('click', '.user-item', function() {
             $('#prenom').val(entDetails.Prénom);
             $('#Centre').val(entDetails.Centre);
             $('#Login').val(entDetails.Login);
-            $('#password').val(entDetails.Mot_de_passe);
             $('#promo').val(entDetails.Id_Promo);
         } ,
         

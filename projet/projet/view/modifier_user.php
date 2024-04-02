@@ -14,7 +14,7 @@ if (isset($_POST['envoi'])) {
     $Centre= $_POST['Centre'];
     $promo=$_POST['promo'];
     $identifiant = $_POST['Login'];
-    $mot_de_passe = $_POST['password'];
+    $mot_de_passe = openssl_encrypt($_POST['password'], "AES-128-ECB" ,$cle_ssl); 
     $Id_user=$_POST['id_user'];
     if (!empty($_FILES['image']['name'])) {
         $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
@@ -84,7 +84,8 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
     <meta name="theme-color" content="#567BB2">
     <title>Modifier</title>
     <link href="style/compte.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/offre_gerer.css">
+    <link href="style/offre_gerer.css" rel="stylesheet">
+
     
 </head>
 <body>
@@ -98,32 +99,29 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
         </div>
 
     <main>
-    
-    <form method="post" enctype="multipart/form-data" class="">
+    <form method="post" enctype="multipart/form-data" >
         <input type="hidden" name="id_user" id="id_user" value="">
 
-            <section title="formulaire creation" class="">
+            <section title="formulaire creation" >
                 <section class="flex flex-col justify-center items-center">
                     
                     <img src="src/user.png" id="img" class="w-44">
-                    <input type="file" name="image" class="" accept="image/*" text="Fichier">
+                    <input type="file" name="image"  accept="image/*" text="Parcourir">
                 </section>
-                <section title="input" class=" ">
-                    <legend class="text-left ">Statut</legend>
+                <section title="input" c>
+                    <label class="text-right ">Statut</label>
                     <select id="statut" name="statut" class="w-96 mb-4 text-black">
-                            <?php if ($_SESSION['user']['Statut'] == 0){?>
-                                <option value="1" name="Etudiant">Etudiant</option>
-                            <?php }else{?>
-                                <option value="1" name="Etudiant">Etudiant</option>
-                                <option value="0" name="tuteur">Tuteur</option>
-                            <?php }?>
+                            <option value="1" name="Etudiant">Etudiant</option>
+                            <option value="0" name="tuteur">Tuteur</option>
                     </select>
-                    <legend class="flex-none">Nom</legend>
-                    <input type="text" name="nom" id="nom" class="text-black">
-                    <legend class="flex-none">Prenom</legend>
-                    <input type="text" name="prenom" id="prenom" class="text-black">
-                
-                    <legend>Centre</legend>
+
+                        <label >Nom</label>
+                        <input type="text" name="nom" id="nom" class="text-black">
+                        <label >Prenom</label>
+                        <input type="text" name="prenom" id="prenom" class="text-black">
+                    </div>
+                    
+                    <label>Centre</label>
                     <input type="text" name="Centre" id="Centre" class="text-black">
                     <p>Promotion</p>
                     <select id="promo" name="promo"  class="text-black bg-white">
@@ -135,13 +133,10 @@ function update($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_passe,
                     </select>
                     <p>Login</p>
                     <input type="text" id="Login" name="Login" class="text-black">
-                    <p>Mot de passe</p>
-                    <input type="password" id="password" name="password" class="text-black">
-                </section>
+                                </section>
             </section>
             <section title="button part" >
-                <button type="submit" name="envoi " class="finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900 ">Valider</button>
-                    <button class="bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900 " onclick="window.location.href = 'user.php';">Retour</button>
+                <button type="submit" name="envoi" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider</button>
             </section>
         </form>
     </main>
