@@ -1,0 +1,19 @@
+.user-card {
+    display: flex;
+    align-items: center;
+    background-color: #567BB2;
+    padding: 20px;
+    border-radius: 5px; 
+}
+
+.user-card img {
+    margin-right: 20px;
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+}
+
+.user-card .user-info {
+    color: white;
+}

@@ -110,7 +110,7 @@ $name_ent=entreprise($conn);
                         <input type="text" id="nom" name="nom" class="text-black">
                     <legend class="flex-none">compétences</legend>
                     <input type="text" id="competences" name="competences" class="text-black">
-                    <legend class="flex-none">Description (maximun 256 caractères)</legend>
+                    <legend class="flex-none">Description </legend>
                     <textarea name="description" id="description" class="text-black"></textarea>
                     <legend class="flex-none">Type de promo concerné</legend>
                     <select id="promo" name="promo" class="text-black bg-white">
@@ -121,7 +121,7 @@ $name_ent=entreprise($conn);
                         <option  value="5">X1_i5</option>
                     </select>
 
-                    <legend>Durée du stage(en semaine)</legend>
+                    <legend>Durée du stage</legend>
                     <input type="text"id="durée" name="durée" class="text-black" >
                     <legend>Salaire</legend>
                     <input type="text" id="salaire" name="salaire" class="text-black">

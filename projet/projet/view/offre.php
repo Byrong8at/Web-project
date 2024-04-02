@@ -63,7 +63,7 @@ function postuler($id_user,$id_offre,  $conn){
     ?>
     
     <main>
-            <img src="src/ibm.jpeg" class="w-full h-96">
+            <img src="$data_offre[0]['logo']" class="w-full h-96">
         <section class="flex justify-between items-center"> 
             <h2 class="text-xl mx-4 py-4 md:text-2xl lg:text-3xl font-bold  underline">Nom de l'offre : <?php echo $data_offre[0]['Nom'];?></h2>
             <h2 class="text-md mx-4 py-4 md:text-lg lg:text-lg">Ajouté le : <?php echo $data_offre[0]['date_de_l_offre'];?></h2>

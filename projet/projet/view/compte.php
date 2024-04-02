@@ -12,7 +12,6 @@ if (isset($_POST['noter'])) {
         
         try {
             if (set_avis($note, $date_format, $detail, $avis, $conn)) {
-                echo "avis Valider";
             } else {
                 echo 'Une erreur à eu lieu';
             }
@@ -147,16 +146,16 @@ $stage=stage_select($conn);
         <section id="modele_affichage" class="hidden mx-10 my-10 border-2 ">
             <img src="src/modele.png">
         </section>
-        <section id="event_affichage" class="hidden">
-            <p class="flex justify-center items-center mx-10 text-xl">Vos avis:</p>
-                <form method="POST" >
-                    <div class="flex flex-row">
-                        <p>Avis fait le : </p>
-                        <input type="text" id="date_avis" name="date_avis">
-                    </div>
-                    <label>Quel stage choisir</label>
-                
-                    <select name="avis">
+        <section id="event_affichage" class="hidden ">
+            <p class="text-xl">Vos avis:</p>
+            <form method="POST" class="flex flex-col justify-center items-center ml-4 p-10 w-full max-w-lg">
+                <div class="flex flex-row mb-4">
+                    <p class="w-1/4 text-right pr-2">Avis fait le : </p>
+                    <input type="date" id="date_avis" name="date_avis" class="flex-1 border border-gray-200 rounded-md py-2 px-3">
+                </div>
+                <div class="mb-4">
+                    <label class="block">Quel stage choisir</label>
+                    <select name="avis" class="border border-gray-200 rounded-md py-2 px-3 w-full">
                         <?php foreach ($stage as $stage) {
                             $id_offre = $stage['ID_offre'];
                             $nom_offre = $stage['Nom'];
@@ -165,35 +164,25 @@ $stage=stage_select($conn);
                         <option class="text-black text-lg" value="<?php echo $id_offre; ?>"><?php echo $nom_offre; ?>-<span class="text-md"><?php echo $nom_ent ?></span></option>
                         <?php } ?>
                     </select>
-                    <label>Decrivez votre avis</label>
-                    <textarea name="Description" class="border border-gray-200 w-32"></textarea>
-                    <section class="flex flex-col w-32">
-                        <label>Note de ce stage:</label>
-                        <input id="pi_input" name="note" type="range" min="0" max="5" step="0.5" />
-                        <p>Votre note: <output id="value"></output></p>
-                    </section>
+                </div>
+                <div class="mb-4">
+                    <label class="block">Decrivez votre avis</label>
+                    <textarea name="Description" class="border border-gray-200 rounded-md py-2 px-3 w-full"></textarea>
+                </div>
+                <section class="flex flex-col mb-4">
+                    <label>Note de ce stage:</label>
+                    <input id="pi_input" name="note" type="range" min="0" max="5" step="0.5" class="mt-2" />
+                    <p>Votre note: <output id="value" class="font-medium"></output></p>
+                </section>
 
-                    <button type="submit" name="noter" class=" finish bg-blue-800 text-white text-lg rounded-full w-32 h-14 mx-10 hover:bg-blue-900">Valider votre avis</button>
-                </form>
+                <button type="submit" name="noter" class="finish bg-blue-800 text-white text-lg rounded-full py-2 px-6 hover:bg-blue-900">Valider votre avis</button>
+            </form>
         </section>
         
     </section>
     </section>
     </main>
-    <footer class="bg-blue-900 text-white flex flex-col sm:flex-row justify-between items-center px-10 py-8 mt-6">
-        <section class="mt-4 sm:mt-0">
-            <p>Nous contacter par mail:</p>
-            <p><span class="move"><a href="mailto:hugo.lefebvre1@viacesi.fr">hugo.lefebvre1@viacesi.fr</a></span></p>
-            <p>Nous contacter par téléphone:</p>
-            <p><span class="move"><a href="tel:0637132323">06 37 13 23 23</a></span></p>
-        </section>
-
-        <section class="mt-4 sm:mt-0">
-            <p><a href="cgu.html">Nos Conditions D'utilisation</a></p>
-            <p><a href="mention.html">Nos mentions légale d'utilisation</a></p>
-        </section>
-        
-    </footer>
+    
     <script src="script/compte.js"></script>
     <script src="script/avis.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
