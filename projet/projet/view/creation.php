@@ -77,7 +77,6 @@ function creation($statut,$nom,$prenom,$Centre,$promo,$identifiant, $mot_de_pass
     <meta name="description" content="Creation">
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/user_cre.css">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style/offre_gerer.css">
     <title>Creation utilisateur</title>
 </head>

@@ -57,7 +57,6 @@ function delete_ent($id_ent, $conn){
     <meta name="description" content="Modification">
     <meta name="theme-color" content="#567BB2">
     <title>Supprimer entreprise</title>
-    <link rel="manifest" href="manifest.json">
     <link href="style/compte.css" rel="stylesheet">
     <link rel="stylesheet" href="style/offre_gerer.css">
     

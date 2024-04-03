@@ -6,7 +6,6 @@
     <meta name="description" content=" page entreprise ">
     <meta name="theme-color" content="#567BB2">
     <title>Acceuil</title>
-    <link rel="manifest" href="manifest.json">
     <link href="style/entreprise.css" rel="stylesheet">
 </head>
 <body>

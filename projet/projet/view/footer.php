@@ -10,5 +10,5 @@
             <p><a href="cgu.php">Nos Conditions D'utilisation</a></p>
             <p><a href="mention.php">Nos mentions légale d'utilisation</a></p>
         </section>
-        <?php echo "<script src='/../main.js></script>'";?>
+        
 </footer>

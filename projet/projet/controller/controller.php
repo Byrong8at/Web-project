@@ -404,7 +404,6 @@ function article($print){
 global $conn;
 $conn = initbdd();
 
-
 if (isset($_POST['function']) && $_POST['function'] == 'searchoffre') {
     $date = $_POST['date'];
     $nom = $_POST['nom'];

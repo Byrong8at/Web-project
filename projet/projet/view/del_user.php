@@ -64,7 +64,6 @@ function supprimer($Id_user, $conn){
     <meta name="description" content="Modification">
     <meta name="theme-color" content="#567BB2">
     <title>Supprimer</title>
-    <link rel="manifest" href="manifest.json">
     <link href="style/compte.css" rel="stylesheet">
     <link rel="stylesheet" href="style/offre_gerer.css">
     

@@ -1,6 +1,5 @@
 
 <header class="bg-blue-900 text-white flex justify-between items-center  py-2 ">
-    
     <?php
         if (!isset($_SESSION)) {
             session_start();

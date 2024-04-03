@@ -72,7 +72,6 @@ $name_ent=entreprise($conn);
     <meta name="description" content="Supprimer">
     <meta name="theme-color" content="#567BB2">
     <title>Supprimer offre</title>
-    <link rel="manifest" href="manifest.json">
     <link href="style/compte.css" rel="stylesheet">
     <link href="style/offre_gerer.css" rel="stylesheet">
     

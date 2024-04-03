@@ -79,7 +79,6 @@ $name_ent=entreprise($conn);
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/user_cre.css">
     <link rel="stylesheet" href="style/offre_gerer.css">
-    <link rel="manifest" href="manifest.json">
     <title>Creation offre</title>
 </head>
 <body> 
