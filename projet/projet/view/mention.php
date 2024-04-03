@@ -6,6 +6,7 @@
     <meta name="description" content="mention légale">
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="manifest" href="manifest.json">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>CGU</title>
 </head>

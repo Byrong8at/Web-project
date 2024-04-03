@@ -74,6 +74,7 @@ function creation($nom, $secteur, $adr_1, $adr_2, $adr_3, $visible, $img, $conn)
     <meta name="theme-color" content="#567BB2">
     <link rel="stylesheet" href="style/user_cre.css">
     <link rel="stylesheet" href="style/offre_gerer.css">
+    <link rel="manifest" href="manifest.json">
     <title>Creation entreprise</title>
 </head>
 <body>
