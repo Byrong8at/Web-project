@@ -12,5 +12,5 @@ document.getElementById("btn-plus").addEventListener("click", function() {
 });
 
 document.getElementById("see-offre").addEventListener("click", function() {
-    window.location.href = "offre.php";
+    window.location.href = "offre.html";
 });

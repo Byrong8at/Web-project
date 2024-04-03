@@ -33,39 +33,5 @@
             $stmt->execute();
             return $stmt->fetchColumn();
         }
-        public function get_entreprise($conn, $id){
-            $sql = "SELECT *
-                    FROM entreprise
-                    INNER JOIN offre ON entreprise.ID_entreprise = offre.ID_entreprise
-                    WHERE offre.ID_offre = :id";
-    
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-        public function get_candidatureOffre($conn, $id) {
-            $sql = "SELECT COUNT(DISTINCT candidature.ID_user) as nbrcandidature
-                    FROM candidature
-                    JOIN offre ON candidature.ID_offre = offre.ID_offre
-                    WHERE offre.ID_offre = :id";
-    
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
-        public function get_wishlistOffre($conn, $id) {
-            $sql = "SELECT COUNT(DISTINCT wishlist.ID_user) as nbrwishlist
-                    FROM wishlist
-                    JOIN offre ON wishlist.ID_offre = offre.ID_offre
-                    WHERE offre.ID_offre = :id";
-    
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } 
-
     }
 ?>
