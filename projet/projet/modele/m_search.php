@@ -4,7 +4,7 @@ class search{
     function getall($search_term, $conn) {
         $sql = "SELECT 'offre' as category, ID_offre as ID, Nom, '' as Prénom
                 FROM offre
-                WHERE Nom LIKE :search_term AND Voir=1
+                WHERE Nom LIKE :search_term AND Voir=1 AND place<>0
                 UNION ALL
                 SELECT 'entreprise' as category, ID_entreprise as ID, Nom, '' as Prénom
                 FROM entreprise

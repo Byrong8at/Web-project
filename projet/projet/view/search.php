@@ -57,7 +57,7 @@ function getoffre($search_term, $conn){
 function getcandidature($search_term, $conn){
     $sql = "SELECT offre.*,entreprise.Nom as entreprise_nom FROM offre 
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.Nom LIKE :search_term AND offre.Voir = 1 AND entreprise.Voir = 1";
+            WHERE offre.Nom LIKE :search_term AND offre.Voir = 1 AND entreprise.Voir = 1 AND offre.place<>0";
 
     $stmt = $conn->prepare($sql);
     $search_term_like = '%' . $search_term . '%';

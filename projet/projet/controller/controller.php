@@ -109,7 +109,7 @@ function get_offre($limite, $page_actu) {
     $sql = "SELECT offre.*, entreprise.Nom AS entreprise_Nom, entreprise.Adresse
             FROM offre
             INNER JOIN entreprise ON offre.ID_entreprise = entreprise.ID_entreprise
-            WHERE offre.voir = 1 AND entreprise.Voir = 1
+            WHERE offre.voir = 1 AND entreprise.Voir = 1 AND offre.place<>0
             ORDER BY offre.date_de_l_offre DESC, entreprise.Nom ASC, offre.Nom ASC
             LIMIT :limit OFFSET :debut";
     $stmt = $conn->prepare($sql);
