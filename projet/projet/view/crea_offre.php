@@ -11,8 +11,9 @@ if (isset($_POST['envoi'])) {
         $detail= $_POST['description'];
         $promo=$_POST['promo'];
         $duree=$_POST['durée'];
-        $dates = $_POST['date']; 
-
+        $date_avis = $_POST['date']; 
+        $timestamp = strtotime($date_avis);
+        $dates = date('Y-m-d', $timestamp);
         $salaire = $_POST['salaire'];
         $place= $_POST['place'];
         $visible = isset($_POST['visible']) ? (int) $_POST['visible'] : 0;
@@ -35,7 +36,7 @@ if (isset($_POST['envoi'])) {
 
     function creation($nom, $competences, $detail, $promo, $duree, $dates, $salaire, $place, $visible, $tele, $ent, $conn) {
         try {
-            $quezy = $conn->prepare( "INSERT INTO offre(Nom, competences, detail, promo, durée_du_stage, Rémunération, date_de_l_offre, place, Voir, Teletravail, ID_entreprise) VALUES (:nom, :competences, :detail, :promo, :duree, :salaire,:dates,  :place, :visible, :tele, :ent)");
+            $quezy = $conn->prepare( "INSERT INTO offre(Nom, competences, detail, promo, durée_du_stage, Rémunération, date_de_l_offre, place, Voir, Teletravail, ID_entreprise) VALUES (:nom, :competences, :detail, :promo, :duree, :dates, :salaire, :place, :visible, :tele, :ent)");
             $quezy->bindParam(':nom', $nom);
             $quezy->bindParam(':competences', $competences);
             $quezy->bindParam(':detail', $detail);

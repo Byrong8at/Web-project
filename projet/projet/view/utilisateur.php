@@ -21,7 +21,7 @@ $data_utilisateur = get_all($_GET['ID_utilisateur'],'utilisateur');
     <?php require_once(dirname(__FILE__) .'/entete.php')?>
     <main>
         <div class="user-card">
-            <img src="image-url" alt="User image">
+            <img alt="Photo de profile" src="<?php echo $data_utilisateur[0]['logo']?>">
             <div class="user-info">
                 <h2>Nom : <?php echo $data_utilisateur[0]['Nom'];?></h2>
                 <h2>Prénom : <?php echo $data_utilisateur[0]['Prénom'];?></h2>

@@ -6,7 +6,6 @@ if (!isset($_GET['page'])){
 }
 $data = page_recherche($_GET['page'],false);
 
-// Récupérer les valeurs de tri sélectionnées
 $tri_date = isset($_GET['Date']) ? $_GET['Date'] : null;
 $tri_nom_offre = isset($_GET['Name_offre']) ? $_GET['Name_offre'] : null;
 $tri_ordre = isset($_GET['name_ent']) ? $_GET['name_ent'] : null;
@@ -28,14 +27,21 @@ $wishs = get_wish();
     <meta name="description" content="page offre">
     <meta name="theme-color" content="#567BB2">
     <link href="style/compte.css" rel="stylesheet">
+<<<<<<< Updated upstream
+=======
+    <script src="script/offre.js"></script>
+>>>>>>> Stashed changes
     <title>Recherche offre</title>
 </head>
 <body> 
         <?php require_once(dirname(__FILE__) .'/entete.php');?>
     
         <main>
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
             <section class="w-full h-auto relative mt-8 mb-4">
               <h1 class="text-center text-4xl font-bold md:text-4xl sm:text-4xl xl:text-7xl">EMPLOI DISPONIBLE</h1>
             </section>
@@ -158,13 +164,13 @@ $wishs = get_wish();
                       <option value="4">Ce mois-ci</option>
                     </select>
                     <label>Nom</label>
-                    <select id="Name_offre" name="Name_offre" class="selectoffre border border-gray-400 rounded p-2">
+                    <select name="Name_offre" class="selectoffre border border-gray-400 rounded p-2">
                       <option ></option>
                       <option value="Offres">Offres</option>
                       <option value="Entreprises">Entreprise</option>
                     </select>
                     <label>Ordre</label>
-                    <select id="name_ent" name="name_ent" class="selectentreprise border border-gray-400 rounded p-2">
+                    <select name="name_ent" class="selectentreprise border border-gray-400 rounded p-2">
                       <option value="ASC">Croissant</option>
                       <option value="DESC">Décroissant</option>
                     </select>
@@ -309,7 +315,11 @@ $wishs = get_wish();
         </main>
         <?php require_once(dirname(__FILE__) .'/footer.php');?>
         
+<<<<<<< Updated upstream
         <script src="script/offre.js"></script>
+=======
+       
+>>>>>>> Stashed changes
     
 </body>
 </html>

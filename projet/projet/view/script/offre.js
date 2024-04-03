@@ -118,8 +118,6 @@ function love(){
 
 $(document).on('click', '.fav-add', function() {
     let favID = $(this).data('id');
-    console.log("je debute");
-    console.log(favID)
     $.ajax({
         url: 'fav_add.php',
         type: 'GET',
