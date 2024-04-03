@@ -1,0 +1,55 @@
+{
+    "background_color": "white",
+    "description": "Stage garanti",
+    "name": "CesiTonEmploi",
+    "short_name": "CTE",
+    "start_url": "view/index.php",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "theme_color": "#FF6C00",
+    "icons": [
+      {
+        "src": "/src/logomanifest/cte-96x96.png",
+        "sizes": "96x96",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "/src/logomanifest/cte-128x128.png",
+        "sizes": "128x128",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/src/logomanifest/cte-144x144.png",
+        "sizes": "144x144",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/src/logomanifest/cte-152x152.png",
+        "sizes": "152x152",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/src/logomanifest/cte-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/src/logomanifest/cte-384x384.png",
+        "sizes": "384x384",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/src/logomanifest/cte-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      }
+    ]
+  }
+  

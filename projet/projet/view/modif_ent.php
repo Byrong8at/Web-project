@@ -73,6 +73,7 @@ function update_ent($nom,$secteur,$adr_1,$adr_2,$adr_3, $visible,$img,$id_ent, $
 <html lang="Fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Modification">
     <meta name="theme-color" content="#567BB2">

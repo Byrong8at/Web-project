@@ -49,6 +49,7 @@ function postuler($id_user,$id_offre,  $conn){
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Modification">
     <meta name="theme-color" content="#567BB2">
