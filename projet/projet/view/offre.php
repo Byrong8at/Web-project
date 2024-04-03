@@ -60,10 +60,11 @@ function postuler($id_user,$id_offre,  $conn){
     <?php 
         require_once(dirname(__FILE__) .'/../modele/m_offre.php');
         $data_offre = page_offre($_GET['ID_offre']);
+        $entreprise = get_entreprise($_GET['ID_offre'])
     ?>
     
     <main>
-            <img src="$data_offre[0]['logo']" class="w-full h-96">
+            <img src="<?php echo $entreprise[0]['logo'];?>" class="w-full h-96">
         <section class="flex justify-between items-center"> 
             <h2 class="text-xl mx-4 py-4 md:text-2xl lg:text-3xl font-bold  underline">Nom de l'offre : <?php echo $data_offre[0]['Nom'];?></h2>
             <h2 class="text-md mx-4 py-4 md:text-lg lg:text-lg">Ajouté le : <?php echo $data_offre[0]['date_de_l_offre'];?></h2>
@@ -80,6 +81,8 @@ function postuler($id_user,$id_offre,  $conn){
         
         <h2 class="text-lg mx-4 py-4 md:text-lg lg:text-xl">Durée du stage : <?php echo $data_offre[0]['durée_du_stage'];?> mois</h2>
         <h2 class="text-lg mx-4 py-4 md:text-lg lg:text-xl">Nombre de place disponible : <?php echo $data_offre[0]['place'];?></h2>
+        <h2 class="text-lg mx-4 py-4 md:text-lg lg:text-xl">Nombre de personnes ayant postuler aux offres de l'entreprise : <?php echo get_candidatureOffre($_GET['ID_offre'])[0]['nbrcandidature'];?> personne(s)</h2>
+        <h2 class="text-lg mx-4 py-4 md:text-lg lg:text-xl">Nombre de personnes ayant ajouter les offres de l'entreprise à leur wishlist : <?php echo get_wishlistOffre($_GET['ID_offre'])[0]['nbrwishlist'];?> personne(s)</h2>
         <h2 class="text-lg mx-4 py-4 md:text-lg lg:text-xl">Y'a t'il du teletravail :
             <?php 
                 if($data_offre[0]['Teletravail'] == 1){

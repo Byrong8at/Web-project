@@ -42,6 +42,100 @@ function get_adressesEntreprise($id){
     return $data;
 }
 
+function get_avis($id){
+    global $conn;
+    $class = new entreprise();
+    $data = $class->get_avis($conn, $id);
+    return $data;
+}
+
+function get_candidatureEntreprise($id) {
+    global $conn;
+    $class = new entreprise();
+    $data = $class->get_candidatureEntreprise($conn, $id);
+    return $data;
+}
+function get_wishlistEntreprise($id) {
+    global $conn;
+    $class = new entreprise();
+    $data = $class->get_wishlistEntreprise($conn, $id);
+    return $data;
+} 
+
+function aff_avis($avis){
+    if(empty($avis)){
+        echo "";
+    }else{
+        foreach ($avis as $a) {
+            $nom = $a['Nom'];
+            $prenom = $a['Prénom'];
+            $note = $a['Note'];
+            $date = $a['Jour'];
+            $description = $a['description'];
+            echo "<div class=\"bg-custom-purple text-white rounded-md w-72 md:w-4/5 h-36\">
+                        <span class=\"flex justify-between mx-1 md:mx-5\">
+                            <p>$nom $prenom</p>
+                            <p>$note/5</p>
+                        </span>
+                        <p class=\"mx-1 md:mx-5\">$date</p>
+                        <p class=\"mx-1 md:mx-5\">Commentaire :</br>$description</p>
+                        </div>";
+        }
+    }
+}
+
+function get_avisMoyenne($id){
+    global $conn;
+    $class = new entreprise();
+    $data = $class->get_avisMoyenne($conn, $id);
+    return $data;
+}
+
+function aff_avisMoyenne($avis){
+    if(empty($avis)){
+        echo "<div class=\"bg-custom-purple text-white rounded-md w-72 md:w-4/5 h-36\">
+                <p class=\"text-center\">Pas de commentaire</p>
+            </div>";
+    }else{
+        $nbavis = $avis[0]['nbavis'];
+        $moyenne = number_format($avis[0]['moyenne'], 2, '.', '');
+        $note_entier = floor($moyenne);
+        $note_decimale = $moyenne - $note_entier;
+        $a ='';
+        for ($i = 1; $i <= 5; $i++) {
+            if ($i <= $note_entier) {
+                $a .= "&#9733;";
+            } elseif ($i == $note_entier + 1 && $note_decimale >= 0.5) {
+                $a .= "&#9733;";
+            } else {
+                $a .= "&#9734;";
+            }
+        }
+        echo "<span class=\" text-3xl\">$a</span>
+            <span class=\"text-gray-600 ml-1\">$moyenne ($nbavis avis)</span>";
+    }
+}
+
+function get_entreprise($id){
+    global $conn;
+    $class = new offre();
+    $data = $class->get_entreprise($conn, $id);
+    return $data;
+}
+
+function get_candidatureOffre($id) {
+    global $conn;
+    $class = new offre();
+    $data = $class->get_candidatureOffre($conn, $id);
+    return $data;
+}
+function get_wishlistOffre($id) {
+    global $conn;
+    $class = new offre();
+    $data = $class->get_wishlistOffre($conn, $id);
+    return $data;
+} 
+
 function page_offre($id){
     global $conn;
     $classoffre = new offre();
@@ -53,6 +147,8 @@ function page_offre($id){
     $data_offre[0]['entreprise_Adresse3'] = $adresses[0]['Adresse_3'];
     return $data_offre;
 }
+
+
 
 function page_recherche($getpage,$filtretri){
     global $conn;
@@ -269,7 +365,6 @@ function article($print){
         $lieu = $offre['Adresse'];
         $id_entreprise = $offre['ID_entreprise'];
 
-        // Vérifier $wish_found et définir $wish_img (code inchangé)
         $wishs = get_wish();
         $wish_found = false;
             foreach ($wishs as $wish) {

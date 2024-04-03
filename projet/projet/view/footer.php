@@ -7,8 +7,8 @@
         </section>
 
         <section class="mt-4 sm:mt-0">
-            <p><a href="cgu.html">Nos Conditions D'utilisation</a></p>
-            <p><a href="mention.html">Nos mentions légale d'utilisation</a></p>
+            <p><a href="cgu.php">Nos Conditions D'utilisation</a></p>
+            <p><a href="mention.php">Nos mentions légale d'utilisation</a></p>
         </section>
         
 </footer>
