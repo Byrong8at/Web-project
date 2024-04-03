@@ -30,8 +30,6 @@ function login($identifiant, $mot_de_passe, $conn) {
         $quezy = $conn->prepare($sqllog);
         $quezy->execute([$identifiant, $mot_de_passe]);
         $user = $quezy->fetch(PDO::FETCH_ASSOC);
-        print_r($user);
-        print_r($mot_de_passe);
 
         if ($user !== false ) {
             return $user;
