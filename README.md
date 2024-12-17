@@ -1,1 +1,1 @@
-# projec-web
+# Web project
